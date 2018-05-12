@@ -68,6 +68,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DonaLaura.Common.Tests\DonaLaura.Common.Tests.csproj">
+      <Project>{1596B05F-1C1E-4E42-BFA2-D7C2082EB099}</Project>
+      <Name>DonaLaura.Common.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DonaLaura.Domain\DonaLaura.Domain.csproj">
       <Project>{72CCFDDD-C354-48FF-A6BF-EBB6862D1B78}</Project>
       <Name>DonaLaura.Domain</Name>

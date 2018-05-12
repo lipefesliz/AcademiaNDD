@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Database", "5. Database"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonaLaura.Domain", "DonaLaura.Domain\DonaLaura.Domain.csproj", "{72CCFDDD-C354-48FF-A6BF-EBB6862D1B78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonaLaura.Application", "DonaLaura.Application\DonaLaura.Application.csproj", "{1C195AA3-F435-4AA8-A142-7ED6D7D6D47D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{72CCFDDD-C354-48FF-A6BF-EBB6862D1B78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72CCFDDD-C354-48FF-A6BF-EBB6862D1B78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72CCFDDD-C354-48FF-A6BF-EBB6862D1B78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C195AA3-F435-4AA8-A142-7ED6D7D6D47D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C195AA3-F435-4AA8-A142-7ED6D7D6D47D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C195AA3-F435-4AA8-A142-7ED6D7D6D47D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C195AA3-F435-4AA8-A142-7ED6D7D6D47D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +88,7 @@ Global
 		{9FF1E321-7AC2-42D9-A32F-3F2391E64F01} = {0BFC0E50-164B-4079-ABD1-29970E4CBDCC}
 		{BBDF3C54-FBDE-4A6A-A444-256C017C7BFC} = {0BFC0E50-164B-4079-ABD1-29970E4CBDCC}
 		{72CCFDDD-C354-48FF-A6BF-EBB6862D1B78} = {A28BE1F6-01A6-477C-944D-39BE755B2373}
+		{1C195AA3-F435-4AA8-A142-7ED6D7D6D47D} = {211CA51A-3728-4CF6-BF40-8D0D457D26BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C608142C-924D-4BCC-B842-5C8315FF7B11}
