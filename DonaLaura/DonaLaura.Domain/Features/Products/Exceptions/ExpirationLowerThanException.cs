@@ -2,9 +2,9 @@
 
 namespace DonaLaura.Domain.Features.Products
 {
-    public class ExpirationLowerThanException : BusinessException
+    public class DuplicateNameException : BusinessException
     {
-        public ExpirationLowerThanException() : base("A DATA DE VALIDADE não pode ser menor que a DATA DE FABRICAÇÃO!")
+        public DuplicateNameException() : base("A DATA DE VALIDADE não pode ser menor que a DATA DE FABRICAÇÃO!")
         {
         }
     }

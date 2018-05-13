@@ -1,7 +1,6 @@
 ﻿using DonaLaura.Domain.Base;
-using DonaLaura.Domain.Features.Products;
 
-namespace DonaLaura.Domain.Features
+namespace DonaLaura.Domain.Features.Products
 {
     public interface IProductRepository : IRepository<Product>
     {

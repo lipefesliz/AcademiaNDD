@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Data;
 using DonaLaura.Domain.Exceptions;
-using DonaLaura.Domain.Features;
 using DonaLaura.Domain.Features.Products;
 
 namespace DonaLaura.Application.Features
@@ -19,6 +18,10 @@ namespace DonaLaura.Application.Features
         {
             entity.Validate();
 
+            bool productFounded = _productRepository.Exist(entity.Name);
+            if (productFounded)
+                throw new System.Data.DuplicateNameException();
+
             return _productRepository.Add(entity);
         }
 
@@ -28,6 +31,9 @@ namespace DonaLaura.Application.Features
             {
                 throw new IdentifierUndefinedException();
             }
+
+            if (IsTied(entity.Id))
+                throw new TiedException();
 
             _productRepository.Delete(entity.Id);
         }
@@ -55,7 +61,17 @@ namespace DonaLaura.Application.Features
             }
 
             entity.Validate();
+
+            //Product productFounded = _productRepository.GetByName(entity.Name);
+            //if (productFounded.Id != entity.Id)
+            //    throw new System.Data.DuplicateNameException();
+
             return _productRepository.Update(entity);
+        }
+
+        public bool IsTied(int id)
+        {
+            return _productRepository.IsTiedTo(id);
         }
     }
 }

@@ -4,9 +4,9 @@ namespace DonaLaura.Domain.Base
 {
     public interface IRepository<T> where T : Entity
     {
-        T Add(T entidade);
+        T Add(T entity);
 
-        T Update(T entidade);
+        T Update(T entity);
 
         T Get(long id);
 

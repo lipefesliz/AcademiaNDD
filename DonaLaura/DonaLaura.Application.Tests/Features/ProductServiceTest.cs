@@ -1,7 +1,6 @@
 ﻿using DonaLaura.Application.Features;
 using DonaLaura.Common.Tests.Features.Products;
 using DonaLaura.Domain.Exceptions;
-using DonaLaura.Domain.Features;
 using DonaLaura.Domain.Features.Products;
 using FluentAssertions;
 using Moq;
@@ -150,11 +149,25 @@ namespace DonaLaura.Application.Tests.Features
             Product product = ObjectMother.CreateInvalidProductExpirationLowerThan();
 
             Action action = () => { _service.Add(product); };
-            action.Should().Throw<ExpirationLowerThanException>();
+            action.Should().Throw<DuplicateNameException>();
         }
 
         [Test]
         [Order(11)]
+        public void Test_ProductService_AddDuplicatedName_ShouldFail()
+        {
+            Product product = ObjectMother.CreateValidProduct();
+
+            _mockRepository
+                .Setup(pr => pr.Add(product))
+                .Throws<DuplicateNameException>();
+
+            Action action = () => { _service.Add(product); };
+            action.Should().Throw<DuplicateNameException>();
+        }
+
+        [Test]
+        [Order(12)]
         public void Test_ProductService_UpdateUndefinedId_ShouldFail()
         {
             Product product = ObjectMother.CreateValidProduct();
@@ -165,7 +178,21 @@ namespace DonaLaura.Application.Tests.Features
         }
 
         [Test]
-        [Order(12)]
+        [Order(13)]
+        public void Test_ProductService_UpdateDuplicatedName_ShouldFail()
+        {
+            Product product = ObjectMother.CreateValidProduct();
+
+            _mockRepository
+                .Setup(pr => pr.Update(product))
+                .Throws<DuplicateNameException>();
+
+            Action action = () => { _service.Update(product); };
+            action.Should().Throw<DuplicateNameException>();
+        }
+
+        [Test]
+        [Order(14)]
         public void Test_ProductService_DeleteteUndefinedId_ShouldFail()
         {
             Product product = ObjectMother.CreateValidProduct();
@@ -176,7 +203,21 @@ namespace DonaLaura.Application.Tests.Features
         }
 
         [Test]
-        [Order(13)]
+        [Order(15)]
+        public void Test_ProductService_DeleteTiedProduct_ShouldFail()
+        {
+            Product product = ObjectMother.CreateValidProduct();
+
+            _mockRepository
+                .Setup(pr => pr.Delete(product.Id))
+                .Throws<TiedException>();
+
+            Action action = () => { _service.Delete(product); };
+            action.Should().Throw<TiedException>();
+        }
+
+        [Test]
+        [Order(16)]
         public void Test_ProductService_GetUndefinedId_ShouldFail()
         {
             long Id = 0;

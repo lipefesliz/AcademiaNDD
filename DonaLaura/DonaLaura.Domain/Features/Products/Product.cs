@@ -32,7 +32,7 @@ namespace DonaLaura.Domain.Features.Products
                 throw new SalePriceLowerThanException();
 
             if (Expiration <= Fabrication)
-                throw new ExpirationLowerThanException();
+                throw new DuplicateNameException();
         }
 
         private decimal SetSalePrice()

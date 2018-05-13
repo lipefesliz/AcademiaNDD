@@ -68,7 +68,7 @@ namespace DonaLaura.Domain.Tests.Features
             Product product = ObjectMother.CreateInvalidProductExpirationLowerThan();
 
             Action action = product.Validate;
-            action.Should().Throw<ExpirationLowerThanException>();
+            action.Should().Throw<DuplicateNameException>();
         }
     }
 }
