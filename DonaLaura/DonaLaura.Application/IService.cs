@@ -5,10 +5,14 @@ namespace DonaLaura.Application
 {
     public interface IService<T> where T : Entity
     {
-        T Add(T entidade);
-        T Update(T entidade);
+        T Add(T entity);
+
+        T Update(T entity);
+
         T Get(long id);
+
         IList<T> GetAll();
-        void Delete(T entidade);
+
+        void Delete(T entity);
     }
 }

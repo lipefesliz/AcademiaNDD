@@ -41,9 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Entity.cs" />
+    <Compile Include="Base\IRepository.cs" />
     <Compile Include="Exceptions\BusinessException.cs" />
     <Compile Include="Exceptions\IdentifierUndefinedException.cs" />
     <Compile Include="Exceptions\UnsupportedOperationException.cs" />
+    <Compile Include="Features\IProductRepository.cs" />
     <Compile Include="Features\Products\Exceptions\CostPriceNegativeException.cs" />
     <Compile Include="Features\Products\Exceptions\ExpirationLowerThanException.cs" />
     <Compile Include="Features\Products\Exceptions\NameIsNullOrEmptyException.cs" />
