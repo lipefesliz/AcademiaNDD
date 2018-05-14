@@ -92,12 +92,12 @@ namespace DonaLaura.Infra.Data.Tests.Features.Products
             product.Name.Should().Be("Sabonete");
         }
 
-        //[Test]
-        //[Order(8)]
+        [Test]
+        [Order(8)]
         public void Test_ProductIntegrationData_IsTiedTo_ShouldBeOk()
         {
             bool result = _repository.IsTiedTo(1);
-            result.Should().Be(true);
+            result.Should().Be(false);
         }
 
         /*TESTES ALTERNATIVOS*/
@@ -148,7 +148,7 @@ namespace DonaLaura.Infra.Data.Tests.Features.Products
             Product product = ObjectMother.CreateInvalidProductExpirationLowerThan();
 
             Action action = () => { _repository.Add(product); };
-            action.Should().Throw<DuplicateNameException>();
+            action.Should().Throw<ExpirationLowerThanException>();
         }
 
         [Test]

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[TBSales]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY (1,1), 
-    [Costumer] NVARCHAR(50) NOT NULL, 
+    [Custumer] NVARCHAR(50) NOT NULL, 
     [Profit] DECIMAL(9, 2) NOT NULL, 
 )

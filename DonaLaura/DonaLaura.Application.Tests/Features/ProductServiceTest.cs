@@ -2,6 +2,7 @@
 using DonaLaura.Common.Tests.Features.Products;
 using DonaLaura.Domain.Exceptions;
 using DonaLaura.Domain.Features.Products;
+using DonaLaura.Domain.Features.Products.Exceptions;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -92,7 +93,7 @@ namespace DonaLaura.Application.Tests.Features
         {
             _mockRepository
                 .Setup(pr => pr.GetAll())
-                .Returns(new List<Product> { new Product { Id = 1 },  new Product { Id = 2 } });
+                .Returns(new List<Product> { new Product { Id = 1 }, new Product { Id = 2 } });
 
             IList<Product> products = _service.GetAll();
 
@@ -101,9 +102,22 @@ namespace DonaLaura.Application.Tests.Features
             products.First().Id.Should().Be(1);
         }
 
-        /*TESTES ALTERNATIVOS*/
         [Test]
         [Order(6)]
+        public void Test_ProductService_IsTiedTo_ShouldBeOk()
+        {
+            _mockRepository
+                .Setup(pr => pr.IsTiedTo(1))
+                .Returns(false);
+
+            bool result = _service.IsTiedTo(1);
+            result.Should().Be(false);
+            
+        }
+
+        /*TESTES ALTERNATIVOS*/
+        [Test]
+        [Order(7)]
         public void Test_ProductService_AddEmptyName_ShouldFail()
         {
             Product product = ObjectMother.CreateInvalidProductEmptyName();
@@ -113,7 +127,7 @@ namespace DonaLaura.Application.Tests.Features
         }
 
         [Test]
-        [Order(7)]
+        [Order(8)]
         public void Test_ProductService_AddLenghName_ShouldFail()
         {
             Product product = ObjectMother.CreateInvalidProductLenghName();
@@ -123,7 +137,7 @@ namespace DonaLaura.Application.Tests.Features
         }
 
         [Test]
-        [Order(8)]
+        [Order(9)]
         public void Test_ProductService_AddNegativeCostPrice_ShouldFail()
         {
             Product product = ObjectMother.CreateInvalidProductNegativeCostPrice();
@@ -133,7 +147,7 @@ namespace DonaLaura.Application.Tests.Features
         }
 
         [Test]
-        [Order(9)]
+        [Order(10)]
         public void Test_ProductService_AddSalePriceLowerThan_ShouldFail()
         {
             Product product = ObjectMother.CreateInvalidProductLowerThanSalePrice();
@@ -143,31 +157,31 @@ namespace DonaLaura.Application.Tests.Features
         }
 
         [Test]
-        [Order(10)]
+        [Order(11)]
         public void Test_ProductService_AddExpirationLowerThan_ShouldFail()
         {
             Product product = ObjectMother.CreateInvalidProductExpirationLowerThan();
 
             Action action = () => { _service.Add(product); };
-            action.Should().Throw<DuplicateNameException>();
+            action.Should().Throw<ExpirationLowerThanException>();
         }
 
         [Test]
-        [Order(11)]
+        [Order(12)]
         public void Test_ProductService_AddDuplicatedName_ShouldFail()
         {
             Product product = ObjectMother.CreateValidProduct();
 
             _mockRepository
                 .Setup(pr => pr.Add(product))
-                .Throws<DuplicateNameException>();
+                .Throws<DuplicatedNameException>();
 
             Action action = () => { _service.Add(product); };
-            action.Should().Throw<DuplicateNameException>();
+            action.Should().Throw<DuplicatedNameException>();
         }
 
         [Test]
-        [Order(12)]
+        [Order(13)]
         public void Test_ProductService_UpdateUndefinedId_ShouldFail()
         {
             Product product = ObjectMother.CreateValidProduct();
@@ -178,21 +192,21 @@ namespace DonaLaura.Application.Tests.Features
         }
 
         [Test]
-        [Order(13)]
+        [Order(14)]
         public void Test_ProductService_UpdateDuplicatedName_ShouldFail()
         {
             Product product = ObjectMother.CreateValidProduct();
 
             _mockRepository
                 .Setup(pr => pr.Update(product))
-                .Throws<DuplicateNameException>();
+                .Throws<DuplicatedNameException>();
 
             Action action = () => { _service.Update(product); };
-            action.Should().Throw<DuplicateNameException>();
+            action.Should().Throw<DuplicatedNameException>();
         }
 
         [Test]
-        [Order(14)]
+        [Order(15)]
         public void Test_ProductService_DeleteteUndefinedId_ShouldFail()
         {
             Product product = ObjectMother.CreateValidProduct();
@@ -203,7 +217,7 @@ namespace DonaLaura.Application.Tests.Features
         }
 
         [Test]
-        [Order(15)]
+        [Order(16)]
         public void Test_ProductService_DeleteTiedProduct_ShouldFail()
         {
             Product product = ObjectMother.CreateValidProduct();
@@ -217,12 +231,22 @@ namespace DonaLaura.Application.Tests.Features
         }
 
         [Test]
-        [Order(16)]
+        [Order(17)]
         public void Test_ProductService_GetUndefinedId_ShouldFail()
         {
             long Id = 0;
 
             Action action = () => { _service.Get(Id); };
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        [Order(18)]
+        public void Test_ProductService_IsTiedToUndefinedId_ShouldFail()
+        {
+            long Id = 0;
+
+            Action action = () => { _service.IsTiedTo(Id); };
             action.Should().Throw<IdentifierUndefinedException>();
         }
     }

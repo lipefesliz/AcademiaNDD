@@ -8,6 +8,6 @@ namespace DonaLaura.Domain.Features.Products
 
         Product GetByName(string name);
 
-        bool IsTiedTo(int id);
+        bool IsTiedTo(long id);
     }
 }

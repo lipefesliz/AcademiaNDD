@@ -80,7 +80,9 @@ namespace DonaLaura.Infra.Data.Features.Products
         {
             var parms = new Dictionary<string, object> { { "NAME", name } };
 
-            return Db.Get(SqlSelectProductByName, Converter, parms);
+            var result = Db.Get(SqlSelectProductByName, Converter, parms);
+
+            return result;
         }
 
         public bool Exist(string name)
@@ -92,7 +94,7 @@ namespace DonaLaura.Infra.Data.Features.Products
             return result != null;
         }
 
-        public bool IsTiedTo(int id)
+        public bool IsTiedTo(long id)
         {
             var parms = new Dictionary<string, object> { { "ID", id } };
 
