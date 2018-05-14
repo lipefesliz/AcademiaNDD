@@ -53,16 +53,17 @@ namespace DonaLaura.Common.Tests.Base
 
         public static void SeedDatabase()
         {
+            Db.Update(RECREATE_SALE_PRODUCTS_TABLE);
+
             Db.Update(RECREATE_PRODUCT_TABLE);
             Db.Update(RESET_PRODUCT_IDENTITY);
             Db.Update(INSERT_PRODUCT);
 
-            //Db.Update(RECREATE_SALE_TABLE);
-            //Db.Update(RESET_SALE_IDENTITY);
-            //Db.Update(INSERT_SALE);
+            Db.Update(RECREATE_SALE_TABLE);
+            Db.Update(RESET_SALE_IDENTITY);
+            Db.Update(INSERT_SALE);
 
-            //Db.Update(RECREATE_SALE_PRODUCTS_TABLE);
-            //Db.Update(INSERT_SALE_PRODUCTS);
+            Db.Update(INSERT_SALE_PRODUCTS);
         }
     }
 }

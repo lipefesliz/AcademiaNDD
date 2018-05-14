@@ -9,6 +9,7 @@ namespace DonaLaura.Domain.Features.Sales
     {
         public string Customer { get; set; }
         public IList<Product> Products { get; set; }
+        public IList<int> Amount { get; set; }
         public decimal Profit { get; set; }
 
         public override void Validate()

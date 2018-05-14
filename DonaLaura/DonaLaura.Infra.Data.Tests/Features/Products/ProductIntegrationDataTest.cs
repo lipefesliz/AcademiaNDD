@@ -58,9 +58,9 @@ namespace DonaLaura.Infra.Data.Tests.Features.Products
         [Order(4)]
         public void Test_ProductIntegrationData_Delete_ShouldBeOk()
         {
-            _repository.Delete(1);
+            _repository.Delete(11);
 
-            Product deletedProduct = _repository.Get(1);
+            Product deletedProduct = _repository.Get(11);
             deletedProduct.Should().Be(null);
         }
 
@@ -97,7 +97,7 @@ namespace DonaLaura.Infra.Data.Tests.Features.Products
         public void Test_ProductIntegrationData_IsTiedTo_ShouldBeOk()
         {
             bool result = _repository.IsTiedTo(1);
-            result.Should().Be(false);
+            result.Should().Be(true);
         }
 
         /*TESTES ALTERNATIVOS*/

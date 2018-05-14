@@ -57,10 +57,11 @@ namespace DonaLaura.Integration.Tests.Features.Products
         public void Test_ProductIntegration_Delete_ShouldBeOk()
         {
             Product product = ObjectMother.CreateValidProduct();
+            product.Id = 11;
 
             _productService.Delete(product);
 
-            product = _productService.Get(1);
+            product = _productService.Get(11);
             product.Should().Be(null);
         }
 
@@ -87,7 +88,7 @@ namespace DonaLaura.Integration.Tests.Features.Products
         public void Test_ProductIntegration_IsTiedTo_ShouldBeOk()
         {
             bool result = _productService.IsTiedTo(1);
-            result.Should().Be(false);
+            result.Should().Be(true);
         }
 
         /*TESTES ALTERNATIVOS*/
