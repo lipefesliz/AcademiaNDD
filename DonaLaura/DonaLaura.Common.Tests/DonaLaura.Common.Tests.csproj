@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Base\BaseSqlTest.cs" />
     <Compile Include="Features\Products\ObjectMother.cs" />
+    <Compile Include="Features\Sales\ObjectMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

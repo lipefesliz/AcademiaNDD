@@ -54,6 +54,7 @@
     <Compile Include="Features\Products\Exceptions\NameLenghtException.cs" />
     <Compile Include="Features\Products\Product.cs" />
     <Compile Include="Features\Products\Exceptions\SalePriceLowerThanException.cs" />
+    <Compile Include="Features\Sales\Sale.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

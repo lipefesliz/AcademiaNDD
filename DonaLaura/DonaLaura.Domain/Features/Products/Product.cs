@@ -6,15 +6,10 @@ namespace DonaLaura.Domain.Features.Products
     public class Product : Entity
     {
         public string Name { get; set; }
-
         public decimal CostPrice { get; set; }
-
         public decimal SalePrice { get; set; }
-
         public bool IsAvailable { get; set; }
-
         public DateTime Fabrication { get; set; }
-
         public DateTime Expiration { get; set; }
 
         public override void Validate()
