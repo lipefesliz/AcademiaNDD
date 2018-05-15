@@ -3,7 +3,6 @@ using DonaLaura.Common.Tests.Features.Sales;
 using DonaLaura.Domain.Exceptions;
 using DonaLaura.Domain.Features.Products;
 using DonaLaura.Domain.Features.Sales;
-using DonaLaura.Domain.Features.Sales;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;

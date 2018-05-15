@@ -1,5 +1,6 @@
 ﻿using DonaLaura.Common.Tests.Base;
 using DonaLaura.Common.Tests.Features.Sales;
+using DonaLaura.Domain.Features.Products;
 using DonaLaura.Domain.Features.Sales;
 using DonaLaura.Infra.Data.Features.Sales;
 using FluentAssertions;
@@ -71,6 +72,24 @@ namespace DonaLaura.Infra.Data.Tests.Features.Sales
             IList<Sale> sales = _repository.GetAll();
             sales.Count().Should().Be(1);
             sales.First().Customer.Should().Be("Juca");
+        }
+
+        [Test]
+        [Order(6)]
+        public void Test_SaleIntegrationData_GetByCustumer_ShouldBeOk()
+        {
+            Sale sale = _repository.GetByCustomer("Lara");
+            sale.Should().Be(null);
+        }
+
+        [Test]
+        [Order(7)]
+        public void Test_SaleIntegrationData_GetProductsFromSale_ShouldBeOk()
+        {
+            long id = 1;
+            IList<Product> products = _repository.GetProductsFromSale(id);
+            products.Count().Should().Be(1);
+            products.First().Name.Should().Be("Sabonete");
         }
     }
 }

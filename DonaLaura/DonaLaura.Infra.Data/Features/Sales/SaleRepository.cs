@@ -82,7 +82,7 @@ namespace DonaLaura.Infra.Data.Features.Sales
                 TBPRODUCTS.*
             FROM
                 TBSALES
-                INNER JOIN TBSALEPRODUCTS ON TBSALES.IS = TBSALEPRODUCTS.SALEID
+                INNER JOIN TBSALEPRODUCTS ON TBSALES.ID = TBSALEPRODUCTS.SALEID
                 INNER JOIN TBPRODUCTS ON TBSALEPRODUCTS.PRODUCTID = TBPRODUCTS.ID
                 WHERE TBSALES.ID = {0}ID";
 
