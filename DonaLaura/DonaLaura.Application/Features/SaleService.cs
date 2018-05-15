@@ -2,7 +2,7 @@
 using DonaLaura.Domain.Features.Sales;
 using System.Collections.Generic;
 
-namespace DonaLaura.Application.Features
+namespace DonaLaura.Applications.Features
 {
     public class SaleService : IService<Sale>
     {

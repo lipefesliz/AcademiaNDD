@@ -3,7 +3,7 @@ using DonaLaura.Domain.Exceptions;
 using DonaLaura.Domain.Features.Products;
 using DonaLaura.Domain.Features.Products.Exceptions;
 
-namespace DonaLaura.Application.Features
+namespace DonaLaura.Applications.Features
 {
     public class ProductService : IService<Product>
     {

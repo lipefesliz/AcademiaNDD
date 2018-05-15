@@ -1,4 +1,4 @@
-﻿using DonaLaura.Application.Features;
+﻿using DonaLaura.Applications.Features;
 using DonaLaura.Domain.Features.Products;
 using DonaLaura.Domain.Features.Sales;
 using DonaLaura.Infra.Data.Features.Products;

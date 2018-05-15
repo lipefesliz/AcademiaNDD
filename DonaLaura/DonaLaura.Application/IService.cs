@@ -1,7 +1,7 @@
 ﻿using DonaLaura.Domain.Base;
 using System.Collections.Generic;
 
-namespace DonaLaura.Application
+namespace DonaLaura.Applications
 {
     public interface IService<T> where T : Entity
     {

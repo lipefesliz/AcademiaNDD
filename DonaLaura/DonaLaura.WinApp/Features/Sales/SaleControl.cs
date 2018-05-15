@@ -1,4 +1,4 @@
-﻿using DonaLaura.Application.Features;
+﻿using DonaLaura.Applications.Features;
 using DonaLaura.Domain.Features.Sales;
 using DonaLaura.Infra.Data.Features.Sales;
 using System.Collections.Generic;
@@ -45,7 +45,7 @@ namespace DonaLaura.WinApp.Features.Sales
         private void SetDataGrid()
         {
             dgvSale.Columns["ID"].Visible = false;
-            dgvSale.Columns["PRODUTOS"].Visible = false;
+            dgvSale.Columns["PRODUCTS"].Visible = false;
         }
     }
 }
