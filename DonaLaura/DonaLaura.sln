@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonaLaura.Infra.Data", "Don
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DBDonaLaura.Database", "DBDonaLaura.Database\DBDonaLaura.Database.sqlproj", "{2D2FB307-F625-49DC-AC70-47D1398D8D0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonaLaura.WinApp", "DonaLaura.WinApp\DonaLaura.WinApp.csproj", "{990E3083-2495-4837-AB3F-1059D2997495}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,10 @@ Global
 		{2D2FB307-F625-49DC-AC70-47D1398D8D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D2FB307-F625-49DC-AC70-47D1398D8D0B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2D2FB307-F625-49DC-AC70-47D1398D8D0B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{990E3083-2495-4837-AB3F-1059D2997495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{990E3083-2495-4837-AB3F-1059D2997495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{990E3083-2495-4837-AB3F-1059D2997495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{990E3083-2495-4837-AB3F-1059D2997495}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +111,7 @@ Global
 		{8E96F85E-DC64-4C97-85F0-DC5ABC9D5AB9} = {E61AAF16-330B-4ECB-95F9-6573162F85D9}
 		{014E63C0-14D8-497B-B7B7-AEDBEF5C66C4} = {E61AAF16-330B-4ECB-95F9-6573162F85D9}
 		{2D2FB307-F625-49DC-AC70-47D1398D8D0B} = {19FBF99A-319A-4BC8-BACD-45FF44FC46BA}
+		{990E3083-2495-4837-AB3F-1059D2997495} = {11A7BF42-4A27-4B97-906C-D55C7E703B1D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C608142C-924D-4BCC-B842-5C8315FF7B11}

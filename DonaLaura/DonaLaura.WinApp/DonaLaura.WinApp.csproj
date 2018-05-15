@@ -45,14 +45,56 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Features\FormManager.cs" />
+    <Compile Include="Features\Products\ProductControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\Products\ProductControl.Designer.cs">
+      <DependentUpon>ProductControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Products\ProductFormManager.cs" />
+    <Compile Include="Features\Products\ProductRegisterDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Features\Products\ProductRegisterDialog.Designer.cs">
+      <DependentUpon>ProductRegisterDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Sales\SaleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\Sales\SaleControl.Designer.cs">
+      <DependentUpon>SaleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Sales\SaleFormManager.cs" />
+    <Compile Include="Features\Sales\SaleRegisterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Sales\SaleRegisterDialog.Designer.cs">
+      <DependentUpon>SaleRegisterDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Features\Products\ProductControl.resx">
+      <DependentUpon>ProductControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Products\ProductRegisterDialog.resx">
+      <DependentUpon>ProductRegisterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Sales\SaleControl.resx">
+      <DependentUpon>SaleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Sales\SaleRegisterDialog.resx">
+      <DependentUpon>SaleRegisterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -74,6 +116,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DonaLaura.Application\DonaLaura.Application.csproj">
+      <Project>{1C195AA3-F435-4AA8-A142-7ED6D7D6D47D}</Project>
+      <Name>DonaLaura.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DonaLaura.Domain\DonaLaura.Domain.csproj">
+      <Project>{72CCFDDD-C354-48FF-A6BF-EBB6862D1B78}</Project>
+      <Name>DonaLaura.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DonaLaura.Infra.Data\DonaLaura.Infra.Data.csproj">
+      <Project>{014E63C0-14D8-497B-B7B7-AEDBEF5C66C4}</Project>
+      <Name>DonaLaura.Infra.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

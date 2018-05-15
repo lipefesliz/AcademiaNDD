@@ -5,6 +5,7 @@ using DonaLaura.Infra.Data.Features.Products;
 using DonaLaura.Infra.Data.Features.Sales;
 using DonaLaura.WinApp.Features;
 using DonaLaura.WinApp.Features.Products;
+using DonaLaura.WinApp.Features.Sales;
 using System;
 using System.Windows.Forms;
 
@@ -20,7 +21,7 @@ namespace DonaLaura.WinApp
 
         private FormManager _manager;
         private ProductFormManager _productManager;
-        //private SaleFormManager _saleManager;
+        private SaleFormManager _saleManager;
 
         public Main()
         {
@@ -28,9 +29,9 @@ namespace DonaLaura.WinApp
             WindowState = FormWindowState.Maximized;
             FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            //_saleManager = new SaleFormManager(_saleService, _productService);
+            _saleManager = new SaleFormManager(_saleService, _productService);
 
-            //LoadRegister(_saleManager);
+            LoadRegister(_saleManager);
         }
 
         private void LoadRegister(FormManager manager)
@@ -105,10 +106,10 @@ namespace DonaLaura.WinApp
 
         private void salesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //if (_saleManager == null)
-            //    _saleManager = new SaleFormManager(_saleService, _productService);
+            if (_saleManager == null)
+                _saleManager = new SaleFormManager(_saleService, _productService);
 
-            //LoadRegister(_saleManager);
+            LoadRegister(_saleManager);
         }
     }
 }
