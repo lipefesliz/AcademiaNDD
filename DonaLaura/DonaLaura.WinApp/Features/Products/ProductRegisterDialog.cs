@@ -34,6 +34,9 @@ namespace DonaLaura.WinApp.Features.Products
         {
             InitializeComponent();
 
+            dtFabrication.Enabled = false;
+            dtExpiration.Enabled = false;
+
             Product = productSelecionado;
         }
 
@@ -48,8 +51,8 @@ namespace DonaLaura.WinApp.Features.Products
             _product.CostPrice = Convert.ToDecimal(txtCostPrice.Text);
             _product.SalePrice = Convert.ToDecimal(txtSalePrice.Text);
             _product.IsAvailable = Convert.ToBoolean(chbxIsAvailable.Checked);
-            _product.Fabrication = Convert.ToDateTime(dtFabrication);
-            _product.Expiration = Convert.ToDateTime(dtExpiration);
+            _product.Fabrication = dtFabrication.Value;
+            _product.Expiration = dtExpiration.Value;
 
 
             try

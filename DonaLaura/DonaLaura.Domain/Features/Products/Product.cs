@@ -12,6 +12,11 @@ namespace DonaLaura.Domain.Features.Products
         public DateTime Fabrication { get; set; }
         public DateTime Expiration { get; set; }
 
+        public override string ToString()
+        {
+            return string.Format("{0} - {1} - {2} - {3} - {4} - {5}", Name, CostPrice, SalePrice, IsAvailable, Fabrication, Expiration);
+        }
+
         public override void Validate()
         {
             if (String.IsNullOrEmpty(Name))

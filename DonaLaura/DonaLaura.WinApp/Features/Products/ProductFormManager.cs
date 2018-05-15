@@ -42,8 +42,8 @@ namespace DonaLaura.WinApp.Features.Products
 
             if (selectedProduct != null)
             {
-                DialogResult result = MessageBox.Show("Tem certeza que deseja excluir o producto "
-                    + selectedProduct.Name, "Excluir producto",
+                DialogResult result = MessageBox.Show("Tem certeza que deseja excluir o produto "
+                    + selectedProduct.Name, "Excluir produto",
                     MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (result == DialogResult.OK)
@@ -62,7 +62,7 @@ namespace DonaLaura.WinApp.Features.Products
             }
             else
             {
-                MessageBox.Show("Selecione um producto!");
+                MessageBox.Show("Selecione um produto!");
             }
         }
 
@@ -96,7 +96,7 @@ namespace DonaLaura.WinApp.Features.Products
             }
             else
             {
-                MessageBox.Show("Selecione um product!");
+                MessageBox.Show("Selecione um produto!");
             }
         }
 

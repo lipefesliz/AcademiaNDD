@@ -12,6 +12,11 @@ namespace DonaLaura.Domain.Features.Sales
         public IList<int> Amount { get; set; }
         public decimal Profit { get; set; }
 
+        public override string ToString()
+        {
+            return string.Format("{0} - {1}", Customer, Profit);
+        }
+
         public override void Validate()
         {
             if (String.IsNullOrEmpty(Customer))

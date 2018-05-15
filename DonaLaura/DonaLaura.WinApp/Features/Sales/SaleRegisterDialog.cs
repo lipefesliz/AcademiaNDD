@@ -57,13 +57,13 @@ namespace DonaLaura.WinApp.Features.Sales
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnAdd_Click_1(object sender, EventArgs e)
         {
             if (!listBoxProducts.Items.Contains(cmbProducts.SelectedItem))
                 listBoxProducts.Items.Add(cmbProducts.SelectedItem);
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDelete_Click_1(object sender, EventArgs e)
         {
             listBoxProducts.Items.Remove(listBoxProducts.SelectedItem);
         }

@@ -29,9 +29,8 @@ namespace DonaLaura.WinApp
             WindowState = FormWindowState.Maximized;
             FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            _saleManager = new SaleFormManager(_saleService, _productService);
-
-            LoadRegister(_saleManager);
+            //_saleManager = new SaleFormManager(_saleService, _productService);
+            //LoadRegister(_saleManager);
         }
 
         private void LoadRegister(FormManager manager)
