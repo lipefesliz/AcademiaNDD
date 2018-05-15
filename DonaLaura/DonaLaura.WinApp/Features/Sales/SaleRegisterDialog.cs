@@ -2,6 +2,7 @@
 using DonaLaura.Domain.Features.Sales;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace DonaLaura.WinApp.Features.Sales
@@ -9,6 +10,9 @@ namespace DonaLaura.WinApp.Features.Sales
     public partial class SaleRegisterDialog : Form
     {
         private Sale _sale;
+        private List<Product> listProducts = new List<Product>();
+        private List<int> listAmount = new List<int>();
+        private decimal profit = 0;
 
         public Sale Sale
         {
@@ -59,13 +63,39 @@ namespace DonaLaura.WinApp.Features.Sales
 
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
-            if (!listBoxProducts.Items.Contains(cmbProducts.SelectedItem))
-                listBoxProducts.Items.Add(cmbProducts.SelectedItem);
+            if (cmbProducts.SelectedItem != null)
+            {
+                if (cmbProducts.SelectedItem.ToString().Contains("Sim"))
+                {
+                    listProducts.Add((Product)cmbProducts.SelectedItem);
+                    listAmount.Add((int)numAmount.Value);
+
+                    var text = string.Format("Produto: {0} - Quantidade: {1}", listProducts.Last().Name, numAmount.Value);
+                    listBoxProducts.Items.Add(text);
+
+                    profit += (listProducts.Last().SalePrice - listProducts.Last().CostPrice) * numAmount.Value;
+                    txtProfit.Text = profit.ToString();
+                }
+                else
+                    throw new ArgumentNullException("Este produto não consta em estoque!");
+            }
+            
         }
 
         private void btnDelete_Click_1(object sender, EventArgs e)
         {
-            listBoxProducts.Items.Remove(listBoxProducts.SelectedItem);
+            if (cmbProducts.SelectedItem != null)
+            {
+                listBoxProducts.Items.Remove(listBoxProducts.SelectedItem);
+
+                if (profit > 0)
+                {
+                    profit -= (listProducts.Last().SalePrice - listProducts.Last().CostPrice) * numAmount.Value;
+                    txtProfit.Text = profit.ToString();
+                }
+                else
+                    txtProfit.Text = "0,00";
+            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -75,17 +105,15 @@ namespace DonaLaura.WinApp.Features.Sales
                 _sale = new Sale();
             }
 
-            IList<Product> list = new List<Product>();
-
             _sale.Id = int.Parse(txtId.Text);
             _sale.Customer = txtCustomer.Text.Trim();
-            _sale.Profit = Convert.ToDecimal(txtProfit.Text);
-
-            foreach (var item in listBoxProducts.Items)
+            _sale.Products = listProducts;
+            _sale.Amount = listAmount;
+            _sale.Profit = 0;
+            for (int i = 0; i < _sale.Amount.Count; i++)
             {
-                list.Add(item as Product);
+                _sale.Profit += (_sale.Products[i].SalePrice - _sale.Products[i].CostPrice) * _sale.Amount[i];
             }
-            _sale.Products = list;
 
             try
             {

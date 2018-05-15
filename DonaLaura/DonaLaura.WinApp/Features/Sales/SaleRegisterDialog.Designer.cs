@@ -41,18 +41,23 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtCustomer = new System.Windows.Forms.TextBox();
             this.lblCustomer = new System.Windows.Forms.Label();
+            this.lblAmount = new System.Windows.Forms.Label();
+            this.numAmount = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numAmount)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.numAmount);
+            this.groupBox1.Controls.Add(this.lblAmount);
             this.groupBox1.Controls.Add(this.listBoxProducts);
             this.groupBox1.Controls.Add(this.cmbProducts);
             this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Controls.Add(this.btnAdd);
-            this.groupBox1.Location = new System.Drawing.Point(30, 171);
+            this.groupBox1.Location = new System.Drawing.Point(30, 120);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(330, 173);
+            this.groupBox1.Size = new System.Drawing.Size(365, 203);
             this.groupBox1.TabIndex = 74;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lista de produtos";
@@ -61,9 +66,9 @@
             // 
             this.listBoxProducts.FormattingEnabled = true;
             this.listBoxProducts.ItemHeight = 16;
-            this.listBoxProducts.Location = new System.Drawing.Point(22, 54);
+            this.listBoxProducts.Location = new System.Drawing.Point(22, 109);
             this.listBoxProducts.Name = "listBoxProducts";
-            this.listBoxProducts.Size = new System.Drawing.Size(293, 84);
+            this.listBoxProducts.Size = new System.Drawing.Size(337, 84);
             this.listBoxProducts.TabIndex = 50;
             // 
             // cmbProducts
@@ -72,13 +77,13 @@
             this.cmbProducts.FormattingEnabled = true;
             this.cmbProducts.Location = new System.Drawing.Point(22, 24);
             this.cmbProducts.Name = "cmbProducts";
-            this.cmbProducts.Size = new System.Drawing.Size(293, 24);
+            this.cmbProducts.Size = new System.Drawing.Size(337, 24);
             this.cmbProducts.Sorted = true;
             this.cmbProducts.TabIndex = 43;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(240, 144);
+            this.btnDelete.Location = new System.Drawing.Point(284, 66);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 49;
@@ -88,7 +93,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(159, 144);
+            this.btnAdd.Location = new System.Drawing.Point(203, 66);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 48;
@@ -99,7 +104,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(276, 430);
+            this.btnCancel.Location = new System.Drawing.Point(276, 421);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(119, 35);
             this.btnCancel.TabIndex = 73;
@@ -109,7 +114,7 @@
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(151, 430);
+            this.btnOk.Location = new System.Drawing.Point(151, 421);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(119, 35);
             this.btnOk.TabIndex = 72;
@@ -120,15 +125,15 @@
             // txtProfit
             // 
             this.txtProfit.Enabled = false;
-            this.txtProfit.Location = new System.Drawing.Point(102, 121);
+            this.txtProfit.Location = new System.Drawing.Point(108, 352);
             this.txtProfit.Name = "txtProfit";
-            this.txtProfit.Size = new System.Drawing.Size(258, 22);
+            this.txtProfit.Size = new System.Drawing.Size(287, 22);
             this.txtProfit.TabIndex = 70;
             // 
             // lblProfit
             // 
             this.lblProfit.AutoSize = true;
-            this.lblProfit.Location = new System.Drawing.Point(27, 124);
+            this.lblProfit.Location = new System.Drawing.Point(33, 355);
             this.lblProfit.Name = "lblProfit";
             this.lblProfit.Size = new System.Drawing.Size(44, 17);
             this.lblProfit.TabIndex = 69;
@@ -163,7 +168,7 @@
             // 
             this.txtCustomer.Location = new System.Drawing.Point(102, 71);
             this.txtCustomer.Name = "txtCustomer";
-            this.txtCustomer.Size = new System.Drawing.Size(258, 22);
+            this.txtCustomer.Size = new System.Drawing.Size(287, 22);
             this.txtCustomer.TabIndex = 66;
             // 
             // lblCustomer
@@ -175,11 +180,37 @@
             this.lblCustomer.TabIndex = 65;
             this.lblCustomer.Text = "Cliente";
             // 
+            // lblAmount
+            // 
+            this.lblAmount.AutoSize = true;
+            this.lblAmount.Location = new System.Drawing.Point(19, 69);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(82, 17);
+            this.lblAmount.TabIndex = 75;
+            this.lblAmount.Text = "Quantidade";
+            // 
+            // numAmount
+            // 
+            this.numAmount.Location = new System.Drawing.Point(107, 67);
+            this.numAmount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numAmount.Name = "numAmount";
+            this.numAmount.Size = new System.Drawing.Size(87, 22);
+            this.numAmount.TabIndex = 76;
+            this.numAmount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // SaleRegisterDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(423, 490);
+            this.ClientSize = new System.Drawing.Size(423, 473);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
@@ -196,6 +227,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de vendas";
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numAmount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,5 +248,7 @@
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtCustomer;
         private System.Windows.Forms.Label lblCustomer;
+        private System.Windows.Forms.NumericUpDown numAmount;
+        private System.Windows.Forms.Label lblAmount;
     }
 }

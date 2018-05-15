@@ -14,7 +14,9 @@ namespace DonaLaura.Domain.Features.Products
 
         public override string ToString()
         {
-            return string.Format("{0} - {1} - {2} - {3} - {4} - {5}", Name, CostPrice, SalePrice, IsAvailable, Fabrication, Expiration);
+            if (IsAvailable == true)
+                return string.Format("Produto: {0} - Em estoque: Sim", Name);
+            return string.Format("Produto: {0} - Em estoque: Não", Name);
         }
 
         public override void Validate()
