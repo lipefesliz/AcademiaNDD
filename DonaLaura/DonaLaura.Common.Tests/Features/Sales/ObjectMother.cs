@@ -31,6 +31,17 @@ namespace DonaLaura.Common.Tests.Features.Sales
             };
         }
 
+        public static Sale CreateInvalidSaleEmptyProduct()
+        {
+            return new Sale
+            {
+                Id = 1,
+                Customer = "Zeca",
+                Amount = new List<int> { 3, 6 },
+                Profit = 1000
+            };
+        }
+
         public static Sale CreateInvalidSaleEmptyCustomer()
         {
             return new Sale

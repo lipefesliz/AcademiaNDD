@@ -1,5 +1,6 @@
 ﻿using DonaLaura.Common.Tests.Features.Sales;
 using DonaLaura.Domain.Features.Products;
+using DonaLaura.Domain.Features.Products.Exceptions;
 using DonaLaura.Domain.Features.Sales;
 using FluentAssertions;
 using NUnit.Framework;
@@ -40,6 +41,16 @@ namespace DonaLaura.Domain.Tests.Features
 
             Action action = sale.Validate;
             action.Should().Throw<NameLenghtException>();
+        }
+
+        [Test]
+        [Order(4)]
+        public void Test_CreateSale_EmptyProduct_ShouldFail()
+        {
+            Sale sale = ObjectMother.CreateInvalidSaleEmptyProduct();
+
+            Action action = sale.Validate;
+            action.Should().Throw<EmptyProductsException>();
         }
     }
 }
