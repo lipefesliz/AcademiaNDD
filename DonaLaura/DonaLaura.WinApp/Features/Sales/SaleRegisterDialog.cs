@@ -23,7 +23,6 @@ namespace DonaLaura.WinApp.Features.Sales
 
                 txtId.Text = _sale.Id.ToString().Trim();
                 txtCustomer.Text = _sale.Customer.Trim();
-                txtProfit.Text = _sale.Profit.ToString();
 
                 foreach (var item in _sale.Products)
                 {
@@ -67,17 +66,21 @@ namespace DonaLaura.WinApp.Features.Sales
             {
                 if (cmbProducts.SelectedItem.ToString().Contains("Sim"))
                 {
-                    listProducts.Add((Product)cmbProducts.SelectedItem);
-                    listAmount.Add((int)numAmount.Value);
+                    if (!listProducts.Contains((Product)cmbProducts.SelectedItem))
+                    {
+                        listProducts.Add((Product)cmbProducts.SelectedItem);
+                        listAmount.Add((int)numAmount.Value);
 
-                    var text = string.Format("Produto: {0} - Quantidade: {1}", listProducts.Last().Name, numAmount.Value);
-                    listBoxProducts.Items.Add(text);
+                        var text = string.Format("Produto: {0} - Quantidade: {1}", listProducts.Last().Name, numAmount.Value);
+                        listBoxProducts.Items.Add(text);
 
-                    profit += (listProducts.Last().SalePrice - listProducts.Last().CostPrice) * numAmount.Value;
-                    txtProfit.Text = profit.ToString();
+                        profit += (listProducts.Last().SalePrice - listProducts.Last().CostPrice) * numAmount.Value;
+                    }
+                    //else
+                    //    throw new ArgumentNullException("Este produto já  foi cadastrado!");
                 }
-                else
-                    throw new ArgumentNullException("Este produto não consta em estoque!");
+                //else
+                //    throw new ArgumentNullException("Este produto não consta em estoque!");
             }
             
         }
@@ -86,15 +89,18 @@ namespace DonaLaura.WinApp.Features.Sales
         {
             if (cmbProducts.SelectedItem != null)
             {
-                listBoxProducts.Items.Remove(listBoxProducts.SelectedItem);
-
-                if (profit > 0)
+                if (listBoxProducts.SelectedItem != null)
                 {
-                    profit -= (listProducts.Last().SalePrice - listProducts.Last().CostPrice) * numAmount.Value;
-                    txtProfit.Text = profit.ToString();
+                    listBoxProducts.Items.Remove(listBoxProducts.SelectedItem);
+                    var i = listProducts.IndexOf((Product)cmbProducts.SelectedItem);
+                    listProducts.Remove((Product)cmbProducts.SelectedItem);
+                    listAmount.RemoveAt(i);
+
+                    if (listProducts.Count > 0)
+                    {
+                        profit -= (listProducts.Last().SalePrice - listProducts.Last().CostPrice) * numAmount.Value;
+                    }
                 }
-                else
-                    txtProfit.Text = "0,00";
             }
         }
 

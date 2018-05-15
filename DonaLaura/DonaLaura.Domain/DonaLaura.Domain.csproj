@@ -47,6 +47,7 @@
     <Compile Include="Exceptions\TiedException.cs" />
     <Compile Include="Exceptions\UnsupportedOperationException.cs" />
     <Compile Include="Features\Products\Exceptions\DuplicatedNameException.cs" />
+    <Compile Include="Features\Products\Exceptions\EmptyProductsException.cs" />
     <Compile Include="Features\Products\IProductRepository.cs" />
     <Compile Include="Features\Products\Exceptions\CostPriceNegativeException.cs" />
     <Compile Include="Features\Products\Exceptions\ExpirationLowerThanException.cs" />

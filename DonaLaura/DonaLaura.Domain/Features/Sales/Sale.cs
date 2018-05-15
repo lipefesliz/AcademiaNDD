@@ -1,5 +1,6 @@
 ﻿using DonaLaura.Domain.Base;
 using DonaLaura.Domain.Features.Products;
+using DonaLaura.Domain.Features.Products.Exceptions;
 using System;
 using System.Collections.Generic;
 
@@ -21,6 +22,9 @@ namespace DonaLaura.Domain.Features.Sales
         {
             if (String.IsNullOrEmpty(Customer))
                 throw new NameIsNullOrEmptyException();
+
+            if (Products.Count <= 0)
+                throw new EmptyProductsException();
 
             if (Customer.Length < 4)
                 throw new NameLenghtException();
