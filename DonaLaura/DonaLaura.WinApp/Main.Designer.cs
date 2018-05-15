@@ -76,18 +76,21 @@
             this.productsToolStripMenuItem.Name = "productsToolStripMenuItem";
             this.productsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.productsToolStripMenuItem.Text = "Produtos";
+            this.productsToolStripMenuItem.Click += new System.EventHandler(this.productsToolStripMenuItem_Click);
             // 
             // salesToolStripMenuItem
             // 
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
             this.salesToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.salesToolStripMenuItem.Text = "Vendas";
+            this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.sairToolStripMenuItem.Text = "Sair";
+            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // toolBar
             // 
@@ -126,6 +129,7 @@
             this.btnUpdate.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.btnUpdate.Size = new System.Drawing.Size(40, 28);
             this.btnUpdate.Text = "toolStripButton3";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // lblDelete
             // 
@@ -145,6 +149,7 @@
             this.btnDelete.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.btnDelete.Size = new System.Drawing.Size(40, 28);
             this.btnDelete.Text = "toolStripButton2";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblAdd
             // 
@@ -164,6 +169,7 @@
             this.btnAdd.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.btnAdd.Size = new System.Drawing.Size(40, 28);
             this.btnAdd.Text = "toolStripButton1";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // toolStripSeparator1
             // 

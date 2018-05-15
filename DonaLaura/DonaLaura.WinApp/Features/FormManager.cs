@@ -6,7 +6,7 @@ namespace DonaLaura.WinApp.Features
     {
         public abstract void Add();
 
-        public abstract UserControl Populate();
+        public abstract UserControl LoadLinsting();
 
         public abstract string GetRegisterType();
 
