@@ -1,0 +1,6 @@
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Domain\bin\Debug\DonaLaura.Domain.dll
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Domain\bin\Debug\DonaLaura.Domain.pdb
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Domain\obj\Debug\DonaLaura.Domain.csprojResolveAssemblyReference.cache
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Domain\obj\Debug\DonaLaura.Domain.csproj.CoreCompileInputs.cache
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Domain\obj\Debug\DonaLaura.Domain.dll
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Domain\obj\Debug\DonaLaura.Domain.pdb

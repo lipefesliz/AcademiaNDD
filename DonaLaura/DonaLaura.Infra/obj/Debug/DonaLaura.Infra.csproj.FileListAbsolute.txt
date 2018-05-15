@@ -1,0 +1,6 @@
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra\bin\Debug\DonaLaura.Infra.dll
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra\bin\Debug\DonaLaura.Infra.pdb
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra\obj\Debug\DonaLaura.Infra.csprojResolveAssemblyReference.cache
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra\obj\Debug\DonaLaura.Infra.csproj.CoreCompileInputs.cache
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra\obj\Debug\DonaLaura.Infra.dll
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra\obj\Debug\DonaLaura.Infra.pdb

@@ -1,0 +1,11 @@
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra.Data\bin\Debug\DonaLaura.Infra.Data.dll
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra.Data\bin\Debug\DonaLaura.Infra.Data.pdb
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra.Data\bin\Debug\DonaLaura.Domain.dll
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra.Data\bin\Debug\DonaLaura.Infra.dll
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra.Data\bin\Debug\DonaLaura.Domain.pdb
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra.Data\bin\Debug\DonaLaura.Infra.pdb
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra.Data\obj\Debug\DonaLaura.Infra.Data.csprojResolveAssemblyReference.cache
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra.Data\obj\Debug\DonaLaura.Infra.Data.csproj.CoreCompileInputs.cache
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra.Data\obj\Debug\DonaLaura.Infra.Data.csproj.CopyComplete
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra.Data\obj\Debug\DonaLaura.Infra.Data.dll
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura.Infra.Data\obj\Debug\DonaLaura.Infra.Data.pdb
