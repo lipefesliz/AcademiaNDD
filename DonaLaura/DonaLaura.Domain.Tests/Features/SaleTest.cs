@@ -22,9 +22,19 @@ namespace DonaLaura.Domain.Tests.Features
             action.Should().NotThrow<Exception>();
         }
 
-        /*TESTES ALTERNATIVOS*/
         [Test]
         [Order(2)]
+        public void Test_ToString_ShouldBeOk()
+        {
+            Sale sale = ObjectMother.CreateValidSale();
+
+            string text = sale.ToString();
+            text.Should().Equals("Zeca - 1000");
+        }
+
+        /*TESTES ALTERNATIVOS*/
+        [Test]
+        [Order(3)]
         public void Test_CreateSale_EmptyName_ShouldFail()
         {
             Sale sale = ObjectMother.CreateInvalidSaleEmptyCustomer();
@@ -34,7 +44,7 @@ namespace DonaLaura.Domain.Tests.Features
         }
 
         [Test]
-        [Order(3)]
+        [Order(4)]
         public void Test_CreateSale_LenghtName_ShouldFail()
         {
             Sale sale = ObjectMother.CreateInvalidSaleLeghtCustomer();
@@ -44,7 +54,7 @@ namespace DonaLaura.Domain.Tests.Features
         }
 
         [Test]
-        [Order(4)]
+        [Order(5)]
         public void Test_CreateSale_EmptyProduct_ShouldFail()
         {
             Sale sale = ObjectMother.CreateInvalidSaleEmptyProduct();

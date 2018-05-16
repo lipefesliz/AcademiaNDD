@@ -49,6 +49,10 @@ namespace DonaLaura.Application.Tests.Features
             Product product = ObjectMother.CreateValidProduct();
 
             _mockRepository
+                .Setup(pr => pr.GetByName(product.Name))
+                .Returns(new Product { Id = 1 });
+
+            _mockRepository
                 .Setup(pr => pr.Update(product))
                 .Returns(new Product { Id = 1 });
 
@@ -112,7 +116,6 @@ namespace DonaLaura.Application.Tests.Features
 
             bool result = _service.IsTiedTo(1);
             result.Should().Be(false);
-            
         }
 
         /*TESTES ALTERNATIVOS*/
@@ -198,6 +201,10 @@ namespace DonaLaura.Application.Tests.Features
             Product product = ObjectMother.CreateValidProduct();
 
             _mockRepository
+                .Setup(pr => pr.GetByName(product.Name))
+                .Returns(new Product { Id = 2});
+
+            _mockRepository
                 .Setup(pr => pr.Update(product))
                 .Throws<DuplicatedNameException>();
 
@@ -221,6 +228,10 @@ namespace DonaLaura.Application.Tests.Features
         public void Test_ProductService_DeleteTiedProduct_ShouldFail()
         {
             Product product = ObjectMother.CreateValidProduct();
+
+            _mockRepository
+                .Setup(pr => pr.IsTiedTo(product.Id))
+                .Returns(true);
 
             _mockRepository
                 .Setup(pr => pr.Delete(product.Id))

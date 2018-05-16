@@ -36,10 +36,5 @@ namespace DonaLaura.Domain.Features.Products
             if (Expiration <= Fabrication)
                 throw new ExpirationLowerThanException();
         }
-
-        private decimal SetSalePrice()
-        {
-            return CostPrice + (CostPrice * 100/100);
-        }
     }
 }

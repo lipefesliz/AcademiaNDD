@@ -1,9 +1,0 @@
-C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura\bin\Debug\DonaLaura.exe.config
-C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura\bin\Debug\DonaLaura.exe
-C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura\bin\Debug\DonaLaura.pdb
-C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura\obj\Debug\DonaLaura.csprojResolveAssemblyReference.cache
-C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura\obj\Debug\DonaLaura.Properties.Resources.resources
-C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura\obj\Debug\DonaLaura.csproj.GenerateResource.cache
-C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura\obj\Debug\DonaLaura.csproj.CoreCompileInputs.cache
-C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura\obj\Debug\DonaLaura.exe
-C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DonaLaura\obj\Debug\DonaLaura.pdb

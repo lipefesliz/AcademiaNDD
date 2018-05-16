@@ -1,6 +1,6 @@
 C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\bin\Debug\DBDonaLaura.Database.dacpac
 C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\bin\Debug\DBDonaLaura.Database.dll
 C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\bin\Debug\DBDonaLaura.Database.pdb
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\obj\Debug\DBDonaLaura.Database.sqlprojResolveAssemblyReference.cache
 C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\obj\Debug\DBDonaLaura.Database.dll
 C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\obj\Debug\DBDonaLaura.Database.pdb
-C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\obj\Debug\DBDonaLaura.Database.sqlprojResolveAssemblyReference.cache

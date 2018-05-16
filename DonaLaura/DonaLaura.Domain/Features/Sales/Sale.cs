@@ -23,7 +23,7 @@ namespace DonaLaura.Domain.Features.Sales
             if (String.IsNullOrEmpty(Customer))
                 throw new NameIsNullOrEmptyException();
 
-            if (Products.Count <= 0)
+            if (Products == null)
                 throw new EmptyProductsException();
 
             if (Customer.Length < 4)
