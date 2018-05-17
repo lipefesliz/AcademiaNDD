@@ -9,7 +9,7 @@ namespace DonaLaura.WinApp.Features.Products
     public class ProductFormManager : FormManager
     {
         private readonly ProductService _productService;
-
+        private ProductRegisterDialog dialog;
         private ProductControl _productControl;
 
         public ProductFormManager(ProductService productService)
@@ -19,13 +19,34 @@ namespace DonaLaura.WinApp.Features.Products
 
         public override void Add()
         {
-            ProductRegisterDialog dialog = new ProductRegisterDialog();
+            dialog = new ProductRegisterDialog();
             DialogResult result = dialog.ShowDialog();
 
             if (result == DialogResult.OK)
             {
                 _productService.Add(dialog.Product);
                 ListProducts();
+            }
+        }
+
+        public override void Update()
+        {
+            Product productSelecionado = _productControl.GetSelectedProduct();
+
+            if (productSelecionado != null)
+            {
+                dialog = new ProductRegisterDialog(productSelecionado);
+                DialogResult resultado = dialog.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    _productService.Update(productSelecionado);
+                    ListProducts();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione um produto!");
             }
         }
 
@@ -77,27 +98,6 @@ namespace DonaLaura.WinApp.Features.Products
                 _productControl = new ProductControl();
 
             return _productControl;
-        }
-
-        public override void Update()
-        {
-            Product productSelecionado = _productControl.GetSelectedProduct();
-
-            if (productSelecionado != null)
-            {
-                ProductRegisterDialog dialog = new ProductRegisterDialog(productSelecionado);
-                DialogResult resultado = dialog.ShowDialog();
-
-                if (resultado == DialogResult.OK)
-                {
-                    _productService.Update(productSelecionado);
-                    ListProducts();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selecione um produto!");
-            }
         }
 
         public override void UpdateList()

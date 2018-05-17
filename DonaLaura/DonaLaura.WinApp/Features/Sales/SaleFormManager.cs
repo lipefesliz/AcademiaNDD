@@ -11,7 +11,7 @@ namespace DonaLaura.WinApp.Features.Sales
     {
         private readonly SaleService _saleService;
         private readonly ProductService _productService;
-
+        private SaleRegisterDialog dialog;
         private SaleControl _saleControl;
 
         private IList<Product> _products;
@@ -26,7 +26,7 @@ namespace DonaLaura.WinApp.Features.Sales
         {
             UpdateComboBox();
 
-            SaleRegisterDialog dialog = new SaleRegisterDialog(_products);
+            dialog = new SaleRegisterDialog(_products);
             DialogResult result = dialog.ShowDialog();
 
             if (result == DialogResult.OK)
@@ -88,11 +88,11 @@ namespace DonaLaura.WinApp.Features.Sales
             UpdateComboBox();
 
             Sale selectedSale = _saleControl.GetSelectedSale();
-            //selectedSale.Products = _saleService.GetProductsFromSales(selectedSale.Id);
+            selectedSale.Products = _saleService.GetProductsFromSales(selectedSale.Id);
 
             if (selectedSale != null)
             {
-                SaleRegisterDialog dialog = new SaleRegisterDialog(selectedSale, _products);
+                dialog = new SaleRegisterDialog(selectedSale, _products);
                 DialogResult resultado = dialog.ShowDialog();
 
                 if (resultado == DialogResult.OK)

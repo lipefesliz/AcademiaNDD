@@ -1,4 +1,5 @@
 ﻿using DonaLaura.Domain.Exceptions;
+using DonaLaura.Domain.Features.Products;
 using DonaLaura.Domain.Features.Sales;
 using System.Collections.Generic;
 
@@ -43,6 +44,16 @@ namespace DonaLaura.Applications.Features
         public IList<Sale> GetAll()
         {
             return _saleRepository.GetAll();
+        }
+
+        public IList<Product> GetProductsFromSales(long id)
+        {
+            if (id == 0)
+            {
+                throw new IdentifierUndefinedException();
+            }
+
+            return _saleRepository.GetProductsFromSale(id);
         }
 
         public Sale Update(Sale entity)

@@ -45,7 +45,7 @@ namespace DonaLaura.WinApp.Features.Sales
         private void SetDataGrid()
         {
             dgvSale.Columns["ID"].Visible = false;
-            dgvSale.Columns["PRODUCTS"].Visible = false;
+            //dgvSale.Columns["PRODUCTS"].Visible = false;
             dgvSale.Columns["AMOUNT"].Visible = false;
             dgvSale.Columns["CUSTOMER"].HeaderText = "CLIENTE";
             dgvSale.Columns["AMOUNT"].HeaderText = "QUANTIDADE";

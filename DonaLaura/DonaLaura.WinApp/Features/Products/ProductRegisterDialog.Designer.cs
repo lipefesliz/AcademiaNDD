@@ -191,8 +191,8 @@
             // 
             this.dtExpiration.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtExpiration.Location = new System.Drawing.Point(165, 279);
-            this.dtExpiration.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
-            this.dtExpiration.MinDate = new System.DateTime(2018, 5, 14, 0, 0, 0, 0);
+            this.dtExpiration.MaxDate = new System.DateTime(3000, 12, 31, 0, 0, 0, 0);
+            this.dtExpiration.MinDate = new System.DateTime(2017, 1, 1, 0, 0, 0, 0);
             this.dtExpiration.Name = "dtExpiration";
             this.dtExpiration.Size = new System.Drawing.Size(200, 22);
             this.dtExpiration.TabIndex = 65;
