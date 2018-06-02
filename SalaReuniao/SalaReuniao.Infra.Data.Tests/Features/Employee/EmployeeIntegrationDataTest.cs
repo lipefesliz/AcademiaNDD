@@ -2,8 +2,10 @@
 using NUnit.Framework;
 using SalaReuniao.Common.Tests.Base;
 using SalaReuniao.Common.Tests.Features.Employees;
+using SalaReuniao.Domain.Exceptions;
 using SalaReuniao.Domain.Features.Employees;
 using SalaReuniao.Infra.Data.Features.Employees;
+using System;
 
 namespace SalaReuniao.Infra.Data.Tests.Features.Employees
 {
@@ -92,6 +94,45 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Employees
         {
             bool result = _repository.IsTiedTo(_employee.Id);
             result.Should().Be(true);
+        }
+
+        /* TESTES ALTERNATIVOS */
+        [Test]
+        [Order(9)]
+        public void Test_EmployeeIntegrationData_Get_InvalidId_ShouldFail()
+        {
+            _employee.Id = -1;
+
+            Action action = () => _repository.Get(_employee.Id);
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        [Order(10)]
+        public void Test_EmployeeIntegrationData_Delete_InvalidId_ShouldBeOk()
+        {
+            _employee.Id = -1;
+
+            Action action = () => _repository.Delete(_employee.Id);
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        [Order(11)]
+        public void Test_EmployeeIntegrationData_Delete_ItemTiedTo_ShouldBeOk()
+        {
+            Action action = () => _repository.Delete(_employee.Id);
+            action.Should().Throw<TiedException>();
+        }
+
+        [Test]
+        [Order(12)]
+        public void Test_EmployeeIntegrationData_IsTiedTo_InvalidId_ShouldFail()
+        {
+            _employee.Id = -1;
+
+            Action action = () => _repository.IsTiedTo(_employee.Id);
+            action.Should().Throw<IdentifierUndefinedException>();
         }
     }
 }
