@@ -26,10 +26,12 @@ namespace SalaReuniao.Common.Tests.Base
             @"INSERT INTO TBSCHEDULES
                 (BOOKINGDATE,
                  ROOM,
-                 EMPLOYEEID)
+                 EMPLOYEEID,
+                 ISAVAILABLE)
             VALUES
                 (GETDATE(),
                  'Treinamento',
+                 1,
                  1)";
 
         public static void SeedDatabase()

@@ -50,12 +50,12 @@ namespace SalaReuniao.Application.Tests.Features
                 .Returns(new Employee { Id = 1 });
 
             _mockRepository
-                .Setup(pr => pr.Update(_employee))
+                .Setup(er => er.Update(_employee))
                 .Returns(new Employee { Id = 1 });
 
             var employeeUpdated = _service.Update(_employee);
 
-            _mockRepository.Verify(pr => pr.Update(_employee));
+            _mockRepository.Verify(er => er.Update(_employee));
             employeeUpdated.Id.Should().Equals(_employee.Id);
         }
 
@@ -125,7 +125,7 @@ namespace SalaReuniao.Application.Tests.Features
         public void Test_EmployeeService_Add_DuplicatedName_ShouldFail()
         {
             _mockRepository
-                .Setup(br => br.Exist(_employee.Name))
+                .Setup(er => er.Exist(_employee.Name))
                 .Returns(true);
 
             Action action = () => _service.Add(_employee);
@@ -169,7 +169,7 @@ namespace SalaReuniao.Application.Tests.Features
         public void Test_EmployeeService_Delete_ItemTiedTo_ShouldFail()
         {
             _mockRepository
-                .Setup(br => br.IsTiedTo(_employee.Id))
+                .Setup(er => er.IsTiedTo(_employee.Id))
                 .Returns(true);
 
             Action action = () => _service.Delete(_employee);

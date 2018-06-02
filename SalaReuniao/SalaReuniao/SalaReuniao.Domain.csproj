@@ -51,8 +51,10 @@
     <Compile Include="Features\Employees\Exceptions\NameIsNullOrEmptyException.cs" />
     <Compile Include="Features\Employees\Exceptions\PostIsNullOrEmptyException.cs" />
     <Compile Include="Features\Employees\IEmployeeRepository.cs" />
+    <Compile Include="Features\Schedules\Exceptions\DateBookedException.cs" />
     <Compile Include="Features\Schedules\Exceptions\InvalidDateException.cs" />
     <Compile Include="Features\Schedules\Exceptions\NullEmployeeException.cs" />
+    <Compile Include="Features\Schedules\IScheduleRepository.cs" />
     <Compile Include="Features\Schedules\Schedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -13,7 +13,8 @@ namespace SalaReuniao.Common.Tests.Features.Schedules
                 Id = 1,
                 BookingDate = DateTime.Now,
                 Room = Schedule.RoomType.Treinamento,
-                Employee = new Employee { Id = 1 }
+                Employee = new Employee { Id = 1 },
+                IsAvailable = true
             };
         }
     }

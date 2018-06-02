@@ -12,6 +12,7 @@ namespace SalaReuniao.Domain.Features.Schedules
         public DateTime BookingDate { get; set; }
         public RoomType Room { get; set; }
         public Employee Employee { get; set; }
+        public bool IsAvailable { get; set; }
 
         public override void Validate()
         {
