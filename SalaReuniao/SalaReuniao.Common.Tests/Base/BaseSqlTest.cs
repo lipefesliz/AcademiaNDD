@@ -19,28 +19,17 @@ namespace SalaReuniao.Common.Tests.Base
                  'Desenvolvedor',
                  1)";
 
-        /* TBRooms */
-        private const string RECREATE_ROOM_TABLE = @"DELETE FROM [dbo].[TBRooms]";
-
-        private const string RESET_ROOM_IDENTITY = @"DBCC CHECKIDENT('TBRooms', RESEED, 0)";
-
-        private const string INSERT_ROOM =
-            @"INSERT INTO TBROOMS
-                (ROOMTYPE)
-            VALUES
-                ('Sala de Treinamento')";
-
         /* TBSchedules */
         private const string RECREATE_SCHEDULE_TABLE = @"TRUNCATE TABLE [dbo].[TBSchedules]";
 
         private const string INSERT_SCHEDULE =
             @"INSERT INTO TBSCHEDULES
                 (BOOKINGDATE,
-                 ROOMID,
+                 ROOM,
                  EMPLOYEEID)
             VALUES
                 (GETDATE(),
-                 1,
+                 'Treinamento',
                  1)";
 
         public static void SeedDatabase()
@@ -50,10 +39,6 @@ namespace SalaReuniao.Common.Tests.Base
             Db.Update(RECREATE_EMPLOYEE_TABLE);
             Db.Update(RESET_EMPLOYEE_IDENTITY);
             Db.Update(INSERT_EMPLOYEE);
-
-            Db.Update(RECREATE_ROOM_TABLE);
-            Db.Update(RESET_ROOM_IDENTITY);
-            Db.Update(INSERT_ROOM);
 
             Db.Update(INSERT_SCHEDULE);
         }

@@ -63,6 +63,5 @@
   <ItemGroup>
     <Build Include="dbo\Tables\TBEmployess.sql" />
     <Build Include="dbo\Tables\TBSchedules.sql" />
-    <Build Include="dbo\Tables\TBRooms.sql" />
   </ItemGroup>
 </Project>
