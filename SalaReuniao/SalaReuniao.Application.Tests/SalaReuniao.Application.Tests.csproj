@@ -71,10 +71,25 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\EmployeeServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SalaReuniao.App\SalaReuniao.App.csproj">
+      <Project>{854F7C5B-96A8-4405-8CAF-818BA4FA2807}</Project>
+      <Name>SalaReuniao.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SalaReuniao.Common.Tests\SalaReuniao.Common.Tests.csproj">
+      <Project>{7257C310-D796-41E0-B501-3D96A1ECBB26}</Project>
+      <Name>SalaReuniao.Common.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SalaReuniao\SalaReuniao.Domain.csproj">
+      <Project>{03005250-6034-46F9-B611-4D11A751EF91}</Project>
+      <Name>SalaReuniao.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

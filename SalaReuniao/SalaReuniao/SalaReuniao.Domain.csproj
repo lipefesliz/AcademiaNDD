@@ -41,12 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Entity.cs" />
+    <Compile Include="Base\IRepository.cs" />
     <Compile Include="Exceptions\BusinessException.cs" />
     <Compile Include="Exceptions\IdentifierUndefinedException.cs" />
+    <Compile Include="Exceptions\TiedException.cs" />
     <Compile Include="Features\Employees\Employee.cs" />
+    <Compile Include="Features\Employees\Exceptions\DuplicatedNameException.cs" />
     <Compile Include="Features\Employees\Exceptions\InvalidBranchLineException.cs" />
     <Compile Include="Features\Employees\Exceptions\NameIsNullOrEmptyException.cs" />
     <Compile Include="Features\Employees\Exceptions\PostIsNullOrEmptyException.cs" />
+    <Compile Include="Features\Employees\IEmployeeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

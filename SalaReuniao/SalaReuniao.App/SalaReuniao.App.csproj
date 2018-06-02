@@ -40,10 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Employees\EmployeeService.cs" />
+    <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Features\Employees\" />
+    <ProjectReference Include="..\SalaReuniao\SalaReuniao.Domain.csproj">
+      <Project>{03005250-6034-46F9-B611-4D11A751EF91}</Project>
+      <Name>SalaReuniao.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
