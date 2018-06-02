@@ -1,4 +1,4 @@
-﻿using SalaReuniao.Base;
+﻿using SalaReuniao.Domain.Base;
 using System.Collections.Generic;
 
 namespace SalaReuniao.App

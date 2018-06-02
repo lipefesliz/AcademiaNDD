@@ -1,6 +1,6 @@
-﻿using SalaReuniao.Base;
+﻿using SalaReuniao.Domain.Base;
 
-namespace SalaReuniao.Features.Employees
+namespace SalaReuniao.Domain.Features.Employees
 {
     public interface IEmployeeRepository : IRepository<Employee>
     {

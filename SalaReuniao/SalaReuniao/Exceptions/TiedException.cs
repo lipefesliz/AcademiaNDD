@@ -1,4 +1,4 @@
-﻿namespace SalaReuniao.Exceptions
+﻿namespace SalaReuniao.Domain.Exceptions
 {
     public class TiedException : BusinessException
     {

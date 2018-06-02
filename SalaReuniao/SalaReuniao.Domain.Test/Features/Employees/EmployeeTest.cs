@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 using SalaReuniao.Common.Tests.Features.Employees;
-using SalaReuniao.Features.Employees;
+using SalaReuniao.Domain.Features.Employees;
 using SalaReuniao.Features.Employees.Exceptions;
 using System;
 

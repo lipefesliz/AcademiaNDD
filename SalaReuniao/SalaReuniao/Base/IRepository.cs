@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SalaReuniao.Base
+namespace SalaReuniao.Domain.Base
 {
     public interface IRepository<T> where T : Entity
     {

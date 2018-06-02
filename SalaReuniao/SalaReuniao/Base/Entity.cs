@@ -1,4 +1,4 @@
-﻿namespace SalaReuniao.Base
+﻿namespace SalaReuniao.Domain.Base
 {
     public abstract class Entity
     {

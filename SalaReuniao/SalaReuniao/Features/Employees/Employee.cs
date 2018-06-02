@@ -1,8 +1,8 @@
-﻿using SalaReuniao.Base;
+﻿using SalaReuniao.Domain.Base;
 using SalaReuniao.Features.Employees.Exceptions;
 using System;
 
-namespace SalaReuniao.Features.Employees
+namespace SalaReuniao.Domain.Features.Employees
 {
     public class Employee : Entity
     {

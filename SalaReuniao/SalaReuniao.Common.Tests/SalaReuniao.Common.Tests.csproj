@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\BaseSqlTest.cs" />
     <Compile Include="Features\Employees\EmployeeObjectMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,14 +71,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SalaReuniao.Infra\SalaReuniao.Infra.csproj">
+      <Project>{AEE560D6-2F97-4CD5-B861-BEAF9E4DCA0E}</Project>
+      <Name>SalaReuniao.Infra</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SalaReuniao\SalaReuniao.Domain.csproj">
       <Project>{03005250-6034-46F9-B611-4D11A751EF91}</Project>
       <Name>SalaReuniao.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Base\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using SalaReuniao.Exceptions;
-using SalaReuniao.Features.Employees;
+using SalaReuniao.Domain.Exceptions;
+using SalaReuniao.Domain.Features.Employees;
 using SalaReuniao.Features.Employees.Exceptions;
 
 namespace SalaReuniao.App.Features.Employees

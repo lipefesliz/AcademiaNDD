@@ -1,4 +1,4 @@
-﻿using SalaReuniao.Exceptions;
+﻿using SalaReuniao.Domain.Exceptions;
 
 namespace SalaReuniao.Features.Employees.Exceptions
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SalaReuniao.Exceptions
+namespace SalaReuniao.Domain.Exceptions
 {
     public class BusinessException : Exception
     {
