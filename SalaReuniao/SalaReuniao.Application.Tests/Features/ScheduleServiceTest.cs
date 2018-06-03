@@ -32,7 +32,7 @@ namespace SalaReuniao.Application.Tests.Features
         {
             _mockRepository
                 .Setup(sr => sr.IsBooked(_schedule.Room))
-                .Returns(new Schedule { IsAvailable = false });
+                .Returns(new Schedule { IsAvailable = true });
 
             _mockRepository
                 .Setup(sr => sr.Add(_schedule))
