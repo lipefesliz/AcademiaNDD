@@ -3,9 +3,12 @@ using NUnit.Framework;
 using SalaReuniao.App.Features.Schedules;
 using SalaReuniao.Common.Tests.Base;
 using SalaReuniao.Common.Tests.Features.Schedules;
+using SalaReuniao.Domain.Exceptions;
 using SalaReuniao.Domain.Features.Schedules;
+using SalaReuniao.Features.Schedules.Exceptions;
 using SalaReuniao.Features.Schedules.Utils;
 using SalaReuniao.Infra.Data.Features.Schedules;
+using System;
 using System.Collections.Generic;
 
 namespace SalaReuniao.Infra.Tests.Features.Schedules
@@ -16,6 +19,7 @@ namespace SalaReuniao.Infra.Tests.Features.Schedules
         private ScheduleRepository _scheduleRepository;
         private ScheduleService _scheduleService;
         private Schedule _schedule;
+        private object _repository;
 
         [SetUp]
         public void Initialize()
@@ -63,14 +67,6 @@ namespace SalaReuniao.Infra.Tests.Features.Schedules
         }
 
         [Test]
-        [Order(5)]
-        public void Test_ScheduleIntegrationData_GetAvailableRooms_ShouldBeOk()
-        {
-            var schedules = _scheduleService.GetAvailableRooms(_schedule.BookingDate);
-            schedules.Count.Should().BeGreaterThan(0);
-        }
-
-        [Test]
         [Order(6)]
         public void Test_ScheduleIntegration_Update_ShouldBeOk()
         {
@@ -82,7 +78,7 @@ namespace SalaReuniao.Infra.Tests.Features.Schedules
 
         [Test]
         [Order(7)]
-        public void Test_ScheduleIntegrationData_Delete_ShouldBeOk()
+        public void Test_ScheduleIntegration_Delete_ShouldBeOk()
         {
             _schedule = _scheduleService.Add(_schedule);
 
@@ -90,6 +86,95 @@ namespace SalaReuniao.Infra.Tests.Features.Schedules
 
             var employeeDeleted = _scheduleService.Get(_schedule.Id);
             employeeDeleted.Should().BeNull();
+        }
+
+        [Test]
+        [Order(8)]
+        public void Test_ScheduleIntegration_GetEmployeeFromSchedule_ShouldBeOk()
+        {
+            var employee = _scheduleService.GetEmployeeFromSchedule(_schedule.Id);
+            employee.Id.Should().BeGreaterThan(0);
+        }
+
+        /* TESTES ALTERNATIVOS */
+        [Test]
+        [Order(10)]
+        public void Test_ScheduleIntegration_Add_InvalidDate_ShouldFail()
+        {
+            _schedule.BookingDate = DateTime.Now.AddDays(-2);
+
+            Action action = () => _scheduleService.Add(_schedule);
+            action.Should().Throw<InvalidDateException>();
+        }
+
+        [Test]
+        [Order(11)]
+        public void Test_ScheduleIntegration_Add_NullEmployee_ShouldFail()
+        {
+            _schedule.Employee = null;
+
+            Action action = () => _scheduleService.Add(_schedule);
+            action.Should().Throw<NullEmployeeException>();
+        }
+
+        [Test]
+        [Order(12)]
+        public void Test_ScheduleIntegration_Update_InvalidDate_ShouldFail()
+        {
+            _schedule.BookingDate = DateTime.Now.AddDays(-2);
+
+            Action action = () => _scheduleService.Update(_schedule);
+            action.Should().Throw<InvalidDateException>();
+        }
+
+        [Test]
+        [Order(13)]
+        public void Test_ScheduleIntegration_Update_NullEmployee_ShouldFail()
+        {
+            _schedule.Employee = null;
+
+            Action action = () => _scheduleService.Update(_schedule);
+            action.Should().Throw<NullEmployeeException>();
+        }
+
+        [Test]
+        [Order(14)]
+        public void Test_ScheduleIntegration_Get_InvalidId_ShouldFail()
+        {
+            _schedule.Id = -1;
+
+            Action action = () => _scheduleService.Get(_schedule.Id);
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        [Order(15)]
+        public void Test_ScheduleIntegration_GetEmployeeFromSchedule_InvalidId_ShouldFail()
+        {
+            _schedule.Id = -1;
+
+            Action action = () => _scheduleService.GetEmployeeFromSchedule(_schedule.Id);
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        [Order(16)]
+        public void Test_ScheduleIntegration_Update_InvalidId_ShouldFail()
+        {
+            _schedule.Id = -1;
+
+            Action action = () => _scheduleService.Update(_schedule);
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        [Order(17)]
+        public void Test_ScheduleIntegration_Delete_InvalidId_ShouldFail()
+        {
+            _schedule.Id = -1;
+
+            Action action = () => _scheduleService.Delete(_schedule);
+            action.Should().Throw<IdentifierUndefinedException>();
         }
     }
 }

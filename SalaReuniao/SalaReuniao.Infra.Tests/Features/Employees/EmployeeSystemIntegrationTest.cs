@@ -42,7 +42,7 @@ namespace SalaReuniao.Infra.Tests.Features.Employees
 
         [Test]
         [Order(2)]
-        public void Test_EmployeeIntegrationData_Get_ShouldBeOk()
+        public void Test_EmployeeIntegration_Get_ShouldBeOk()
         {
             var employee = _employeeService.Get(_employee.Id);
             employee.Id.Should().Be(_employee.Id);
@@ -50,7 +50,7 @@ namespace SalaReuniao.Infra.Tests.Features.Employees
 
         [Test]
         [Order(3)]
-        public void Test_EmployeeIntegrationData_GetAll_ShouldBeOk()
+        public void Test_EmployeeIntegration_GetAll_ShouldBeOk()
         {
             var employees = _employeeService.GetAll();
             employees.Count.Should().BeGreaterThan(0);
@@ -58,7 +58,7 @@ namespace SalaReuniao.Infra.Tests.Features.Employees
 
         [Test]
         [Order(4)]
-        public void Test_EmployeeIntegrationData_Update_ShouldBeOk()
+        public void Test_EmployeeIntegration_Update_ShouldBeOk()
         {
             _employee.Name = "Clovis";
 
@@ -68,7 +68,7 @@ namespace SalaReuniao.Infra.Tests.Features.Employees
 
         [Test]
         [Order(5)]
-        public void Test_EmployeeIntegrationData_Delete_ShouldBeOk()
+        public void Test_EmployeeIntegration_Delete_ShouldBeOk()
         {
             _employee = _employeeService.Add(_employee);
 
@@ -80,7 +80,7 @@ namespace SalaReuniao.Infra.Tests.Features.Employees
 
         [Test]
         [Order(6)]
-        public void Test_EmployeeIntegrationData_IsTiedTo_ShouldBeOk()
+        public void Test_EmployeeIntegration_IsTiedTo_ShouldBeOk()
         {
             bool result = _employeeService.IsTiedTo(_employee.Id);
             result.Should().Be(true);
@@ -99,7 +99,7 @@ namespace SalaReuniao.Infra.Tests.Features.Employees
 
         [Test]
         [Order(8)]
-        public void Test_EmployeeIntegrationData_Update_ShouldFail()
+        public void Test_EmployeeIntegration_Update_ShouldFail()
         {
             _employee.Id = 2;
             _employee.Name = "Zeca";
@@ -110,10 +110,70 @@ namespace SalaReuniao.Infra.Tests.Features.Employees
 
         [Test]
         [Order(9)]
-        public void Test_EmployeeIntegrationData_Delete_ItemTiedTo_ShouldFail()
+        public void Test_EmployeeIntegration_Delete_ItemTiedTo_ShouldFail()
         {
             Action action = () => _employeeService.Delete(_employee);
             action.Should().Throw<TiedException>();
+        }
+
+        [Test]
+        [Order(10)]
+        public void Test_EmployeeIntegration_Add_EmptyName_ShouldFail()
+        {
+            _employee.Name = "";
+
+            Action action = () => _employeeService.Add(_employee);
+            action.Should().Throw<NameIsNullOrEmptyException>();
+        }
+
+        [Test]
+        [Order(11)]
+        public void Test_EmployeeIntegration_Add_EmptyPost_ShouldFail()
+        {
+            _employee.Post = "";
+
+            Action action = () => _employeeService.Add(_employee);
+            action.Should().Throw<PostIsNullOrEmptyException>();
+        }
+
+        [Test]
+        [Order(12)]
+        public void Test_EmployeeIntegration_Add_InvalidBranchLine_ShouldFail()
+        {
+            _employee.BranchLine = -1;
+
+            Action action = () => _employeeService.Add(_employee);
+            action.Should().Throw<InvalidBranchLineException>();
+        }
+
+        [Test]
+        [Order(13)]
+        public void Test_EmployeeIntegration_Update_EmptyName_ShouldFail()
+        {
+            _employee.Name = "";
+
+            Action action = () => _employeeService.Update(_employee);
+            action.Should().Throw<NameIsNullOrEmptyException>();
+        }
+
+        [Test]
+        [Order(14)]
+        public void Test_EmployeeIntegration_Update_EmptyPost_ShouldFail()
+        {
+            _employee.Post = "";
+
+            Action action = () => _employeeService.Update(_employee);
+            action.Should().Throw<PostIsNullOrEmptyException>();
+        }
+
+        [Test]
+        [Order(15)]
+        public void Test_EmployeeIntegration_Update_InvalidBranchLine_ShouldFail()
+        {
+            _employee.BranchLine = -1;
+
+            Action action = () => _employeeService.Update(_employee);
+            action.Should().Throw<InvalidBranchLineException>();
         }
     }
 }

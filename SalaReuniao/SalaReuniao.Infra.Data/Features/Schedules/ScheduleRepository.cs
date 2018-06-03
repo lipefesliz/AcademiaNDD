@@ -81,9 +81,17 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
                  ISAVAILABLE
             FROM TBSCHEDULES WHERE ROOM = {0}ROOM";
 
+        private const string SqlSelectEmployee =
+            @"SELECT
+                TBEMPLOYEES.*
+            FROM
+                TBSCHEDULES
+                INNER JOIN TBEMPLOYEES ON TBSCHEDULES.EMPLOYEEID = TBEMPLOYEES.ID
+                WHERE TBSCHEDULES.ID = {0}ID";
+
         #endregion
 
-        public Schedule IsBooked(RoomTypes room)
+        public Schedule IsAvailable(RoomTypes room)
         {
             var parms = new Dictionary<string, object> { { "ROOM", room } };
 
@@ -123,7 +131,7 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
 
         public Schedule Get(long id)
         {
-            if (id <= 0)
+            if (id < 1)
                 throw new IdentifierUndefinedException();
 
             var parms = new Dictionary<string, object> { { "ID", id } };
@@ -143,9 +151,19 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
             return Db.GetAll(SqlSelectScheduleByDate, Converter, parms);
         }
 
+        public Employee GetEmployeeFromSchedule(int id)
+        {
+            if (id < 1)
+                throw new IdentifierUndefinedException();
+
+            var parms = new Dictionary<string, object> { { "ID", id } };
+
+            return Db.Get(SqlSelectEmployee, ConverterEmployee, parms);
+        }
+
         public void Delete(long id)
         {
-            if (id <= 0)
+            if (id < 1)
                 throw new IdentifierUndefinedException();
 
             var parms = new Dictionary<string, object> { { "ID", id } };
