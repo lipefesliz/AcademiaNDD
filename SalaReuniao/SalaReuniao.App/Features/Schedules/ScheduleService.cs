@@ -20,7 +20,7 @@ namespace SalaReuniao.App.Features.Schedules
         {
             entity.Validate();
 
-            var schedule = _scheduleRepository.IsBooked(entity.Room.ToString());
+            var schedule = _scheduleRepository.IsBooked(entity.Room);
 
             if (schedule.IsAvailable)
                 throw new DateBookedException();
@@ -49,7 +49,7 @@ namespace SalaReuniao.App.Features.Schedules
             return _scheduleRepository.GetAll();
         }
 
-        public IList<string> GetAvailableRooms(DateTime bookingDate)
+        public IList<Schedule> GetAvailableRooms(DateTime bookingDate)
         {
             return _scheduleRepository.GetAvailableRooms(bookingDate);
         }
@@ -61,7 +61,7 @@ namespace SalaReuniao.App.Features.Schedules
 
             entity.Validate();
 
-            var result = _scheduleRepository.IsBooked(entity.Room.ToString());
+            var result = _scheduleRepository.IsBooked(entity.Room);
             var schedule = _scheduleRepository.GetByRoom(entity.Room.ToString());
 
             if (result.IsAvailable && schedule.Id != entity.Id)

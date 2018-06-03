@@ -56,6 +56,7 @@
     <Compile Include="Features\Schedules\Exceptions\NullEmployeeException.cs" />
     <Compile Include="Features\Schedules\IScheduleRepository.cs" />
     <Compile Include="Features\Schedules\Schedule.cs" />
+    <Compile Include="Features\Schedules\Utils\RoomTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

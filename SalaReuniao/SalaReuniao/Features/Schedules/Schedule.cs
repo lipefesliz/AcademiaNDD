@@ -1,16 +1,15 @@
 ﻿using SalaReuniao.Domain.Base;
 using SalaReuniao.Domain.Features.Employees;
 using SalaReuniao.Features.Schedules.Exceptions;
+using SalaReuniao.Features.Schedules.Utils;
 using System;
 
 namespace SalaReuniao.Domain.Features.Schedules
 {
     public class Schedule : Entity
     {
-        public enum RoomType { Treinamento, Reuniao, VideoConferencia}
-
         public DateTime BookingDate { get; set; }
-        public RoomType Room { get; set; }
+        public RoomTypes Room { get; set; }
         public Employee Employee { get; set; }
         public bool IsAvailable { get; set; }
 

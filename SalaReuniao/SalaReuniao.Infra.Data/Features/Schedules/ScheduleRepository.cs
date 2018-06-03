@@ -5,6 +5,7 @@ using SalaReuniao.Domain.Exceptions;
 using SalaReuniao.Domain.Features.Employees;
 using SalaReuniao.Domain.Features.Schedules;
 using SalaReuniao.Features.Schedules;
+using SalaReuniao.Features.Schedules.Utils;
 
 namespace SalaReuniao.Infra.Data.Features.Schedules
 {
@@ -62,20 +63,33 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
                  ISAVAILABLE
             FROM TBSCHEDULES WHERE ROOM = {0}ROOM";
 
+        private const string SqlSelectScheduleByDate =
+            @"SELECT
+                 ID,
+                 BOOKINGDATE,
+                 ROOM,
+                 EMPLOYEEID,
+                 ISAVAILABLE
+            FROM TBSCHEDULES WHERE ISAVAILABLE = 1 AND BOOKINGDATE LIKE {0}BOOKINGDATE";
+
         private const string SqlSelectAvailableRoom =
             @"SELECT
+                 ID,
+                 BOOKINGDATE,
+                 ROOM,
+                 EMPLOYEEID,
                  ISAVAILABLE
             FROM TBSCHEDULES WHERE ROOM = {0}ROOM";
 
         #endregion
 
-        public Schedule IsBooked(string room)
+        public Schedule IsBooked(RoomTypes room)
         {
             var parms = new Dictionary<string, object> { { "ROOM", room } };
 
-            var result = Db.Get(SqlSelectAvailableRoom, Converter, parms);
+            var schedule = Db.Get(SqlSelectAvailableRoom, Converter, parms);
 
-            return result;
+            return schedule;
         }
 
         public Schedule GetByRoom(string room)
@@ -85,11 +99,6 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
             var schedule = Db.Get(SqlSelectScheduleByRoom, Converter, parms);
 
             return schedule;
-        }
-
-        public IList<string> GetAvailableRooms(DateTime bookingDate)
-        {
-            throw new NotImplementedException();
         }
 
         public Schedule Add(Schedule entity)
@@ -127,6 +136,13 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
             return Db.GetAll(sqlGetAllSchedules, Converter);
         }
 
+        public IList<Schedule> GetAvailableRooms(DateTime bookingDate)
+        {
+            var parms = new Dictionary<string, object> { { "BOOKINGDATE", bookingDate } };
+
+            return Db.GetAll(SqlSelectScheduleByDate, Converter, parms);
+        }
+
         public void Delete(long id)
         {
             if (id <= 0)
@@ -143,7 +159,7 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
             {
                 { "ID", schedule.Id },
                 { "BOOKINGDATE", schedule.BookingDate},
-                { "ROOM", schedule.Room.ToString()},
+                { "ROOM", schedule.Room},
                 { "EMPLOYEEID", schedule.Employee.Id},
                 { "ISAVAILABLE", schedule.IsAvailable}
             };
@@ -154,7 +170,7 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
           {
               Id = Convert.ToInt32(reader["ID"]),
               BookingDate = Convert.ToDateTime(reader["BOOKINGDATE"]),
-              //Room = Convert.ToString(reader["ROOM"]),
+              Room = (RoomTypes)(reader["ROOM"]),
               IsAvailable = Convert.ToBoolean(reader["ISAVAILABLE"]),
           };
 

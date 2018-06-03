@@ -30,7 +30,7 @@ namespace SalaReuniao.Common.Tests.Base
                  ISAVAILABLE)
             VALUES
                 (GETDATE(),
-                 'Treinamento',
+                 1,
                  1,
                  1)";
 

@@ -5,6 +5,7 @@ using SalaReuniao.App.Features.Schedules;
 using SalaReuniao.Common.Tests.Features.Schedules;
 using SalaReuniao.Domain.Features.Schedules;
 using SalaReuniao.Features.Schedules;
+using SalaReuniao.Features.Schedules.Utils;
 using System.Collections.Generic;
 
 namespace SalaReuniao.Application.Tests.Features
@@ -30,7 +31,7 @@ namespace SalaReuniao.Application.Tests.Features
         public void Test_ScheduleService_Add_ShouldBeOk()
         {
             _mockRepository
-                .Setup(sr => sr.IsBooked(_schedule.Room.ToString()))
+                .Setup(sr => sr.IsBooked(_schedule.Room))
                 .Returns(new Schedule { IsAvailable = false });
 
             _mockRepository
@@ -77,7 +78,7 @@ namespace SalaReuniao.Application.Tests.Features
         {
             _mockRepository
                 .Setup(sr => sr.GetAvailableRooms(_schedule.BookingDate))
-                .Returns(new List<string> { "Reuniao" });
+                .Returns(new List<Schedule> { new Schedule { Room = RoomTypes.Reuniao} });
 
             var rooms = _service.GetAvailableRooms(_schedule.BookingDate);
 
@@ -90,7 +91,7 @@ namespace SalaReuniao.Application.Tests.Features
         public void Test_ScheduleService_Update_ShouldBeOk()
         {
             _mockRepository
-                .Setup(sr => sr.IsBooked(_schedule.Room.ToString()))
+                .Setup(sr => sr.IsBooked(_schedule.Room))
                 .Returns(new Schedule { IsAvailable = false } );
 
             _mockRepository

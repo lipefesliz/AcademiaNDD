@@ -1,5 +1,6 @@
 ﻿using SalaReuniao.Domain.Features.Employees;
 using SalaReuniao.Domain.Features.Schedules;
+using SalaReuniao.Features.Schedules.Utils;
 using System;
 
 namespace SalaReuniao.Common.Tests.Features.Schedules
@@ -12,7 +13,7 @@ namespace SalaReuniao.Common.Tests.Features.Schedules
             {
                 Id = 1,
                 BookingDate = DateTime.Now,
-                Room = Schedule.RoomType.Treinamento,
+                Room = RoomTypes.Treinamento,
                 Employee = new Employee { Id = 1 },
                 IsAvailable = true
             };
