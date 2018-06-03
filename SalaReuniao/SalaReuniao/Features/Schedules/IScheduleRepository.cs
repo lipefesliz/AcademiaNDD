@@ -10,7 +10,7 @@ namespace SalaReuniao.Features.Schedules
     {
         Schedule IsBooked(RoomTypes room);
 
-        Schedule GetByRoom(string room);
+        Schedule GetByRoom(RoomTypes room);
 
         IList<Schedule> GetAvailableRooms(DateTime bookingDate);
     }

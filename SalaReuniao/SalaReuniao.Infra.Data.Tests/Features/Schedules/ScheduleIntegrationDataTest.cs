@@ -2,10 +2,12 @@
 using NUnit.Framework;
 using SalaReuniao.Common.Tests.Base;
 using SalaReuniao.Common.Tests.Features.Schedules;
+using SalaReuniao.Domain.Exceptions;
 using SalaReuniao.Domain.Features.Schedules;
 using SalaReuniao.Features.Schedules;
 using SalaReuniao.Features.Schedules.Utils;
 using SalaReuniao.Infra.Data.Features.Schedules;
+using System;
 
 namespace SalaReuniao.Infra.Data.Tests.Features.Schedules
 {
@@ -58,6 +60,14 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Schedules
 
         [Test]
         [Order(5)]
+        public void Test_ScheduleIntegrationData_GetByRoom_ShouldBeOk()
+        {
+            var schedule = _repository.GetByRoom(_schedule.Room);
+            schedule.Id.Should().BeGreaterThan(0);
+        }
+
+        [Test]
+        [Order(6)]
         public void Test_ScheduleIntegrationData_Update_ShouldBeOk()
         {
             _schedule.Room = RoomTypes.VideoConferencia;
@@ -67,7 +77,7 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Schedules
         }
 
         [Test]
-        [Order(6)]
+        [Order(7)]
         public void Test_ScheduleIntegrationData_Delete_ShouldBeOk()
         {
             _schedule = _repository.Add(_schedule);
@@ -79,11 +89,32 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Schedules
         }
 
         [Test]
-        [Order(7)]
+        [Order(8)]
         public void Test_ScheduleIntegrationData_IsBooked_ShouldBeOk()
         {
             var schedule = _repository.IsBooked(_schedule.Room);
             schedule.IsAvailable.Should().BeTrue();
+        }
+
+        /* TESTE ALTERNATIVOS */
+        [Test]
+        [Order(9)]
+        public void Test_ScheduleIntegrationData_Get_InvalidId_ShouldFail()
+        {
+            _schedule.Id = -1;
+
+            Action action = () => _repository.Get(_schedule.Id);
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        [Order(10)]
+        public void Test_ScheduleIntegrationData_Delete_InvalidId_ShouldFail()
+        {
+            _schedule.Id = -1;
+
+            Action action = () => _repository.Delete(_schedule.Id);
+            action.Should().Throw<IdentifierUndefinedException>();
         }
     }
 }

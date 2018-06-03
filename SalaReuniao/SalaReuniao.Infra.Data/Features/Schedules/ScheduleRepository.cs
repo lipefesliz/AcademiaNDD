@@ -92,7 +92,7 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
             return schedule;
         }
 
-        public Schedule GetByRoom(string room)
+        public Schedule GetByRoom(RoomTypes room)
         {
             var parms = new Dictionary<string, object> { { "ROOM", room } };
 

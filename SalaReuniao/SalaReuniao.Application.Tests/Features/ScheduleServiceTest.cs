@@ -95,7 +95,7 @@ namespace SalaReuniao.Application.Tests.Features
                 .Returns(new Schedule { IsAvailable = false } );
 
             _mockRepository
-                .Setup(sr => sr.GetByRoom(_schedule.Room.ToString()))
+                .Setup(sr => sr.GetByRoom(_schedule.Room))
                 .Returns(new Schedule { Id = 1 });
 
             _mockRepository
