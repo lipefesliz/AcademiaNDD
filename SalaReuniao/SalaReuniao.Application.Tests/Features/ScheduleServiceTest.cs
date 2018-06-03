@@ -31,7 +31,7 @@ namespace SalaReuniao.Application.Tests.Features
         {
             _mockRepository
                 .Setup(sr => sr.IsBooked(_schedule.Room.ToString()))
-                .Returns(false);
+                .Returns(new Schedule { IsAvailable = false });
 
             _mockRepository
                 .Setup(sr => sr.Add(_schedule))
@@ -91,7 +91,7 @@ namespace SalaReuniao.Application.Tests.Features
         {
             _mockRepository
                 .Setup(sr => sr.IsBooked(_schedule.Room.ToString()))
-                .Returns(false);
+                .Returns(new Schedule { IsAvailable = false } );
 
             _mockRepository
                 .Setup(sr => sr.GetByRoom(_schedule.Room.ToString()))

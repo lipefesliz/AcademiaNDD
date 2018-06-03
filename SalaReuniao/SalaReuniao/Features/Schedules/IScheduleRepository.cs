@@ -7,7 +7,7 @@ namespace SalaReuniao.Features.Schedules
 {
     public interface IScheduleRepository : IRepository<Schedule>
     {
-        bool IsBooked(string room);
+        Schedule IsBooked(string room);
 
         Schedule GetByRoom(string room);
 

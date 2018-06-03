@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using SalaReuniao.Domain.Exceptions;
+using SalaReuniao.Domain.Features.Employees;
 using SalaReuniao.Domain.Features.Schedules;
 using SalaReuniao.Features.Schedules;
 
@@ -57,18 +60,31 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
                  ROOM,
                  EMPLOYEEID,
                  ISAVAILABLE
-            FROM TBSCHEDULES WHERE NAME = {0}NAME";
+            FROM TBSCHEDULES WHERE ROOM = {0}ROOM";
+
+        private const string SqlSelectAvailableRoom =
+            @"SELECT
+                 ISAVAILABLE
+            FROM TBSCHEDULES WHERE ROOM = {0}ROOM";
 
         #endregion
 
-        public bool IsBooked(string room)
+        public Schedule IsBooked(string room)
         {
-            throw new NotImplementedException();
+            var parms = new Dictionary<string, object> { { "ROOM", room } };
+
+            var result = Db.Get(SqlSelectAvailableRoom, Converter, parms);
+
+            return result;
         }
 
         public Schedule GetByRoom(string room)
         {
-            throw new NotImplementedException();
+            var parms = new Dictionary<string, object> { { "ROOM", room } };
+
+            var schedule = Db.Get(SqlSelectScheduleByRoom, Converter, parms);
+
+            return schedule;
         }
 
         public IList<string> GetAvailableRooms(DateTime bookingDate)
@@ -78,27 +94,77 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
 
         public Schedule Add(Schedule entity)
         {
-            throw new NotImplementedException();
+            entity.Validate();
+
+            entity.Id = Db.Insert(sqlInsertSchedule, GetParameters(entity));
+
+            return entity;
         }
 
         public Schedule Update(Schedule entity)
         {
-            throw new NotImplementedException();
+            entity.Validate();
+
+            Db.Update(sqlUpdateSchedule, GetParameters(entity));
+
+            var parms = new Dictionary<string, object> { { "ID", entity.Id } };
+
+            return entity;
         }
 
         public Schedule Get(long id)
         {
-            throw new NotImplementedException();
+            if (id <= 0)
+                throw new IdentifierUndefinedException();
+
+            var parms = new Dictionary<string, object> { { "ID", id } };
+
+            return Db.Get(sqlGetSchedule, Converter, parms);
         }
 
         public IList<Schedule> GetAll()
         {
-            throw new NotImplementedException();
+            return Db.GetAll(sqlGetAllSchedules, Converter);
         }
 
         public void Delete(long id)
         {
-            throw new NotImplementedException();
+            if (id <= 0)
+                throw new IdentifierUndefinedException();
+
+            var parms = new Dictionary<string, object> { { "ID", id } };
+
+            Db.Delete(sqlDeleteSchedule, parms);
         }
+
+        private Dictionary<string, object> GetParameters(Schedule schedule)
+        {
+            return new Dictionary<string, object>
+            {
+                { "ID", schedule.Id },
+                { "BOOKINGDATE", schedule.BookingDate},
+                { "ROOM", schedule.Room.ToString()},
+                { "EMPLOYEEID", schedule.Employee.Id},
+                { "ISAVAILABLE", schedule.IsAvailable}
+            };
+        }
+
+        private static Func<IDataReader, Schedule> Converter = reader =>
+          new Schedule
+          {
+              Id = Convert.ToInt32(reader["ID"]),
+              BookingDate = Convert.ToDateTime(reader["BOOKINGDATE"]),
+              //Room = Convert.ToString(reader["ROOM"]),
+              IsAvailable = Convert.ToBoolean(reader["ISAVAILABLE"]),
+          };
+
+        private static Func<IDataReader, Employee> ConverterEmployee = reader =>
+          new Employee
+          {
+              Id = Convert.ToInt32(reader["ID"]),
+              Name = Convert.ToString(reader["NAME"]),
+              Post = Convert.ToString(reader["POST"]),
+              BranchLine = Convert.ToInt32(reader["BRANCHLINE"])
+          };
     }
 }
