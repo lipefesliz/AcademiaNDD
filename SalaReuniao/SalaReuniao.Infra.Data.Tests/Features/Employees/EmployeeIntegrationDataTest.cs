@@ -4,6 +4,7 @@ using SalaReuniao.Common.Tests.Base;
 using SalaReuniao.Common.Tests.Features.Employees;
 using SalaReuniao.Domain.Exceptions;
 using SalaReuniao.Domain.Features.Employees;
+using SalaReuniao.Features.Employees.Exceptions;
 using SalaReuniao.Infra.Data.Features.Employees;
 using System;
 
@@ -133,6 +134,66 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Employees
 
             Action action = () => _repository.IsTiedTo(_employee.Id);
             action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        [Order(14)]
+        public void Test_EmployeeIntegrationData_Add_EmptyName_ShouldFail()
+        {
+            _employee.Name = "";
+
+            Action action = () => _repository.Add(_employee);
+            action.Should().Throw<NameIsNullOrEmptyException>();
+        }
+
+        [Test]
+        [Order(15)]
+        public void Test_EmployeeIntegrationData_Add_EmptyPost_ShouldFail()
+        {
+            _employee.Post = "";
+
+            Action action = () => _repository.Add(_employee);
+            action.Should().Throw<PostIsNullOrEmptyException>();
+        }
+
+        [Test]
+        [Order(16)]
+        public void Test_EmployeeIntegrationData_Add_InvalidBranchLine_ShouldFail()
+        {
+            _employee.BranchLine = -1;
+
+            Action action = () => _repository.Add(_employee);
+            action.Should().Throw<InvalidBranchLineException>();
+        }
+
+        [Test]
+        [Order(17)]
+        public void Test_EmployeeIntegrationData_Update_EmptyName_ShouldFail()
+        {
+            _employee.Name = "";
+
+            Action action = () => _repository.Update(_employee);
+            action.Should().Throw<NameIsNullOrEmptyException>();
+        }
+
+        [Test]
+        [Order(18)]
+        public void Test_EmployeeIntegrationData_Update_EmptyPost_ShouldFail()
+        {
+            _employee.Post = "";
+
+            Action action = () => _repository.Update(_employee);
+            action.Should().Throw<PostIsNullOrEmptyException>();
+        }
+
+        [Test]
+        [Order(19)]
+        public void Test_EmployeeIntegrationData_Update_InvalidBranchLine_ShouldFail()
+        {
+            _employee.BranchLine = -1;
+
+            Action action = () => _repository.Update(_employee);
+            action.Should().Throw<InvalidBranchLineException>();
         }
     }
 }

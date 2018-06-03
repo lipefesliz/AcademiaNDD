@@ -1,4 +1,5 @@
 ﻿using SalaReuniao.Domain.Exceptions;
+using SalaReuniao.Domain.Features.Employees;
 using SalaReuniao.Domain.Features.Schedules;
 using SalaReuniao.Features.Schedules;
 using SalaReuniao.Features.Schedules.Exceptions;
@@ -20,7 +21,7 @@ namespace SalaReuniao.App.Features.Schedules
         {
             entity.Validate();
 
-            var schedule = _scheduleRepository.IsBooked(entity.Room);
+            var schedule = _scheduleRepository.IsAvailable(entity.Room);
 
             if (schedule.IsAvailable == false)
                 throw new DateBookedException();
@@ -30,7 +31,7 @@ namespace SalaReuniao.App.Features.Schedules
 
         public void Delete(Schedule entity)
         {
-            if (entity.Id <= 0)
+            if (entity.Id < 1)
                 throw new IdentifierUndefinedException();
 
             _scheduleRepository.Delete(entity.Id);
@@ -38,7 +39,7 @@ namespace SalaReuniao.App.Features.Schedules
 
         public Schedule Get(long id)
         {
-            if (id <= 0)
+            if (id < 1)
                 throw new IdentifierUndefinedException();
 
             return _scheduleRepository.Get(id);
@@ -54,17 +55,25 @@ namespace SalaReuniao.App.Features.Schedules
             return _scheduleRepository.GetAvailableRooms(bookingDate);
         }
 
+        public Employee GetEmployeeFromSchedule(int id)
+        {
+            if (id < 1)
+                throw new IdentifierUndefinedException();
+
+            return _scheduleRepository.GetEmployeeFromSchedule(id);
+        }
+
         public Schedule Update(Schedule entity)
         {
-            if (entity.Id <= 0)
+            if (entity.Id < 1)
                 throw new IdentifierUndefinedException();
 
             entity.Validate();
 
-            var result = _scheduleRepository.IsBooked(entity.Room);
+            var result = _scheduleRepository.IsAvailable(entity.Room);
             var schedule = _scheduleRepository.GetByRoom(entity.Room);
 
-            if (result != null && result.IsAvailable && schedule.Id != entity.Id)
+            if (result != null && result.IsAvailable && schedule != null && schedule.Id != entity.Id)
                 throw new DateBookedException();
 
             return _scheduleRepository.Update(entity);

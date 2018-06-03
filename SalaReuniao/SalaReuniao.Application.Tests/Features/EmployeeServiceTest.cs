@@ -144,7 +144,7 @@ namespace SalaReuniao.Application.Tests.Features
 
         [Test]
         [Order(9)]
-        public void Test_EmployeeService_Update_DuplicatedName_ShouldFail()
+        public void Test_EmployeeService_Update_InvalidId_ShouldFail()
         {
             _mockRepository
                 .Setup(er => er.GetByName(_employee.Name))
@@ -156,6 +156,16 @@ namespace SalaReuniao.Application.Tests.Features
 
         [Test]
         [Order(10)]
+        public void Test_EmployeeService_Update_DuplicatedName_ShouldFail()
+        {
+            _employee.Id = -1;
+
+            Action action = () => _service.Update(_employee);
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        [Order(11)]
         public void Test_EmployeeService_Delete_UndefinedId_ShouldFail()
         {
             _employee.Id = -1;
@@ -165,7 +175,7 @@ namespace SalaReuniao.Application.Tests.Features
         }
 
         [Test]
-        [Order(11)]
+        [Order(12)]
         public void Test_EmployeeService_Delete_ItemTiedTo_ShouldFail()
         {
             _mockRepository
@@ -177,13 +187,73 @@ namespace SalaReuniao.Application.Tests.Features
         }
 
         [Test]
-        [Order(12)]
+        [Order(13)]
         public void Test_EmployeeService_IsTiedTo_ShouldFail()
         {
             _employee.Id = -1;
 
             Action action = () => _service.IsTiedTo(_employee.Id);
             action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        [Order(14)]
+        public void Test_EmployeeService_Add_EmptyName_ShouldFail()
+        {
+            _employee.Name = "";
+
+            Action action = () => _service.Add(_employee);
+            action.Should().Throw<NameIsNullOrEmptyException>();
+        }
+
+        [Test]
+        [Order(15)]
+        public void Test_EmployeeService_Add_EmptyPost_ShouldFail()
+        {
+            _employee.Post = "";
+
+            Action action = () => _service.Add(_employee);
+            action.Should().Throw<PostIsNullOrEmptyException>();
+        }
+
+        [Test]
+        [Order(16)]
+        public void Test_EmployeeService_Add_InvalidBranchLine_ShouldFail()
+        {
+            _employee.BranchLine = -1;
+
+            Action action = () => _service.Add(_employee);
+            action.Should().Throw<InvalidBranchLineException>();
+        }
+
+        [Test]
+        [Order(17)]
+        public void Test_EmployeeService_Update_EmptyName_ShouldFail()
+        {
+            _employee.Name = "";
+
+            Action action = () => _service.Update(_employee);
+            action.Should().Throw<NameIsNullOrEmptyException>();
+        }
+
+        [Test]
+        [Order(18)]
+        public void Test_EmployeeService_Update_EmptyPost_ShouldFail()
+        {
+            _employee.Post = "";
+
+            Action action = () => _service.Update(_employee);
+            action.Should().Throw<PostIsNullOrEmptyException>();
+        }
+
+        [Test]
+        [Order(19)]
+        public void Test_EmployeeService_Update_InvalidBranchLine_ShouldFail()
+        {
+            _employee.BranchLine = -1;
+
+            Action action = () => _service.Update(_employee);
+            action.Should().Throw<InvalidBranchLineException>();
         }
     }
 }
