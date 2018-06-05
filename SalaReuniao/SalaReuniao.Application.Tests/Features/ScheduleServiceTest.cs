@@ -8,7 +8,6 @@ using SalaReuniao.Domain.Features.Employees;
 using SalaReuniao.Domain.Features.Schedules;
 using SalaReuniao.Features.Schedules;
 using SalaReuniao.Features.Schedules.Exceptions;
-using SalaReuniao.Features.Schedules.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -35,8 +34,8 @@ namespace SalaReuniao.Application.Tests.Features
         public void Test_ScheduleService_Add_ShouldBeOk()
         {
             _mockRepository
-                .Setup(sr => sr.IsAvailable(_schedule.Room))
-                .Returns(new Schedule { IsAvailable = true });
+                .Setup(sr => sr.IsAvailable(_schedule.Room.GetHashCode()))
+                .Returns(true);
 
             _mockRepository
                 .Setup(sr => sr.Add(_schedule))
@@ -82,7 +81,7 @@ namespace SalaReuniao.Application.Tests.Features
         {
             _mockRepository
                 .Setup(sr => sr.GetAvailableRooms(_schedule.BookingDate))
-                .Returns(new List<Schedule> { new Schedule { Room = RoomTypes.Reuniao} });
+                .Returns(new List<Schedule> { new Schedule { Id = 1 } });
 
             var rooms = _service.GetAvailableRooms(_schedule.BookingDate);
 
@@ -95,11 +94,11 @@ namespace SalaReuniao.Application.Tests.Features
         public void Test_ScheduleService_Update_ShouldBeOk()
         {
             _mockRepository
-                .Setup(sr => sr.IsAvailable(_schedule.Room))
-                .Returns(new Schedule { IsAvailable = false } );
+                .Setup(sr => sr.IsAvailable(_schedule.Room.GetHashCode()))
+                .Returns(false);
 
             _mockRepository
-                .Setup(sr => sr.GetByRoom(_schedule.Room))
+                .Setup(sr => sr.GetByRoom(_schedule.Room.GetHashCode()))
                 .Returns(new Schedule { Id = 1 });
 
             _mockRepository
@@ -150,8 +149,8 @@ namespace SalaReuniao.Application.Tests.Features
         public void Test_ScheduleService_Add_BookedDate_ShouldFail()
         {
             _mockRepository
-                .Setup(sr => sr.IsAvailable(_schedule.Room))
-                .Returns(new Schedule { IsAvailable = false });
+                .Setup(sr => sr.IsAvailable(_schedule.Room.GetHashCode()))
+                .Returns(false);
 
             Action action = () => _service.Add(_schedule);
             action.Should().Throw<DateBookedException>();
@@ -192,11 +191,11 @@ namespace SalaReuniao.Application.Tests.Features
         public void Test_ScheduleService_Update_BookedDate_ShouldFail()
         {
             _mockRepository
-                .Setup(sr => sr.IsAvailable(_schedule.Room))
-                .Returns(new Schedule { IsAvailable = true });
+                .Setup(sr => sr.IsAvailable(_schedule.Room.GetHashCode()))
+                .Returns(true);
 
             _mockRepository
-                .Setup(sr => sr.GetByRoom(_schedule.Room))
+                .Setup(sr => sr.GetByRoom(_schedule.Room.GetHashCode()))
                 .Returns(new Schedule { Id = 2 });
 
             Action action = () => _service.Update(_schedule);
@@ -235,6 +234,16 @@ namespace SalaReuniao.Application.Tests.Features
 
         [Test]
         [Order(16)]
+        public void Test_ScheduleService_Add_NegativeChairNumber_ShouldFail()
+        {
+            _schedule.Chairs = -1;
+
+            Action action = () => _service.Add(_schedule);
+            action.Should().Throw<ChairsNumberException>();
+        }
+
+        [Test]
+        [Order(17)]
         public void Test_ScheduleService_Update_InvalidDate_ShouldFail()
         {
             _schedule.BookingDate = DateTime.Now.AddDays(-2);
@@ -244,13 +253,23 @@ namespace SalaReuniao.Application.Tests.Features
         }
 
         [Test]
-        [Order(17)]
+        [Order(18)]
         public void Test_ScheduleService_Update_NullEmployee_ShouldFail()
         {
             _schedule.Employee = null;
 
             Action action = () => _service.Update(_schedule);
             action.Should().Throw<NullEmployeeException>();
+        }
+
+        [Test]
+        [Order(19)]
+        public void Test_ScheduleService_Update_NegativeChairNumber_ShouldFail()
+        {
+            _schedule.Chairs = -1;
+
+            Action action = () => _service.Update(_schedule);
+            action.Should().Throw<ChairsNumberException>();
         }
     }
 }

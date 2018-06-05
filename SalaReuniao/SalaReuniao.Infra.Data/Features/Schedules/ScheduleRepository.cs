@@ -5,7 +5,7 @@ using SalaReuniao.Domain.Exceptions;
 using SalaReuniao.Domain.Features.Employees;
 using SalaReuniao.Domain.Features.Schedules;
 using SalaReuniao.Features.Schedules;
-using SalaReuniao.Features.Schedules.Utils;
+using SalaReuniao.Features.Utils;
 
 namespace SalaReuniao.Infra.Data.Features.Schedules
 {
@@ -17,11 +17,13 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
             @"INSERT INTO TBSCHEDULES
                 (BOOKINGDATE,
                  ROOM,
+                 CHAIRS,
                  EMPLOYEEID,
                  ISAVAILABLE)
             VALUES
                 ({0}BOOKINGDATE,
                  {0}ROOM,
+                 {0}CHAIRS,
                  {0}EMPLOYEEID,
                  {0}ISAVAILABLE)";
 
@@ -32,6 +34,7 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
                  ID,
                  BOOKINGDATE,
                  ROOM,
+                 CHAIRS,
                  EMPLOYEEID,
                  ISAVAILABLE
             FROM TBSCHEDULES WHERE ID = {0}ID";
@@ -41,6 +44,7 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
                  ID,
                  BOOKINGDATE,
                  ROOM,
+                 CHAIRS,
                  EMPLOYEEID,
                  ISAVAILABLE
             FROM TBSCHEDULES";
@@ -50,6 +54,7 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
                 SET
                     BOOKINGDATE = {0}BOOKINGDATE,
                     ROOM = {0}ROOM,
+                    CHAIRS = {0}CHAIRS,
                     EMPLOYEEID = {0}EMPLOYEEID,
                     ISAVAILABLE = {0}ISAVAILABLE
                 WHERE ID = {0}ID";
@@ -59,15 +64,17 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
                  ID,
                  BOOKINGDATE,
                  ROOM,
+                 CHAIRS,
                  EMPLOYEEID,
                  ISAVAILABLE
-            FROM TBSCHEDULES WHERE ROOM = {0}ROOM";
+            FROM TBSCHEDULES WHERE ROOM = {0}ROOMTYPE";
 
         private const string SqlSelectScheduleByDate =
             @"SELECT
                  ID,
                  BOOKINGDATE,
                  ROOM,
+                 CHAIRS,
                  EMPLOYEEID,
                  ISAVAILABLE
             FROM TBSCHEDULES WHERE ISAVAILABLE = 1 AND BOOKINGDATE LIKE {0}BOOKINGDATE";
@@ -77,9 +84,10 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
                  ID,
                  BOOKINGDATE,
                  ROOM,
+                 CHAIRS,
                  EMPLOYEEID,
                  ISAVAILABLE
-            FROM TBSCHEDULES WHERE ROOM = {0}ROOM";
+            FROM TBSCHEDULES WHERE ROOM = {0}ROOMTYPE";
 
         private const string SqlSelectEmployee =
             @"SELECT
@@ -91,18 +99,21 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
 
         #endregion
 
-        public Schedule IsAvailable(RoomTypes room)
+        public bool IsAvailable(int roomType)
         {
-            var parms = new Dictionary<string, object> { { "ROOM", room } };
+            var parms = new Dictionary<string, object> { { "ROOMTYPE", roomType } };
 
             var schedule = Db.Get(SqlSelectAvailableRoom, Converter, parms);
 
-            return schedule;
+            if (schedule == null)
+                return true;
+
+            return schedule.IsAvailable;
         }
 
-        public Schedule GetByRoom(RoomTypes room)
+        public Schedule GetByRoom(int roomType)
         {
-            var parms = new Dictionary<string, object> { { "ROOM", room } };
+            var parms = new Dictionary<string, object> { { "ROOMTYPE", roomType } };
 
             var schedule = Db.Get(SqlSelectScheduleByRoom, Converter, parms);
 
@@ -178,6 +189,7 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
                 { "ID", schedule.Id },
                 { "BOOKINGDATE", schedule.BookingDate},
                 { "ROOM", schedule.Room},
+                { "CHAIRS", schedule.Chairs},
                 { "EMPLOYEEID", schedule.Employee.Id},
                 { "ISAVAILABLE", schedule.IsAvailable}
             };
@@ -189,7 +201,8 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
               Id = Convert.ToInt32(reader["ID"]),
               BookingDate = Convert.ToDateTime(reader["BOOKINGDATE"]),
               Room = (RoomTypes)(reader["ROOM"]),
-              IsAvailable = Convert.ToBoolean(reader["ISAVAILABLE"]),
+              Chairs = Convert.ToInt32(reader["CHAIRS"]),
+              IsAvailable = Convert.ToBoolean(reader["ISAVAILABLE"])
           };
 
         private static Func<IDataReader, Employee> ConverterEmployee = reader =>

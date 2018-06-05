@@ -1,4 +1,4 @@
-﻿namespace SalaReuniao.Features.Schedules.Utils
+﻿namespace SalaReuniao.Features.Utils
 {
     public enum RoomTypes
     {

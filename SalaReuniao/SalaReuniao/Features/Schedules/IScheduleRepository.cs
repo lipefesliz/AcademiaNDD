@@ -1,7 +1,6 @@
 ﻿using SalaReuniao.Domain.Base;
 using SalaReuniao.Domain.Features.Employees;
 using SalaReuniao.Domain.Features.Schedules;
-using SalaReuniao.Features.Schedules.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -9,9 +8,9 @@ namespace SalaReuniao.Features.Schedules
 {
     public interface IScheduleRepository : IRepository<Schedule>
     {
-        Schedule IsAvailable(RoomTypes room);
+        bool IsAvailable(int roomType);
 
-        Schedule GetByRoom(RoomTypes room);
+        Schedule GetByRoom(int roomType);
 
         IList<Schedule> GetAvailableRooms(DateTime bookingDate);
 

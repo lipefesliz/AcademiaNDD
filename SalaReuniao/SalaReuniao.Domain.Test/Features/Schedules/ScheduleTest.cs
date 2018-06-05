@@ -27,7 +27,7 @@ namespace SalaReuniao.Domain.Test.Features.Schedules
             action.Should().NotThrow<Exception>();
         }
 
-        /* TESTES CAMINHO FELIZ */
+        /* TESTES ALTERNATIVOS */
         [Test]
         [Order(2)]
         public void Test_CreateSchedule_InvalidDate_ShouldFail()
@@ -38,9 +38,18 @@ namespace SalaReuniao.Domain.Test.Features.Schedules
             action.Should().Throw<InvalidDateException>();
         }
 
-        /* TESTES CAMINHO FELIZ */
         [Test]
         [Order(3)]
+        public void Test_CreateSchedule_NegativeChairs_ShouldFail()
+        {
+            _schedule.Chairs = -1;
+
+            Action action = _schedule.Validate;
+            action.Should().Throw<ChairsNumberException>();
+        }
+
+        [Test]
+        [Order(4)]
         public void Test_CreateSchedule_EmptyEmployee_ShouldFail()
         {
             _schedule.Employee = null;

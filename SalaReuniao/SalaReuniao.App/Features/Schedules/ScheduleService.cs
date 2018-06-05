@@ -21,9 +21,9 @@ namespace SalaReuniao.App.Features.Schedules
         {
             entity.Validate();
 
-            var schedule = _scheduleRepository.IsAvailable(entity.Room);
+            var result = _scheduleRepository.IsAvailable(entity.Room.GetHashCode());
 
-            if (schedule.IsAvailable == false)
+            if (result == false)
                 throw new DateBookedException();
 
             return _scheduleRepository.Add(entity);
@@ -70,10 +70,10 @@ namespace SalaReuniao.App.Features.Schedules
 
             entity.Validate();
 
-            var result = _scheduleRepository.IsAvailable(entity.Room);
-            var schedule = _scheduleRepository.GetByRoom(entity.Room);
+            var result = _scheduleRepository.IsAvailable(entity.Room.GetHashCode());
+            var schedule = _scheduleRepository.GetByRoom(entity.Room.GetHashCode());
 
-            if (result != null && result.IsAvailable && schedule != null && schedule.Id != entity.Id)
+            if (result && schedule != null && schedule.Id != entity.Id)
                 throw new DateBookedException();
 
             return _scheduleRepository.Update(entity);

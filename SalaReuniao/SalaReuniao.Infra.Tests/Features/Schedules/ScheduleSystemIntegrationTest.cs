@@ -6,7 +6,6 @@ using SalaReuniao.Common.Tests.Features.Schedules;
 using SalaReuniao.Domain.Exceptions;
 using SalaReuniao.Domain.Features.Schedules;
 using SalaReuniao.Features.Schedules.Exceptions;
-using SalaReuniao.Features.Schedules.Utils;
 using SalaReuniao.Infra.Data.Features.Schedules;
 using System;
 using System.Collections.Generic;
@@ -19,7 +18,6 @@ namespace SalaReuniao.Infra.Tests.Features.Schedules
         private ScheduleRepository _scheduleRepository;
         private ScheduleService _scheduleService;
         private Schedule _schedule;
-        private object _repository;
 
         [SetUp]
         public void Initialize()
@@ -70,7 +68,7 @@ namespace SalaReuniao.Infra.Tests.Features.Schedules
         [Order(6)]
         public void Test_ScheduleIntegration_Update_ShouldBeOk()
         {
-            _schedule.Room = RoomTypes.VideoConferencia;
+            _schedule.IsAvailable = false;
 
             var schedule = _scheduleService.Update(_schedule);
             schedule.Equals(_schedule).Should().BeTrue();
@@ -175,6 +173,26 @@ namespace SalaReuniao.Infra.Tests.Features.Schedules
 
             Action action = () => _scheduleService.Delete(_schedule);
             action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        [Order(18)]
+        public void Test_ScheduleIntegrationData_Add_NegativeChairNumber_ShouldFail()
+        {
+            _schedule.Chairs = -1;
+
+            Action action = () => _scheduleService.Add(_schedule);
+            action.Should().Throw<ChairsNumberException>();
+        }
+
+        [Test]
+        [Order(19)]
+        public void Test_ScheduleIntegrationData_Update_NegativeChairNumber_ShouldFail()
+        {
+            _schedule.Chairs = -1;
+
+            Action action = () => _scheduleService.Update(_schedule);
+            action.Should().Throw<ChairsNumberException>();
         }
     }
 }

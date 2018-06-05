@@ -26,11 +26,13 @@ namespace SalaReuniao.Common.Tests.Base
             @"INSERT INTO TBSCHEDULES
                 (BOOKINGDATE,
                  ROOM,
+                 CHAIRS,
                  EMPLOYEEID,
                  ISAVAILABLE)
             VALUES
                 (GETDATE(),
                  1,
+                 20,
                  1,
                  1)";
 
