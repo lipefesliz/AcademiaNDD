@@ -22,6 +22,9 @@ namespace SalaReuniao.Domain.Features.Schedules
             if (Ending < Statirg)
                 throw new InvalidEndingTimeException();
 
+            if (Room == null)
+                throw new NullRoomException();
+
             if (Employee == null)
                 throw new NullEmployeeException();
         }

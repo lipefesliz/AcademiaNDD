@@ -50,12 +50,12 @@ namespace SalaReuniao.Domain.Test.Features.Schedules
 
         [Test]
         [Order(4)]
-        public void Test_CreateSchedule_NegativeChairs_ShouldFail()
+        public void Test_CreateSchedule_EmptyRoom_ShouldFail()
         {
-            _schedule.Chairs = -1;
+            _schedule.Room = null;
 
             Action action = _schedule.Validate;
-            action.Should().Throw<ChairsNumberException>();
+            action.Should().Throw<NullRoomException>();
         }
 
         [Test]
