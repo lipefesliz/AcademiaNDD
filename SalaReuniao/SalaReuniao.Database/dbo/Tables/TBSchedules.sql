@@ -1,7 +1,8 @@
 ﻿CREATE TABLE [dbo].[TBSchedules]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY (1,1), 
-    [BookingDate] DATETIME NOT NULL, 
+    [Starting] DATETIME NOT NULL, 
+    [Ending] DATETIME NOT NULL, 
     [Room] INT NOT NULL, 
     [Chairs] INT NOT NULL, 
 	[EmployeeId] INT NOT NULL, 

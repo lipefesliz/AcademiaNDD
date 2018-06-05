@@ -12,7 +12,8 @@ namespace SalaReuniao.Common.Tests.Features.Schedules
             return new Schedule
             {
                 Id = 1,
-                BookingDate = DateTime.Now,
+                Statirg = DateTime.Now,
+                Ending = DateTime.Now.AddHours(2),
                 Room = RoomTypes.Treinamento,
                 Chairs = 20,
                 Employee = new Employee { Id = 1 },

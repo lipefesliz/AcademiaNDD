@@ -10,9 +10,11 @@ namespace SalaReuniao.Features.Schedules
     {
         bool IsAvailable(int roomType);
 
+        Schedule GetEndingTime(int roomType);
+
         Schedule GetByRoom(int roomType);
 
-        IList<Schedule> GetAvailableRooms(DateTime bookingDate);
+        IList<Schedule> GetAvailableRooms(DateTime starting);
 
         Employee GetEmployeeFromSchedule(int id);
     }

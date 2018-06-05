@@ -24,13 +24,15 @@ namespace SalaReuniao.Common.Tests.Base
 
         private const string INSERT_SCHEDULE =
             @"INSERT INTO TBSCHEDULES
-                (BOOKINGDATE,
+                (STARTING,
+                 ENDING,
                  ROOM,
                  CHAIRS,
                  EMPLOYEEID,
                  ISAVAILABLE)
             VALUES
                 (GETDATE(),
+                 GETDATE() + 0.002,
                  1,
                  20,
                  1,

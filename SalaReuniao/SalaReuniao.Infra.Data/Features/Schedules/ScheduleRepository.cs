@@ -15,13 +15,15 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
 
         private const string sqlInsertSchedule =
             @"INSERT INTO TBSCHEDULES
-                (BOOKINGDATE,
+                (STARTING,
+                 ENDING,
                  ROOM,
                  CHAIRS,
                  EMPLOYEEID,
                  ISAVAILABLE)
             VALUES
-                ({0}BOOKINGDATE,
+                ({0}STARTING,
+                 {0}ENDING,
                  {0}ROOM,
                  {0}CHAIRS,
                  {0}EMPLOYEEID,
@@ -32,7 +34,8 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
         private const string sqlGetSchedule =
             @"SELECT
                  ID,
-                 BOOKINGDATE,
+                 STARTING,
+                 ENDING,
                  ROOM,
                  CHAIRS,
                  EMPLOYEEID,
@@ -42,7 +45,8 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
         private const string sqlGetAllSchedules =
             @"SELECT
                  ID,
-                 BOOKINGDATE,
+                 STARTING,
+                 ENDING,
                  ROOM,
                  CHAIRS,
                  EMPLOYEEID,
@@ -52,7 +56,8 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
         string sqlUpdateSchedule =
             @"UPDATE TBSCHEDULES
                 SET
-                    BOOKINGDATE = {0}BOOKINGDATE,
+                    STARTING = {0}STARTING,
+                    ENDING = {0}ENDING,
                     ROOM = {0}ROOM,
                     CHAIRS = {0}CHAIRS,
                     EMPLOYEEID = {0}EMPLOYEEID,
@@ -62,27 +67,30 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
         private const string SqlSelectScheduleByRoom =
             @"SELECT
                  ID,
-                 BOOKINGDATE,
+                 STARTING,
+                 ENDING,
                  ROOM,
                  CHAIRS,
                  EMPLOYEEID,
                  ISAVAILABLE
             FROM TBSCHEDULES WHERE ROOM = {0}ROOMTYPE";
 
-        private const string SqlSelectScheduleByDate =
+        private const string SqlSelectAvailableRoomByDate =
             @"SELECT
                  ID,
-                 BOOKINGDATE,
+                 STARTING,
+                 ENDING,
                  ROOM,
                  CHAIRS,
                  EMPLOYEEID,
                  ISAVAILABLE
-            FROM TBSCHEDULES WHERE ISAVAILABLE = 1 AND BOOKINGDATE LIKE {0}BOOKINGDATE";
+            FROM TBSCHEDULES WHERE ISAVAILABLE = 1 AND STARTING LIKE {0}STARTING";
 
         private const string SqlSelectAvailableRoom =
             @"SELECT
                  ID,
-                 BOOKINGDATE,
+                 STARTING,
+                 ENDING,
                  ROOM,
                  CHAIRS,
                  EMPLOYEEID,
@@ -96,6 +104,17 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
                 TBSCHEDULES
                 INNER JOIN TBEMPLOYEES ON TBSCHEDULES.EMPLOYEEID = TBEMPLOYEES.ID
                 WHERE TBSCHEDULES.ID = {0}ID";
+
+        private const string sqlGetEndingTime =
+            @"SELECT
+                 ID,
+                 STARTING,
+                 ENDING,
+                 ROOM,
+                 CHAIRS,
+                 EMPLOYEEID,
+                 ISAVAILABLE
+            FROM TBSCHEDULES WHERE ROOM = {0}ROOMTYPE";
 
         #endregion
 
@@ -155,11 +174,18 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
             return Db.GetAll(sqlGetAllSchedules, Converter);
         }
 
-        public IList<Schedule> GetAvailableRooms(DateTime bookingDate)
+        public IList<Schedule> GetAvailableRooms(DateTime starting)
         {
-            var parms = new Dictionary<string, object> { { "BOOKINGDATE", bookingDate } };
+            var parms = new Dictionary<string, object> { { "STARTING", starting } };
 
-            return Db.GetAll(SqlSelectScheduleByDate, Converter, parms);
+            return Db.GetAll(SqlSelectAvailableRoomByDate, Converter, parms);
+        }
+
+        public Schedule GetEndingTime(int roomType)
+        {
+            var parms = new Dictionary<string, object> { { "ROOMTYPE", roomType } };
+
+            return Db.Get(sqlGetEndingTime, Converter, parms);
         }
 
         public Employee GetEmployeeFromSchedule(int id)
@@ -187,7 +213,8 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
             return new Dictionary<string, object>
             {
                 { "ID", schedule.Id },
-                { "BOOKINGDATE", schedule.BookingDate},
+                { "STARTING", schedule.Statirg},
+                { "ENDING", schedule.Ending},
                 { "ROOM", schedule.Room},
                 { "CHAIRS", schedule.Chairs},
                 { "EMPLOYEEID", schedule.Employee.Id},
@@ -199,7 +226,8 @@ namespace SalaReuniao.Infra.Data.Features.Schedules
           new Schedule
           {
               Id = Convert.ToInt32(reader["ID"]),
-              BookingDate = Convert.ToDateTime(reader["BOOKINGDATE"]),
+              Statirg = Convert.ToDateTime(reader["STARTING"]),
+              Ending = Convert.ToDateTime(reader["ENDING"]),
               Room = (RoomTypes)(reader["ROOM"]),
               Chairs = Convert.ToInt32(reader["CHAIRS"]),
               IsAvailable = Convert.ToBoolean(reader["ISAVAILABLE"])

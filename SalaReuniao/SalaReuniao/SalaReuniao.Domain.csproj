@@ -52,7 +52,8 @@
     <Compile Include="Features\Employees\Exceptions\PostIsNullOrEmptyException.cs" />
     <Compile Include="Features\Employees\IEmployeeRepository.cs" />
     <Compile Include="Features\Schedules\Exceptions\DateBookedException.cs" />
-    <Compile Include="Features\Schedules\Exceptions\InvalidDateException.cs" />
+    <Compile Include="Features\Schedules\Exceptions\InvalidEndingTimeException.cs" />
+    <Compile Include="Features\Schedules\Exceptions\InvalidStartingTimeException.cs" />
     <Compile Include="Features\Schedules\Exceptions\NullEmployeeException.cs" />
     <Compile Include="Features\Schedules\Exceptions\NullRoomException.cs" />
     <Compile Include="Features\Schedules\IScheduleRepository.cs" />

@@ -30,16 +30,26 @@ namespace SalaReuniao.Domain.Test.Features.Schedules
         /* TESTES ALTERNATIVOS */
         [Test]
         [Order(2)]
-        public void Test_CreateSchedule_InvalidDate_ShouldFail()
+        public void Test_CreateSchedule_InvalidStartingDate_ShouldFail()
         {
-            _schedule.BookingDate = DateTime.Now.AddDays(-2);
+            _schedule.Statirg = DateTime.Now.AddDays(-2);
 
             Action action = _schedule.Validate;
-            action.Should().Throw<InvalidDateException>();
+            action.Should().Throw<InvalidStartingTimeException>();
         }
 
         [Test]
         [Order(3)]
+        public void Test_CreateSchedule_InvalidEndingDate_ShouldFail()
+        {
+            _schedule.Ending = DateTime.Now.AddDays(-2);
+
+            Action action = _schedule.Validate;
+            action.Should().Throw<InvalidEndingTimeException>();
+        }
+
+        [Test]
+        [Order(4)]
         public void Test_CreateSchedule_NegativeChairs_ShouldFail()
         {
             _schedule.Chairs = -1;
@@ -49,7 +59,7 @@ namespace SalaReuniao.Domain.Test.Features.Schedules
         }
 
         [Test]
-        [Order(4)]
+        [Order(5)]
         public void Test_CreateSchedule_EmptyEmployee_ShouldFail()
         {
             _schedule.Employee = null;
