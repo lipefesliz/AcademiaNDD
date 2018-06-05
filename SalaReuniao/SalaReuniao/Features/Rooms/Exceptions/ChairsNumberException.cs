@@ -1,6 +1,6 @@
 ﻿using SalaReuniao.Domain.Exceptions;
 
-namespace SalaReuniao.Features.Schedules.Exceptions
+namespace SalaReuniao.Features.Rooms.Exceptions
 {
     public class ChairsNumberException : BusinessException
     {

@@ -1,7 +1,7 @@
 ﻿using SalaReuniao.Domain.Base;
 using SalaReuniao.Domain.Features.Employees;
+using SalaReuniao.Features.Rooms;
 using SalaReuniao.Features.Schedules.Exceptions;
-using SalaReuniao.Features.Utils;
 using System;
 
 namespace SalaReuniao.Domain.Features.Schedules
@@ -10,8 +10,7 @@ namespace SalaReuniao.Domain.Features.Schedules
     {
         public DateTime Statirg { get; set; }
         public DateTime Ending { get; set; }
-        public RoomTypes Room { get; set; }
-        public int Chairs { get; set; }
+        public Room Room { get; set; }
         public Employee Employee { get; set; }
         public bool IsAvailable { get; set; }
 
@@ -25,9 +24,6 @@ namespace SalaReuniao.Domain.Features.Schedules
 
             if (Employee == null)
                 throw new NullEmployeeException();
-
-            if (Chairs < 1)
-                throw new ChairsNumberException();
         }
     }
 }
