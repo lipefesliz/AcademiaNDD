@@ -6,7 +6,6 @@ using SalaReuniao.Domain.Exceptions;
 using SalaReuniao.Domain.Features.Schedules;
 using SalaReuniao.Features.Schedules;
 using SalaReuniao.Features.Schedules.Exceptions;
-using SalaReuniao.Features.Utils;
 using SalaReuniao.Infra.Data.Features.Schedules;
 using System;
 
@@ -63,7 +62,7 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Schedules
         [Order(5)]
         public void Test_ScheduleIntegrationData_GetByRoom_ShouldBeOk()
         {
-            var schedule = _repository.GetByRoom(_schedule.Room.GetHashCode());
+            var schedule = _repository.GetByRoom(_schedule.Room.Id);
             schedule.Id.Should().BeGreaterThan(0);
         }
 
@@ -93,22 +92,30 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Schedules
         [Order(8)]
         public void Test_ScheduleIntegrationData_IsAvailable_ShouldBeOk()
         {
-            var result = _repository.IsAvailable(_schedule.Room.GetHashCode());
+            var result = _repository.IsAvailable(_schedule.Room.Id);
             result.Should().BeTrue();
         }
 
         [Test]
-        [Order(8)]
-        public void Test_ScheduleIntegrationData_IsAvailable_UndefinedRoomType_ShouldBeOk()
+        [Order(9)]
+        public void Test_ScheduleIntegrationData_IsAvailable_NullRoom_ShouldBeOk()
         {
-            _schedule.Room = (RoomTypes)4;
+            _schedule.Room.Id = 666;
 
-            var result = _repository.IsAvailable(_schedule.Room.GetHashCode());
+            var result = _repository.IsAvailable(_schedule.Room.Id);
             result.Should().BeTrue();
         }
 
         [Test]
         [Order(10)]
+        public void Test_ScheduleIntegrationData_GetRoomFromSchedule_ShouldBeOk()
+        {
+            _schedule.Room = _repository.GetRoomFromSchedule(_schedule.Id);
+            _schedule.Room.Id.Should().BeGreaterThan(0);
+        }
+
+        [Test]
+        [Order(11)]
         public void Test_ScheduleIntegrationData_GetEmployeeFromSchedule_ShouldBeOk()
         {
             _schedule.Employee = _repository.GetEmployeeFromSchedule(_schedule.Id);
@@ -117,7 +124,7 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Schedules
 
         /* TESTE ALTERNATIVOS */
         [Test]
-        [Order(11)]
+        [Order(12)]
         public void Test_ScheduleIntegrationData_Get_InvalidId_ShouldFail()
         {
             _schedule.Id = -1;
@@ -127,7 +134,7 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Schedules
         }
 
         [Test]
-        [Order(12)]
+        [Order(13)]
         public void Test_ScheduleIntegrationData_Delete_InvalidId_ShouldFail()
         {
             _schedule.Id = -1;
@@ -137,7 +144,7 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Schedules
         }
 
         [Test]
-        [Order(13)]
+        [Order(14)]
         public void Test_ScheduleIntegrationData_GetEmployeeFromSchedule_InvalidId_ShouldFail()
         {
             _schedule.Id = -1;
@@ -146,18 +153,18 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Schedules
             action.Should().Throw<IdentifierUndefinedException>();
         }
 
-        //[Test]
-        //[Order(14)]
-        //public void Test_ScheduleIntegrationData_Add_InvalidDate_ShouldFail()
-        //{
-        //    _schedule.BookingDate = DateTime.Now.AddDays(-2);
-
-        //    Action action = () => _repository.Add(_schedule);
-        //    action.Should().Throw<InvalidDateException>();
-        //}
-
         [Test]
         [Order(15)]
+        public void Test_ScheduleIntegrationData_GetRoomFromSchedule_InvalidId_ShouldFail()
+        {
+            _schedule.Id = -1;
+
+            Action action = () => _repository.GetRoomFromSchedule(_schedule.Id);
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        [Order(16)]
         public void Test_ScheduleIntegrationData_Add_NullEmployee_ShouldFail()
         {
             _schedule.Employee = null;
@@ -167,24 +174,14 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Schedules
         }
 
         [Test]
-        [Order(16)]
-        public void Test_ScheduleIntegrationData_Add_NegativeChairNumber_ShouldFail()
+        [Order(17)]
+        public void Test_ScheduleIntegrationData_Add_NullRoom_ShouldFail()
         {
-            _schedule.Chairs = -1;
+            _schedule.Room = null;
 
             Action action = () => _repository.Add(_schedule);
-            action.Should().Throw<ChairsNumberException>();
+            action.Should().Throw<NullRoomException>();
         }
-
-        //[Test]
-        //[Order(17)]
-        //public void Test_ScheduleIntegrationData_Update_InvalidDate_ShouldFail()
-        //{
-        //    _schedule.BookingDate = DateTime.Now.AddDays(-2);
-
-        //    Action action = () => _repository.Update(_schedule);
-        //    action.Should().Throw<InvalidDateException>();
-        //}
 
         [Test]
         [Order(18)]
@@ -198,12 +195,12 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Schedules
 
         [Test]
         [Order(19)]
-        public void Test_ScheduleIntegrationData_Update_NegativeChairNumber_ShouldFail()
+        public void Test_ScheduleIntegrationData_Update_NullRoom_ShouldFail()
         {
-            _schedule.Chairs = -1;
+            _schedule.Room = null;
 
             Action action = () => _repository.Update(_schedule);
-            action.Should().Throw<ChairsNumberException>();
+            action.Should().Throw<NullRoomException>();
         }
     }
 }

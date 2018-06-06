@@ -100,17 +100,15 @@ namespace SalaReuniao.Infra.Tests.Features.Schedules
             employee.Id.Should().BeGreaterThan(0);
         }
 
-        /* TESTES ALTERNATIVOS */
-        //[Test]
-        //[Order(10)]
-        //public void Test_ScheduleIntegration_Add_InvalidDate_ShouldFail()
-        //{
-        //    _schedule.BookingDate = DateTime.Now.AddDays(-2);
+        [Test]
+        [Order(9)]
+        public void Test_ScheduleIntegration_GetRoomFromSchedule_ShouldBeOk()
+        {
+            var room = _scheduleService.GetRoomFromSchedule(_schedule.Id);
+            room.Id.Should().BeGreaterThan(0);
+        }
 
-        //    Action action = () => _scheduleService.Add(_schedule);
-        //    action.Should().Throw<InvalidDateException>();
-        //}
-
+        /*TESTES ALTERNATIVOS*/
         [Test]
         [Order(11)]
         public void Test_ScheduleIntegration_Add_NullEmployee_ShouldFail()
@@ -120,16 +118,6 @@ namespace SalaReuniao.Infra.Tests.Features.Schedules
             Action action = () => _scheduleService.Add(_schedule);
             action.Should().Throw<NullEmployeeException>();
         }
-
-        //[Test]
-        //[Order(12)]
-        //public void Test_ScheduleIntegration_Update_InvalidDate_ShouldFail()
-        //{
-        //    _schedule.BookingDate = DateTime.Now.AddDays(-2);
-
-        //    Action action = () => _scheduleService.Update(_schedule);
-        //    action.Should().Throw<InvalidDateException>();
-        //}
 
         [Test]
         [Order(13)]
@@ -183,22 +171,32 @@ namespace SalaReuniao.Infra.Tests.Features.Schedules
 
         [Test]
         [Order(18)]
-        public void Test_ScheduleIntegrationData_Add_NegativeChairNumber_ShouldFail()
+        public void Test_ScheduleIntegrationData_Add_NullRoom_ShouldFail()
         {
-            _schedule.Chairs = -1;
+            _schedule.Room = null;
 
             Action action = () => _scheduleService.Add(_schedule);
-            action.Should().Throw<ChairsNumberException>();
+            action.Should().Throw<NullRoomException>();
         }
 
         [Test]
         [Order(19)]
-        public void Test_ScheduleIntegrationData_Update_NegativeChairNumber_ShouldFail()
+        public void Test_ScheduleIntegrationData_Update_NullRoom_ShouldFail()
         {
-            _schedule.Chairs = -1;
+            _schedule.Room = null;
 
             Action action = () => _scheduleService.Update(_schedule);
-            action.Should().Throw<ChairsNumberException>();
+            action.Should().Throw<NullRoomException>();
+        }
+
+        [Test]
+        [Order(20)]
+        public void Test_ScheduleIntegration_GetRoomFromSchedule_InvalidId_ShouldFail()
+        {
+            _schedule.Id = -1;
+
+            Action action = () => _scheduleService.GetRoomFromSchedule(_schedule.Id);
+            action.Should().Throw<IdentifierUndefinedException>();
         }
     }
 }

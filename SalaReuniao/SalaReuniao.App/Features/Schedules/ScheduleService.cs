@@ -1,6 +1,7 @@
 ﻿using SalaReuniao.Domain.Exceptions;
 using SalaReuniao.Domain.Features.Employees;
 using SalaReuniao.Domain.Features.Schedules;
+using SalaReuniao.Features.Rooms;
 using SalaReuniao.Features.Schedules;
 using SalaReuniao.Features.Schedules.Exceptions;
 using System;
@@ -53,6 +54,14 @@ namespace SalaReuniao.App.Features.Schedules
             return _scheduleRepository.GetAvailableRooms(bookingDate);
         }
 
+        public Room GetRoomFromSchedule(int id)
+        {
+            if (id < 1)
+                throw new IdentifierUndefinedException();
+
+            return _scheduleRepository.GetRoomFromSchedule(id);
+        }
+
         public Employee GetEmployeeFromSchedule(int id)
         {
             if (id < 1)
@@ -76,7 +85,7 @@ namespace SalaReuniao.App.Features.Schedules
 
         private bool IsOkToAdd(Schedule entity)
         {
-            var bookingTime = _scheduleRepository.GetEndingTime(entity.Room.GetHashCode());
+            var bookingTime = _scheduleRepository.GetEndingTime(entity.Room.Id);
 
             if (bookingTime != null && entity.Statirg < bookingTime.Ending)
                 return true;
@@ -86,8 +95,8 @@ namespace SalaReuniao.App.Features.Schedules
 
         private bool IsOkToUpdate(Schedule entity)
         {
-            var bookingTime = _scheduleRepository.GetEndingTime(entity.Room.GetHashCode());
-            var schedule = _scheduleRepository.GetByRoom(entity.Room.GetHashCode());
+            var bookingTime = _scheduleRepository.GetEndingTime(entity.Room.Id);
+            var schedule = _scheduleRepository.GetByRoom(entity.Room.Id);
 
             if (entity.Statirg < bookingTime.Ending && schedule != null && schedule.Id != entity.Id)
                 return true;
