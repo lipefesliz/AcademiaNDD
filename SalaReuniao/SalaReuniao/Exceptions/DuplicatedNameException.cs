@@ -1,6 +1,6 @@
 ﻿using SalaReuniao.Domain.Exceptions;
 
-namespace SalaReuniao.Features.Employees.Exceptions
+namespace SalaReuniao.Domain.Exceptions
 {
     public class DuplicatedNameException : BusinessException
     {
