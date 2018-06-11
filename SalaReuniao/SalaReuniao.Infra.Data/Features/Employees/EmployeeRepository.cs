@@ -58,13 +58,13 @@ namespace SalaReuniao.Infra.Data.Features.Employees
 
         #endregion
 
-        public Employee Add(Employee entity)
+        public Employee Add(Employee employee)
         {
-            entity.Validate();
+            employee.Validate();
 
-            entity.Id = Db.Insert(sqlInsertEmployee, GetParameters(entity));
+            employee.Id = Db.Insert(sqlInsertEmployee, GetParameters(employee));
 
-            return entity;
+            return employee;
         }
 
         public void Delete(long id)
@@ -125,13 +125,13 @@ namespace SalaReuniao.Infra.Data.Features.Employees
             return result != null;
         }
 
-        public Employee Update(Employee entity)
+        public Employee Update(Employee employee)
         {
-            entity.Validate();
+            employee.Validate();
 
-            Db.Update(sqlUpdateEmployee, GetParameters(entity));
+            Db.Update(sqlUpdateEmployee, GetParameters(employee));
 
-            return entity;
+            return employee;
         }
 
         private static Func<IDataReader, Employee> Converter = reader =>
