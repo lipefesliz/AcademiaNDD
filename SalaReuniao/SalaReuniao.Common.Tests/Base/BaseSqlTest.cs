@@ -26,20 +26,26 @@ namespace SalaReuniao.Common.Tests.Base
 
         private const string INSERT_ROOM =
             @"INSERT INTO TBROOMS
-                (ROOMTYPE)
+                (NAME,
+                 CHAIRS)
             VALUES
-                ('Sala de Treinamento')";
+                ('sala de treinamento',
+                 10)";
 
         /* TBSchedules */
         private const string RECREATE_SCHEDULE_TABLE = @"TRUNCATE TABLE [dbo].[TBSchedules]";
 
         private const string INSERT_SCHEDULE =
             @"INSERT INTO TBSCHEDULES
-                (BOOKINGDATE,
+                (STARTING,
+                 ENDING,
                  ROOMID,
-                 EMPLOYEEID)
+                 EMPLOYEEID,
+                 ISAVAILABLE)
             VALUES
                 (GETDATE(),
+                 GETDATE() + 0.002,
+                 1,
                  1,
                  1)";
 

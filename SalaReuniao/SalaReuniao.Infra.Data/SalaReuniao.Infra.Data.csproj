@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Features\Employees\EmployeeRepository.cs" />
+    <Compile Include="Features\Rooms\RoomRepository.cs" />
+    <Compile Include="Features\Schedules\ScheduleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,5 +55,6 @@
       <Name>SalaReuniao.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

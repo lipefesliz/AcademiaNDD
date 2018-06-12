@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[TBRooms]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY (1,1), 
-    [RoomType] NVARCHAR(50) NOT NULL, 
+    [Name] NVARCHAR(50) NOT NULL, 
+    [Chairs] INT NOT NULL
 )

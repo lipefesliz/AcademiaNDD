@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using SalaReuniao.Domain.Exceptions;
 using SalaReuniao.Domain.Features.Employees;
-using SalaReuniao.Features.Employees.Exceptions;
 
 namespace SalaReuniao.App.Features.Employees
 {
@@ -27,10 +26,8 @@ namespace SalaReuniao.App.Features.Employees
 
         public void Delete(Employee entity)
         {
-            if (entity.Id == 0)
-            {
+            if (entity.Id < 1)
                 throw new IdentifierUndefinedException();
-            }
 
             if (IsTiedTo(entity.Id))
                 throw new TiedException();
@@ -40,10 +37,8 @@ namespace SalaReuniao.App.Features.Employees
 
         public Employee Get(long id)
         {
-            if (id <= 0)
-            {
+            if (id < 1)
                 throw new IdentifierUndefinedException();
-            }
 
             return _employeeRepository.Get(id);
         }
@@ -55,10 +50,8 @@ namespace SalaReuniao.App.Features.Employees
 
         public Employee Update(Employee entity)
         {
-            if (entity.Id <= 0)
-            {
+            if (entity.Id < 1)
                 throw new IdentifierUndefinedException();
-            }
 
             entity.Validate();
 
@@ -74,10 +67,8 @@ namespace SalaReuniao.App.Features.Employees
 
         public bool IsTiedTo(long id)
         {
-            if (id <= 0)
-            {
+            if (id < 1)
                 throw new IdentifierUndefinedException();
-            }
 
             return _employeeRepository.IsTiedTo(id);
         }

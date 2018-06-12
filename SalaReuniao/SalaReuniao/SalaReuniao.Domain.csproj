@@ -46,11 +46,22 @@
     <Compile Include="Exceptions\IdentifierUndefinedException.cs" />
     <Compile Include="Exceptions\TiedException.cs" />
     <Compile Include="Features\Employees\Employee.cs" />
-    <Compile Include="Features\Employees\Exceptions\DuplicatedNameException.cs" />
+    <Compile Include="Exceptions\DuplicatedNameException.cs" />
     <Compile Include="Features\Employees\Exceptions\InvalidBranchLineException.cs" />
     <Compile Include="Features\Employees\Exceptions\NameIsNullOrEmptyException.cs" />
     <Compile Include="Features\Employees\Exceptions\PostIsNullOrEmptyException.cs" />
     <Compile Include="Features\Employees\IEmployeeRepository.cs" />
+    <Compile Include="Features\Rooms\Exceptions\EmptyNameException.cs" />
+    <Compile Include="Features\Rooms\IRoomRepository.cs" />
+    <Compile Include="Features\Rooms\Room.cs" />
+    <Compile Include="Features\Schedules\Exceptions\DateBookedException.cs" />
+    <Compile Include="Features\Schedules\Exceptions\InvalidEndingTimeException.cs" />
+    <Compile Include="Features\Schedules\Exceptions\InvalidStartingTimeException.cs" />
+    <Compile Include="Features\Schedules\Exceptions\NullEmployeeException.cs" />
+    <Compile Include="Features\Schedules\Exceptions\NullRoomException.cs" />
+    <Compile Include="Features\Schedules\IScheduleRepository.cs" />
+    <Compile Include="Features\Rooms\Exceptions\ChairsNumberException.cs" />
+    <Compile Include="Features\Schedules\Schedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

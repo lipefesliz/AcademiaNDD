@@ -71,7 +71,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\Employee\EmployeeIntegrationDataTest.cs" />
+    <Compile Include="Features\Employees\EmployeeIntegrationDataTest.cs" />
+    <Compile Include="Features\Rooms\RoomIntegrationDataTest.cs" />
+    <Compile Include="Features\Schedules\ScheduleIntegrationDataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
