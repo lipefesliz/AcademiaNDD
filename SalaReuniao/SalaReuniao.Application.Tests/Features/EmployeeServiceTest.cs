@@ -144,7 +144,7 @@ namespace SalaReuniao.Application.Tests.Features
 
         [Test]
         [Order(9)]
-        public void Test_EmployeeService_Update_InvalidId_ShouldFail()
+        public void Test_EmployeeService_Update_DuplicatedName_ShouldFail()
         {
             _mockRepository
                 .Setup(er => er.GetByName(_employee.Name))
@@ -156,7 +156,7 @@ namespace SalaReuniao.Application.Tests.Features
 
         [Test]
         [Order(10)]
-        public void Test_EmployeeService_Update_DuplicatedName_ShouldFail()
+        public void Test_EmployeeService_Update_InvalidId_ShouldFail()
         {
             _employee.Id = -1;
 
