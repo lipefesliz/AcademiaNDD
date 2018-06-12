@@ -2,8 +2,11 @@
 using NUnit.Framework;
 using SalaReuniao.Common.Tests.Base;
 using SalaReuniao.Common.Tests.Features.Rooms;
+using SalaReuniao.Domain.Exceptions;
 using SalaReuniao.Features.Rooms;
+using SalaReuniao.Features.Rooms.Exceptions;
 using SalaReuniao.Infra.Data.Features.Rooms;
+using System;
 
 namespace SalaReuniao.Infra.Data.Tests.Features.Rooms
 {
@@ -98,6 +101,93 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Rooms
             var result = _repository.IsTiedTo(_room.Id);
 
             result.Should().BeTrue();
+        }
+
+        /* TESTES ALTERNATIVOS */
+        [Test]
+        [Order(9)]
+        public void Test_Room_IntegrationData_Add_EmptyName_ShouldFail()
+        {
+            _room.Name = String.Empty;
+
+            Action action = () => _repository.Add(_room);
+
+            action.Should().Throw<EmptyNameException>();
+        }
+
+        [Test]
+        [Order(10)]
+        public void Test_Room_IntegrationData_Add_ChairsNumber_ShouldFail()
+        {
+            _room.Chairs = 0;
+
+            Action action = () => _repository.Add(_room);
+
+            action.Should().Throw<ChairsNumberException>();
+        }
+
+        [Test]
+        [Order(11)]
+        public void Test_Room_IntegrationData_Get_InvalidId_ShouldFail()
+        {
+            _room.Id = 0;
+
+            Action action = () => _repository.Get(_room.Id);
+
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        [Order(12)]
+        public void Test_Room_IntegrationData_Delete_InvalidId_ShouldFail()
+        {
+            _room.Id = 0;
+
+            Action action = () => _repository.Delete(_room.Id);
+
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        [Order(13)]
+        public void Test_Room_IntegrationData_Delete_TiedTo_ShouldFail()
+        {
+            Action action = () => _repository.Delete(_room.Id);
+
+            action.Should().Throw<TiedException>();
+        }
+
+        [Test]
+        [Order(14)]
+        public void Test_Room_IntegrationData_Update_EmptyName_ShouldFail()
+        {
+            _room.Name = String.Empty;
+
+            Action action = () => _repository.Update(_room);
+
+            action.Should().Throw<EmptyNameException>();
+        }
+
+        [Test]
+        [Order(15)]
+        public void Test_Room_IntegrationData_Update_ChairsNumber_ShouldFail()
+        {
+            _room.Chairs = 0;
+
+            Action action = () => _repository.Update(_room);
+
+            action.Should().Throw<ChairsNumberException>();
+        }
+
+        [Test]
+        [Order(8)]
+        public void Test_Room_IntegrationData_IsTiedTo_InvalidId_ShouldFail()
+        {
+            _room.Id = 0;
+
+            Action action = () => _repository.IsTiedTo(_room.Id);
+
+            action.Should().Throw<IdentifierUndefinedException>();
         }
     }
 }
