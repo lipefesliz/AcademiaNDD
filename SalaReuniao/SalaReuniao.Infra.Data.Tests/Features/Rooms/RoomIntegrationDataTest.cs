@@ -180,7 +180,7 @@ namespace SalaReuniao.Infra.Data.Tests.Features.Rooms
         }
 
         [Test]
-        [Order(8)]
+        [Order(16)]
         public void Test_Room_IntegrationData_IsTiedTo_InvalidId_ShouldFail()
         {
             _room.Id = 0;
