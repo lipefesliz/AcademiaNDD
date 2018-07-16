@@ -179,7 +179,7 @@ namespace DonaLaura.Application.Tests.Features
                 .Setup(pr => pr.Add(product))
                 .Throws<DuplicatedNameException>();
 
-            Action action = () => { _service.Add(product); };
+            Action action = () => _service.Add(product);
             action.Should().Throw<DuplicatedNameException>();
         }
 

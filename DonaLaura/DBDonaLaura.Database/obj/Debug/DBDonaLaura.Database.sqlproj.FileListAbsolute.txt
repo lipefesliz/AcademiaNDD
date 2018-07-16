@@ -4,3 +4,7 @@ C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\bin\
 C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\obj\Debug\DBDonaLaura.Database.sqlprojResolveAssemblyReference.cache
 C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\obj\Debug\DBDonaLaura.Database.dll
 C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\obj\Debug\DBDonaLaura.Database.pdb
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\obj\Debug\Model.xml
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\obj\Debug\refactor.xml
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\obj\Debug\postdeploy.sql
+C:\Users\felip\Google Drive\Academia\Reforco\DonaLaura\DBDonaLaura.Database\obj\Debug\predeploy.sql
