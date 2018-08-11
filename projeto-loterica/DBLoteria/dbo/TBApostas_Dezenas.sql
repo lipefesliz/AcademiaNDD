@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[TBApostas_Dezenas]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+    [ApostaId] INT NOT NULL FOREIGN KEY REFERENCES TBApostas(Id), 
+    [Dezena] INT NOT NULL
+)

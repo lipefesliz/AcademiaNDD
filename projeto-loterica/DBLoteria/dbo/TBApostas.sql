@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[TBApostas]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+    [ConcursoID] INT NOT NULL FOREIGN KEY REFERENCES TBConcursos(Id), 
+    [Data] DATETIME NOT NULL, 
+    [Valor] DECIMAL(9, 2) NOT NULL
+)

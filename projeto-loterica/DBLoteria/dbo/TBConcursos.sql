@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[TBConcursos]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+    [Data] DATETIME NOT NULL, 
+    [Premio] DECIMAL(9, 2) NOT NULL,
+)
