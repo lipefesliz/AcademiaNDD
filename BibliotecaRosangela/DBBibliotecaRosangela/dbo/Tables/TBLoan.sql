@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[TBLoan]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY (1,1), 
+    [Customer] NVARCHAR(50) NOT NULL, 
+    [BookId] INT NOT NULL, 
+    [ReturnDate] DATETIME NOT NULL
+)

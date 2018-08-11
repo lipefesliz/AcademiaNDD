@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[TBLoanBooks]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY (1,1), 
+    [BookId] INT NOT NULL, 
+    [LoanId] INT NOT NULL
+	CONSTRAINT [FK_TBLoanBooks] FOREIGN KEY ([BookId]) REFERENCES [TBBooks]([Id]), 
+    CONSTRAINT [FK_TBLoan_Books] FOREIGN KEY ([LoanId]) REFERENCES [TBLoan]([Id])
+)
