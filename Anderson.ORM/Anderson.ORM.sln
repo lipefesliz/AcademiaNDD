@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Presentation", "1. Presentation", "{60935D1F-9308-411F-B593-5C1739D1FB0E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application", "2. Application", "{377CAD6B-EE41-49C8-9516-934BA1580BD3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Domain", "3. Domain", "{E423B30B-574F-4957-B0AF-066265BF3082}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infrastructure", "4. Infrastructure", "{8919875E-10E0-42EC-93E7-E73C2BC7A533}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Tests", "5. Tests", "{367DD998-A04E-4F90-9A10-1F984289E737}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anderson.ORM.Domain", "Anderson.ORM.Domain\Anderson.ORM.Domain.csproj", "{B1EEB58B-E4BC-4D91-9369-919B53546B6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anderson.ORM.Infra.Data", "Anderson.ORM.Infra.Data\Anderson.ORM.Infra.Data.csproj", "{148A8D53-6E90-4E4A-9F3A-88ACE0903C6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anderson.ORM.Infra.Data.Tests", "Anderson.ORM.Infra.Data.Tests\Anderson.ORM.Infra.Data.Tests.csproj", "{D871248F-F162-4E63-9D84-A140414078DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anderson.ORM.Common.Tests", "Anderson.ORM.Common.Tests\Anderson.ORM.Common.Tests.csproj", "{93450D44-36D5-4884-8753-8964F6815BFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1EEB58B-E4BC-4D91-9369-919B53546B6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1EEB58B-E4BC-4D91-9369-919B53546B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1EEB58B-E4BC-4D91-9369-919B53546B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1EEB58B-E4BC-4D91-9369-919B53546B6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{148A8D53-6E90-4E4A-9F3A-88ACE0903C6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{148A8D53-6E90-4E4A-9F3A-88ACE0903C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{148A8D53-6E90-4E4A-9F3A-88ACE0903C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{148A8D53-6E90-4E4A-9F3A-88ACE0903C6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D871248F-F162-4E63-9D84-A140414078DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D871248F-F162-4E63-9D84-A140414078DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D871248F-F162-4E63-9D84-A140414078DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D871248F-F162-4E63-9D84-A140414078DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93450D44-36D5-4884-8753-8964F6815BFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93450D44-36D5-4884-8753-8964F6815BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93450D44-36D5-4884-8753-8964F6815BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93450D44-36D5-4884-8753-8964F6815BFF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B1EEB58B-E4BC-4D91-9369-919B53546B6D} = {E423B30B-574F-4957-B0AF-066265BF3082}
+		{148A8D53-6E90-4E4A-9F3A-88ACE0903C6C} = {8919875E-10E0-42EC-93E7-E73C2BC7A533}
+		{D871248F-F162-4E63-9D84-A140414078DB} = {367DD998-A04E-4F90-9A10-1F984289E737}
+		{93450D44-36D5-4884-8753-8964F6815BFF} = {367DD998-A04E-4F90-9A10-1F984289E737}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8B2B9DA-B267-4E46-A8E8-09837DC95004}
+	EndGlobalSection
+EndGlobal

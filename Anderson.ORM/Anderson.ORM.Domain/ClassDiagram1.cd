@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Anderson.ORM.Domain.Base.Entity" Collapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAACAAAAAgAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Base\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Anderson.ORM.Domain.Features.Cargos.Cargo" Collapsed="true">
+    <Position X="7.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Cargos\Cargo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Anderson.ORM.Domain.Features.Departamentos.Departamento" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Departamentos\Departamento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Anderson.ORM.Domain.Features.Dependentes.Dependente" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAASAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Features\Dependentes\Dependente.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Anderson.ORM.Domain.Features.Enderecos.Endereco" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAACAACAEAAAAAACAAAAAAAAAAAAAAAABAAo=</HashCode>
+      <FileName>Features\Enderecos\Endereco.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Anderson.ORM.Domain.Features.Funcionarios.Funcionario" Collapsed="true">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAEAAAAAAAAAAAAAAABAAAAAAEAMAA=</HashCode>
+      <FileName>Features\Funcionarios\Funcionario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Anderson.ORM.Domain.Features.Projetos.Projeto" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAASAAAAAAAAQAAAAAAAAAAQAAAAAAAEAAAA=</HashCode>
+      <FileName>Features\Projetos\Projeto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Anderson.ORM.Domain.Base.IRepository&lt;T&gt;" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAABAAAAAAAAAAAEAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Base\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Anderson.ORM.Domain.Features.Cargos.ICargoRepository" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Cargos\ICargoRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Anderson.ORM.Domain.Features.Departamentos.IDepartamentoRepository" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Departamentos\IDepartamentoRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Anderson.ORM.Domain.Features.Dependentes.IDependenteRepository" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Dependentes\IDependenteRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Anderson.ORM.Domain.Features.Enderecos.IEnderecoRepository" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Enderecos\IEnderecoRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Anderson.ORM.Domain.Features.Funcionarios.IFuncionarioRepository" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Funcionarios\IFuncionarioRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Anderson.ORM.Domain.Features.Projetos.IProjetoRepository" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Projetos\IProjetoRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
