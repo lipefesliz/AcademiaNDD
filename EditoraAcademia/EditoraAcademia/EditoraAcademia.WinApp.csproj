@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{795FED1D-A310-49C3-B455-8C1CF0396852}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>EditoraAcademia</RootNamespace>
+    <AssemblyName>EditoraAcademia</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Features\Editoras\CadastroEditoraDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Editoras\CadastroEditoraDialog.Designer.cs">
+      <DependentUpon>CadastroEditoraDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Editoras\EditoraControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\Editoras\EditoraControl.Designer.cs">
+      <DependentUpon>EditoraControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Editoras\EditoraGerenciadorFormulario.cs" />
+    <Compile Include="Features\GerenciadorFormulario.cs" />
+    <Compile Include="Features\Livros\LilvroGerenciadorFormulario.cs" />
+    <Compile Include="Features\Livros\CadastroLivroDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Livros\CadastroLivroDialog.Designer.cs">
+      <DependentUpon>CadastroLivroDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Livros\LivroControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\Livros\LivroControl.Designer.cs">
+      <DependentUpon>LivroControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Principal.Designer.cs">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Features\Editoras\CadastroEditoraDialog.resx">
+      <DependentUpon>CadastroEditoraDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Editoras\EditoraControl.resx">
+      <DependentUpon>EditoraControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Livros\CadastroLivroDialog.resx">
+      <DependentUpon>CadastroLivroDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Livros\LivroControl.resx">
+      <DependentUpon>LivroControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Editora.Domain\EditoraAcademia.Domain.csproj">
+      <Project>{E95F7EBC-CC83-46DA-8D76-AE4E1C072557}</Project>
+      <Name>EditoraAcademia.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Editora.Infra.Data\EditoraAcademia.Infra.Data.csproj">
+      <Project>{433B05E1-4361-46E6-BF13-C3DF3189589C}</Project>
+      <Name>EditoraAcademia.Infra.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EditoraAcademia.App\EditoraAcademia.App.csproj">
+      <Project>{C58FB5E5-4AEB-46E9-9DB0-CAFA08EF6B83}</Project>
+      <Name>EditoraAcademia.App</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
