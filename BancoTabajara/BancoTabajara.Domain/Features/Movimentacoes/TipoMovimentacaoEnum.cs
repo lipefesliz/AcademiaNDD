@@ -2,6 +2,6 @@
 {
     public enum TipoMovimentacaoEnum
     {
-        CREDITO = 1, DEBITO = 2
+        CREDITO = 1, DEBITO = 2, TRANSFERENCIA = 3,
     }
 }

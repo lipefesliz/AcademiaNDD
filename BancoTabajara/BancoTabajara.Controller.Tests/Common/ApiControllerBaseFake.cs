@@ -1,6 +1,7 @@
-﻿using BancoTabajara.Controllers;
-using BancoTabajara.Controllers.Common;
+﻿using BancoTabajara.Controllers.Common;
 using FluentValidation.Results;
+using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +16,15 @@ namespace BancoTabajara.Controller.Tests.Common
             return base.HandleCallback(func);
         }
 
-        public IHttpActionResult HandleQuery<TResult>(IQueryable<TResult> query)
+        public IHttpActionResult HandleQuery<OriginType, TResult>(IQueryable<OriginType> query, ODataQueryOptions<OriginType> queryOptions)
         {
-            return base.HandleQuery(query);
+            return base.HandleQuery<OriginType, TResult>(query, queryOptions);
         }
 
-        public IHttpActionResult HandleQueryable<TSource>(IQueryable<TSource> query)
+
+        public PageResult<RetType> HandlePageResult<OriginType, RetType>(IQueryable<OriginType> query, ODataQueryOptions<OriginType> queryOptions)
         {
-            return base.HandleQueryable<TSource>(query);
+            return base.HandlePageResult<OriginType, RetType>(query, queryOptions);
         }
 
         public IHttpActionResult HandleValidationFailure<T>(IList<T> validationFailure) where T : ValidationFailure
@@ -31,11 +33,19 @@ namespace BancoTabajara.Controller.Tests.Common
         }
     }
 
+    /// <summary>
+    /// Dummy usado para preencher valores: um tipo vazio
+    /// </summary>
     public class ApiControllerBaseDummy
     {
+        public int Id { get; set; }
     }
 
+    /// <summary>
+    /// Dummy usado para conversões de mapeamento
+    /// </summary>
     public class ApiControllerBaseDummyQuery
     {
+        public int Id { get; set; }
     }
 }

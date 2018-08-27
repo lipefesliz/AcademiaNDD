@@ -1,8 +1,10 @@
-﻿using BancoTabajara.Domain.Exceptions;
+﻿using BancoTabajara.Controller.Tests.Initializer;
+using BancoTabajara.Domain.Exceptions;
 using BancoTabajara.Exceptions;
 using BancoTabajara.Models;
 using FluentAssertions;
 using FluentValidation.Results;
+using Microsoft.AspNet.OData;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -18,10 +20,12 @@ using System.Web.Http.Results;
 namespace BancoTabajara.Controller.Tests.Common
 {
     [TestFixture]
-    public class ApiControllerBaseTests
+    public class ApiControllerBaseTests : TestControllerBase
     {
+        /* Perceba que esse fake serve apenas para expor os comportamentos de ApiControllerBase */
         private ApiControllerBaseFake _apiControllerBase;
         private Mock<ApiControllerBaseDummy> _dummy;
+
 
         [SetUp]
         public void Initialize()
@@ -30,7 +34,7 @@ namespace BancoTabajara.Controller.Tests.Common
             request.SetConfiguration(new HttpConfiguration());
             _apiControllerBase = new ApiControllerBaseFake()
             {
-                Request = request,
+                Request = request
             };
             _dummy = new Mock<ApiControllerBaseDummy>();
         }
@@ -76,10 +80,11 @@ namespace BancoTabajara.Controller.Tests.Common
         {
             //Arrange
             var query = new List<ApiControllerBaseDummy>() { _dummy.Object }.AsQueryable();
+            var odataOptions = GetOdataQueryOptions<ApiControllerBaseDummy>(_apiControllerBase);
             // Action
-            var callback = _apiControllerBase.HandleQuery(query);
+            var callback = _apiControllerBase.HandleQuery<ApiControllerBaseDummy, ApiControllerBaseDummyQuery>(query, odataOptions);
             //Assert
-            var httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<List<ApiControllerBaseDummy>>>().Subject;
+            var httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<PageResult<ApiControllerBaseDummyQuery>>>().Subject;
             httpResponse.Content.Should().NotBeNull();
         }
 
@@ -88,9 +93,10 @@ namespace BancoTabajara.Controller.Tests.Common
         {
             //Arrange
             var query = new List<ApiControllerBaseDummy>() { _dummy.Object }.AsQueryable();
+            var odataOptions = GetOdataQueryOptions<ApiControllerBaseDummy>(_apiControllerBase);
             _apiControllerBase.Request.Headers.Accept.Add(MediaTypeWithQualityHeaderValue.Parse(MediaTypes.Csv));
             // Action
-            var callback = _apiControllerBase.HandleQuery(query);
+            var callback = _apiControllerBase.HandleQuery<ApiControllerBaseDummy, ApiControllerBaseDummyQuery>(query, odataOptions);
             //Assert
             var httpResponse = callback.Should().BeOfType<ResponseMessageResult>().Subject.Response;
             var data = await httpResponse.Content.ReadAsStringAsync();
@@ -102,44 +108,47 @@ namespace BancoTabajara.Controller.Tests.Common
         {
             //Arrange
             var query = new List<ApiControllerBaseDummy>().AsQueryable();
+            var odataOptions = GetOdataQueryOptions<ApiControllerBaseDummy>(_apiControllerBase);
             _apiControllerBase.Request.Headers.Accept.Add(MediaTypeWithQualityHeaderValue.Parse(MediaTypes.Csv));
+            var onlyQueryProperty = "Id";
             // Action
-            var callback = _apiControllerBase.HandleQuery(query);
+            var callback = _apiControllerBase.HandleQuery<ApiControllerBaseDummy, ApiControllerBaseDummyQuery>(query, odataOptions);
             //Assert
             var httpResponse = callback.Should().BeOfType<ResponseMessageResult>().Subject.Response;
             var data = await httpResponse.Content.ReadAsStringAsync();
-            data.Trim().Should().Be(String.Empty);
+            data.Trim().Should().Be(onlyQueryProperty);
             httpResponse.Content.Headers.ContentDisposition.DispositionType.Should().Be("attachment");
             httpResponse.Content.Headers.ContentType.MediaType.Should().Be(MediaTypes.OctetStream);
         }
 
         #endregion
 
-        #region HandleQueryable
+        #region HandlePageResult
         [Test]
-        public void Base_Controller_HandleQueryable_ShouldBeOk()
+        public void Base_Controller_HandlePageResult_ShouldBeOk()
         {
             //Arrange
             var query = new List<ApiControllerBaseDummy>() { _dummy.Object }.AsQueryable();
+            var odataOptions = GetOdataQueryOptions<ApiControllerBaseDummy>(_apiControllerBase);
             // Action
-            var callback = _apiControllerBase.HandleQueryable<ApiControllerBaseDummy>(query);
+            var callback = _apiControllerBase.HandlePageResult<ApiControllerBaseDummy, ApiControllerBaseDummyQuery>(query, odataOptions);
             //Assert
-            var httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<List<ApiControllerBaseDummy>>>().Subject;
-            httpResponse.Content.Should().NotBeNull();
+            var contentResponse = callback.Should().BeOfType<PageResult<ApiControllerBaseDummyQuery>>().Subject;
+            contentResponse.Should().NotBeNull();
         }
 
         [Test]
-        public async Task Base_Controller_HandleQueryable_ShouldHandleCSVExportAsync()
+        public void Base_Controller_HandlePageResult_ShouldHandleCSVExportAsync()
         {
             //Arrange
             var query = new List<ApiControllerBaseDummy>() { _dummy.Object }.AsQueryable();
+            var odataOptions = GetOdataQueryOptions<ApiControllerBaseDummy>(_apiControllerBase);
             _apiControllerBase.Request.Headers.Accept.Add(MediaTypeWithQualityHeaderValue.Parse(MediaTypes.Csv));
             // Action
-            var callback = _apiControllerBase.HandleQueryable<ApiControllerBaseDummy>(query);
+            var callback = _apiControllerBase.HandlePageResult<ApiControllerBaseDummy, ApiControllerBaseDummyQuery>(query, odataOptions);
             //Assert
-            var httpResponse = callback.Should().BeOfType<ResponseMessageResult>().Subject.Response;
-            var data = await httpResponse.Content.ReadAsStringAsync();
-            data.Should().NotBeNull();
+            var contentResponse = callback.Should().BeOfType<PageResult<ApiControllerBaseDummyQuery>>().Subject;
+            contentResponse.Should().NotBeNull();
         }
 
         #endregion

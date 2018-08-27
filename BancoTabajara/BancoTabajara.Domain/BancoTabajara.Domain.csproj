@@ -58,6 +58,8 @@
     <Compile Include="Features\Movimentacoes\IMovimentacaoRepository.cs" />
     <Compile Include="Features\Movimentacoes\Movimentacao.cs" />
     <Compile Include="Features\Movimentacoes\TipoMovimentacaoEnum.cs" />
+    <Compile Include="Features\Usuarios\IUsuarioRepository.cs" />
+    <Compile Include="Features\Usuarios\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -1,6 +1,14 @@
-﻿using BancoTabajara.Application.Features.Contas;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using BancoTabajara.Application.Features.Contas;
+using BancoTabajara.Application.Features.Contas.Commands;
+using BancoTabajara.Application.Features.Contas.Queries;
+using BancoTabajara.Application.Features.Contas.ViewModels;
 using BancoTabajara.Controllers.Common;
 using BancoTabajara.Domain.Features.Contas;
+using BancoTabajara.Domain.Features.Movimentacoes;
+using Microsoft.AspNet.OData.Query;
+using Prova1.API.Filters;
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
@@ -20,26 +28,40 @@ namespace BancoTabajara.Controllers.Features.Contass
         #region HttpGet
 
         [HttpGet]
-        public IHttpActionResult Get()
+        [Authorize]
+        [ODataQueryOptionsValidate]
+        public IHttpActionResult Get(ODataQueryOptions<Conta> queryOptions)
         {
             var queryString = Request.GetQueryNameValuePairs().Where(x => x.Key.Equals("quantidade")).FirstOrDefault();
 
-            int? quantidade = null;
-            if (queryString.Key != null)
-                quantidade = int.Parse(queryString.Value);
+            ContaQuery query = null;
 
-            var query = _service.GetAll(quantidade);
-            return HandleQueryable<Conta>(query);
+            if (queryString.Key != null)
+            {
+                query = new ContaQuery();
+                query.Quantity = int.Parse(queryString.Value);
+            }
+
+            var result = _service.GetAll(query);
+            return HandleQuery<Conta, ContaViewModel>(result, queryOptions);
         }
 
         [HttpGet]
+        [Authorize]
         [Route("{id:int}")]
         public IHttpActionResult GetById(int id)
         {
-            return HandleCallback(() => _service.GetById(id));
+            var conta = _service.GetById(id);
+
+            ContaViewModel contaViewModel = new ContaViewModel();
+
+            contaViewModel = Mapper.Map<Conta, ContaViewModel>(conta);
+
+            return HandleCallback(() => contaViewModel);
         }
 
         [HttpGet]
+        [Authorize]
         [Route("{id:int}/extrato")]
         public IHttpActionResult GetExtrato(int id)
         {
@@ -51,9 +73,15 @@ namespace BancoTabajara.Controllers.Features.Contass
         #region HttpPost
 
         [HttpPost]
-        public IHttpActionResult Post(Conta conta)
+        [Authorize]
+        public IHttpActionResult Post(ContaRegisterCommand cmd)
         {
-            return HandleCallback(() => _service.Add(conta));
+            var validator = cmd.Validate();
+
+            if (!validator.IsValid)
+                return HandleValidationFailure(validator.Errors);
+
+            return HandleCallback(() => _service.Add(cmd));
         }
         
         #endregion HttpPost
@@ -61,30 +89,53 @@ namespace BancoTabajara.Controllers.Features.Contass
         #region HttpPut
 
         [HttpPut]
-        public IHttpActionResult Update(Conta conta)
+        [Authorize]
+        public IHttpActionResult Update(ContaUpdateCommand cmd)
         {
-            return HandleCallback(() => _service.Update(conta));
+            var validator = cmd.Validate();
+
+            if (!validator.IsValid)
+                return HandleValidationFailure(validator.Errors);
+
+            return HandleCallback(() => _service.Update(cmd));
         }
         
         [HttpPut]
+        [Authorize]
         [Route("sacar")]
-        public IHttpActionResult Sacar(ModeloContaOperacoes modelo)
+        public IHttpActionResult Sacar(ContaTransacoesCommand cmd)
         {
-            return HandleCallback(() => _service.Sacar(modelo));
+            var validator = cmd.Validate(TipoMovimentacaoEnum.DEBITO);
+            if (!validator.IsValid)
+                return HandleValidationFailure(validator.Errors);
+
+            return HandleCallback(() => _service.Sacar(cmd));
         }
 
         [HttpPut]
+        [Authorize]
         [Route("depositar")]
-        public IHttpActionResult Depositar(ModeloContaOperacoes modelo)
+        public IHttpActionResult Depositar(ContaTransacoesCommand cmd)
         {
-            return HandleCallback(() => _service.Depositar(modelo));
+            var validator = cmd.Validate(TipoMovimentacaoEnum.CREDITO);
+
+            if (!validator.IsValid)
+                return HandleValidationFailure(validator.Errors);
+
+            return HandleCallback(() => _service.Depositar(cmd));
         }
 
         [HttpPut]
+        [Authorize]
         [Route("transferir")]
-        public IHttpActionResult Transferir(ModeloContaOperacoes modelo)
+        public IHttpActionResult Transferir(ContaTransacoesCommand cmd)
         {
-            return HandleCallback(() => _service.Transferir(modelo));
+            var validator = cmd.Validate(TipoMovimentacaoEnum.TRANSFERENCIA);
+
+            if (!validator.IsValid)
+                return HandleValidationFailure(validator.Errors);
+
+            return HandleCallback(() => _service.Transferir(cmd));
         }
 
         #endregion HttpPut
@@ -92,9 +143,15 @@ namespace BancoTabajara.Controllers.Features.Contass
         #region HttpDelete
 
         [HttpDelete]
-        public IHttpActionResult Delete(Conta conta)
+        [Authorize]
+        public IHttpActionResult Delete(ContaRemoveCommand cmd)
         {
-            return HandleCallback(() => _service.Remove(conta));
+            var validator = cmd.Validate();
+
+            if (!validator.IsValid)
+                return HandleValidationFailure(validator.Errors);
+
+            return HandleCallback(() => _service.Remove(cmd));
         }
 
         #endregion HttpDelete
@@ -102,6 +159,7 @@ namespace BancoTabajara.Controllers.Features.Contass
         #region PATCH
 
         [HttpPatch]
+        [Authorize]
         [Route("status")]
         public IHttpActionResult UpdateStatus(Conta conta)
         {

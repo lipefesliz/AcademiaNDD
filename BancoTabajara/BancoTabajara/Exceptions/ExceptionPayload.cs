@@ -1,4 +1,5 @@
 ﻿using BancoTabajara.Domain.Exceptions;
+using Newtonsoft.Json;
 using System;
 
 namespace BancoTabajara.Exceptions
@@ -6,6 +7,9 @@ namespace BancoTabajara.Exceptions
     public class ExceptionPayload
     {
         public int ErrorCode { get; set; }
+
+        [JsonIgnore]
+        public Exception Exception { get; set; }
 
         public string ErrorMessage { get; set; }
 
@@ -20,6 +24,7 @@ namespace BancoTabajara.Exceptions
             {
                 ErrorCode = errorCode,
                 ErrorMessage = exception.Message,
+                Exception = exception,
             };
         }
     }

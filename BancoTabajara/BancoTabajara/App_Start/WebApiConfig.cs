@@ -1,4 +1,8 @@
 ﻿using BancoTabajara.Filters;
+using BancoTabajara.Logger;
+using Microsoft.AspNet.OData.Extensions;
+using Microsoft.OData;
+using Microsoft.OData.UriParser;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Diagnostics.CodeAnalysis;
@@ -16,7 +20,9 @@ namespace BancoTabajara
             config.MapApiRoutes();
             config.ConfigureJsonSerialization();
             config.ConfigureXMLSerialization();
+            config.EnableOdata();
             config.Filters.Add(new ExceptionHandlerAttribute());
+            config.MessageHandlers.Add(new CustomLogHandler());
         }
 
         private static void MapApiRoutes(this HttpConfiguration config)
@@ -46,6 +52,22 @@ namespace BancoTabajara
         private static void ConfigureXMLSerialization(this HttpConfiguration config)
         {
             config.Formatters.XmlFormatter.UseXmlSerializer = true;
+        }
+
+        /// <summary>
+        /// Método responsável por habilitar o OData num ApiController
+        /// </summary>
+        /// <param name="config">É a configuração da api</param>
+        private static void EnableOdata(this HttpConfiguration config)
+        {
+            // Web API Enable OData
+            config.Count().Select().Filter().OrderBy().MaxTop(null);
+            config.AddODataQueryFilter();
+            config.EnableDependencyInjection(builder =>
+            {
+                /* string as enum, substitui o antigo EnableEnumPrefixFree. Converte a String que vem no FiltroOdata para o Enum correspondente*/
+                builder.AddService<ODataUriResolver>(ServiceLifetime.Singleton, sp => new StringAsEnumResolver() { EnableCaseInsensitive = true });
+            });
         }
     }
 }

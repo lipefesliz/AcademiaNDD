@@ -1,4 +1,8 @@
-﻿using BancoTabajara.Application.Features.Contas;
+﻿using AutoMapper;
+using BancoTabajara.Application.Features.Contas;
+using BancoTabajara.Application.Features.Contas.Commands;
+using BancoTabajara.Application.Features.Contas.Queries;
+using BancoTabajara.Application.Mapping;
 using BancoTabajara.Common.Tests.Features.Contas;
 using BancoTabajara.Domain.Exceptions;
 using BancoTabajara.Domain.Features.Clientes;
@@ -21,16 +25,23 @@ namespace BancoTabajara.Application.Tests.Features.Contas
         private Mock<IClienteRepository> _clienteRepositoryFake;
         private Mock<IMovimentacaoRepository> _movimentacaoRepositoryFake;
         private Conta _conta;
+        private ContaRegisterCommand _contaRegister;
+        private ContaUpdateCommand _contaUpdate;
+        private ContaRemoveCommand _contaRemove;
 
 
         [SetUp]
         public void Initialize()
         {
+            AutoMapperInitializer.Reset();
+            AutoMapperInitializer.Initialize();
+            _conta = ObjectMother.ObterContaValida();
+            _contaRegister = Mapper.Map<ContaRegisterCommand>(_conta);
+            _contaUpdate = Mapper.Map<ContaUpdateCommand>(_conta);
+            _contaRemove = Mapper.Map<ContaRemoveCommand>(_conta);
             _contaRepositoryFake = new Mock<IContaRepository>();
             _clienteRepositoryFake = new Mock<IClienteRepository>();
-            _movimentacaoRepositoryFake = new Mock<IMovimentacaoRepository>();
-            _service = new ContaService(_contaRepositoryFake.Object, _clienteRepositoryFake.Object, _movimentacaoRepositoryFake.Object);
-            _conta = ObjectMother.ObterContaValida();
+            _service = new ContaService(_contaRepositoryFake.Object, _clienteRepositoryFake.Object);
         }
 
         #region ADD
@@ -43,7 +54,7 @@ namespace BancoTabajara.Application.Tests.Features.Contas
             _contaRepositoryFake.Setup(co => co.Add(_conta)).Returns(_conta);
 
             //Action
-            var idNovaConta = _service.Add(_conta);
+            var idNovaConta = _service.Add(_contaRegister);
 
             //Assert
             _contaRepositoryFake.Verify(co => co.Add(_conta), Times.Once);
@@ -57,7 +68,7 @@ namespace BancoTabajara.Application.Tests.Features.Contas
             _clienteRepositoryFake.Setup(cl => cl.GetbyId(_conta.Cliente.Id)).Returns((Cliente)null);
 
             //Action
-            Action action = () => { _service.Add(_conta); };
+            Action action = () => { _service.Add(_contaRegister); };
 
             //Assert
             action.Should().Throw<NotFoundException>();
@@ -89,9 +100,11 @@ namespace BancoTabajara.Application.Tests.Features.Contas
             //Arrange
             var repositoryMockValue = new List<Conta>() { _conta }.AsQueryable();
             _contaRepositoryFake.Setup(c => c.GetAll(null)).Returns(repositoryMockValue);
+            var contaQuery = new ContaQuery();
+            contaQuery = null;
 
             //Action
-            var contas = _service.GetAll();
+            var contas = _service.GetAll(contaQuery);
 
             //Assert
             contas.First().Id.Should().Be(_conta.Id);
@@ -132,7 +145,7 @@ namespace BancoTabajara.Application.Tests.Features.Contas
             _contaRepositoryFake.Setup(c => c.Update(_conta)).Returns(result);
 
             //Action
-            var newResult = _service.Update(_conta);
+            var newResult = _service.Update(_contaUpdate);
 
             //Assert
             newResult.Should().BeTrue();
@@ -164,7 +177,7 @@ namespace BancoTabajara.Application.Tests.Features.Contas
             //Arrange
             _conta = ObjectMother.ObterContaComMovimentacao();
             var valorSaque = 50;
-            var contaOperacoes = new ModeloContaOperacoes() { ContaOrigemId = 1, Valor = valorSaque};
+            var contaOperacoes = new ContaTransacoesCommand() { ContaOrigemId = 1, Valor = valorSaque};
             var saldoFinal = _conta.SaldoTotal - valorSaque;
             var result = true;
             _contaRepositoryFake.Setup(c => c.GetbyId(contaOperacoes.ContaOrigemId)).Returns(_conta);
@@ -186,7 +199,7 @@ namespace BancoTabajara.Application.Tests.Features.Contas
             //Arrange
             _conta = ObjectMother.ObterContaComMovimentacao();
             var valorDeposito = 50;
-            var contaOperacoes = new ModeloContaOperacoes() { ContaOrigemId = 1, Valor = valorDeposito };
+            var contaOperacoes = new ContaTransacoesCommand() { ContaOrigemId = 1, Valor = valorDeposito };
             var saldoFinal = _conta.SaldoTotal + valorDeposito;
             var result = true;
             _contaRepositoryFake.Setup(c => c.GetbyId(contaOperacoes.ContaOrigemId)).Returns(_conta);
@@ -210,7 +223,7 @@ namespace BancoTabajara.Application.Tests.Features.Contas
             _conta = ObjectMother.ObterContaComMovimentacao();
             var contaDestino = new Conta() { Id = 2, Ativada = true };
             contaDestino.Movimentacoes.Add(new Movimentacao { Tipo = TipoMovimentacaoEnum.CREDITO, Valor = valorTransferencia });
-            var contaOperacoes = new ModeloContaOperacoes() { ContaOrigemId = 1, ContaDestinoId = 2, Valor = valorTransferencia };
+            var contaOperacoes = new ContaTransacoesCommand() { ContaOrigemId = 1, ContaDestinoId = 2, Valor = valorTransferencia };
             var saldoContaOrigem = _conta.SaldoTotal - valorTransferencia;
             var saldoContaDestino = contaDestino.SaldoTotal + valorTransferencia;
             var result = true;
@@ -244,7 +257,7 @@ namespace BancoTabajara.Application.Tests.Features.Contas
             _contaRepositoryFake.Setup(c => c.Remove(_conta.Id)).Returns(result);
 
             //Action
-            var newResult = _service.Remove(_conta);
+            var newResult = _service.Remove(_contaRemove);
             
             //Assert
             newResult.Should().BeTrue();

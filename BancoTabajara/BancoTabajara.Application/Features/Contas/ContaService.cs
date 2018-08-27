@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
+using BancoTabajara.Application.Features.Contas.Commands;
+using BancoTabajara.Application.Features.Contas.Queries;
 using BancoTabajara.Domain.Exceptions;
 using BancoTabajara.Domain.Features.Clientes;
 using BancoTabajara.Domain.Features.Contas;
@@ -12,31 +15,35 @@ namespace BancoTabajara.Application.Features.Contas
     {
         private readonly IContaRepository _contaRepository;
         private readonly IClienteRepository _clienteRepository;
-        private readonly IMovimentacaoRepository _movimentacaoRepository;
 
-        public ContaService(IContaRepository contaRepository, IClienteRepository clienteRepository, IMovimentacaoRepository movimentacaoRepository)
+        public ContaService(IContaRepository contaRepository, IClienteRepository clienteRepository)
         {
             _contaRepository = contaRepository;
             _clienteRepository = clienteRepository;
-            _movimentacaoRepository = movimentacaoRepository;
         }
 
-        public long Add(Conta conta)
+        public long Add(ContaRegisterCommand cmd)
         {
-            conta.Cliente = _clienteRepository.GetbyId(conta.Cliente.Id) ?? throw new NotFoundException();
+            var conta = Mapper.Map<ContaRegisterCommand, Conta>(cmd);
+
+            conta.Cliente = _clienteRepository.GetbyId(cmd.Cliente.Id) ?? throw new NotFoundException();
+
             var novaConta = _contaRepository.Add(conta);
 
             return novaConta.Id;
         }
 
-        public IQueryable<Conta> GetAll(int? quantidade = null)
+        public IQueryable<Conta> GetAll(ContaQuery query)
         {
-            return _contaRepository.GetAll(quantidade);
+            if (query == null)
+                return _contaRepository.GetAll(null);
+
+            return _contaRepository.GetAll(query.Quantity);
         }
 
         public Conta GetById(long id)
         {
-            var conta = _contaRepository.GetbyId(id);
+            var conta = _contaRepository.GetbyId(id) ?? throw new NotFoundException();
 
             return conta;
         }
@@ -63,27 +70,24 @@ namespace BancoTabajara.Application.Features.Contas
             return extratos;
         }
 
-        public bool Remove(Conta conta)
+        public bool Remove(ContaRemoveCommand cmd)
         {
-            return _contaRepository.Remove(conta.Id);
+            var contaDb = _contaRepository.GetbyId(cmd.Id) ?? throw new NotFoundException();
+
+            return _contaRepository.Remove(contaDb.Id);
         }
 
-        public bool Update(Conta conta)
+        public bool Update(ContaUpdateCommand cmd)
         {
-            var contaDb = _contaRepository.GetbyId(conta.Id) ?? throw new NotFoundException();
-            var cliente = _clienteRepository.GetbyId(conta.Cliente.Id) ?? throw new NotFoundException();
-            var movimentacoes = _movimentacaoRepository.GetAll();
-            contaDb.Limite = conta.Limite;
-            contaDb.Saldo = conta.Saldo;
-            contaDb.Ativada = conta.Ativada;
-            contaDb.Cliente = cliente;
-            contaDb.Movimentacoes = movimentacoes.ToList();
+            var contaDb = _contaRepository.GetbyId(cmd.Id) ?? throw new NotFoundException();
 
-            return _contaRepository.Update(contaDb);
+            var conta = Mapper.Map(cmd, contaDb);
+
+            return _contaRepository.Update(conta);
         }
 
         public bool UpdateStatus(long id)
-        {
+        {   
             var conta = _contaRepository.GetbyId(id) ?? throw new NotFoundException();
 
             if (conta.Ativada)
@@ -94,33 +98,33 @@ namespace BancoTabajara.Application.Features.Contas
             return _contaRepository.Update(conta);
         }
 
-        public bool Sacar(ModeloContaOperacoes conta)
+        public bool Sacar(ContaTransacoesCommand cmd)
         {
-            var contaDb = _contaRepository.GetbyId(conta.ContaOrigemId) ?? throw new NotFoundException();
+            var contaDb = _contaRepository.GetbyId(cmd.ContaOrigemId) ?? throw new NotFoundException();
 
-            contaDb.Sacar(conta.Valor);
+            contaDb.Sacar(cmd.Valor);
 
             return _contaRepository.Update(contaDb);
         }
 
-        public bool Depositar(ModeloContaOperacoes conta)
+        public bool Depositar(ContaTransacoesCommand cmd)
         {
-            var contaDb = _contaRepository.GetbyId(conta.ContaOrigemId) ?? throw new NotFoundException();
+            var contaDb = _contaRepository.GetbyId(cmd.ContaOrigemId) ?? throw new NotFoundException();
 
-            contaDb.Depositar(conta.Valor);
+            contaDb.Depositar(cmd.Valor);
 
             return _contaRepository.Update(contaDb);
         }
 
-        public bool Transferir(ModeloContaOperacoes conta)
+        public bool Transferir(ContaTransacoesCommand cmd)
         {
-            if (conta.ContaOrigemId == conta.ContaDestinoId)
+            if (cmd.ContaOrigemId == cmd.ContaDestinoId)
                 throw new NotAllowedException();
 
-            var contaDb = _contaRepository.GetbyId(conta.ContaOrigemId) ?? throw new NotFoundException();
-            var contaDestinoDb = _contaRepository.GetbyId(conta.ContaDestinoId) ?? throw new NotFoundException();
+            var contaDb = _contaRepository.GetbyId(cmd.ContaOrigemId) ?? throw new NotFoundException();
+            var contaDestinoDb = _contaRepository.GetbyId(cmd.ContaDestinoId) ?? throw new NotFoundException();
 
-            contaDb.Transferir(conta.Valor, contaDestinoDb);
+            contaDb.Transferir(cmd.Valor, contaDestinoDb);
 
             _contaRepository.Update(contaDestinoDb);
             return _contaRepository.Update(contaDb);

@@ -30,8 +30,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.8.0.0\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.ComponentModel.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Primitives.4.3.0\lib\net45\System.ComponentModel.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,21 +57,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\IService.cs" />
+    <Compile Include="Features\Clientes\ViewModels\ClienteViewModel.cs" />
+    <Compile Include="Features\Contas\Commands\ContaRegisterCommand.cs" />
+    <Compile Include="Features\Contas\Commands\ContaRemoveCommand.cs" />
+    <Compile Include="Features\Contas\Commands\ContaTransacoesCommand.cs" />
+    <Compile Include="Features\Contas\Commands\ContaUpdateCommand.cs" />
     <Compile Include="Features\Contas\ContaService.cs" />
     <Compile Include="Features\Contas\Extrato.cs" />
     <Compile Include="Features\Contas\IContaService.cs" />
-    <Compile Include="Features\Contas\ModeloContaOperacoes.cs" />
+    <Compile Include="Features\Contas\MappingProfile.cs" />
+    <Compile Include="Features\Contas\Queries\ContaQuery.cs" />
+    <Compile Include="Features\Contas\ViewModels\ContaViewModel.cs" />
+    <Compile Include="Features\Usuarios\Commands\UsuarioRegisterCommand.cs" />
+    <Compile Include="Features\Usuarios\Commands\UsuarioRemoveCommand.cs" />
+    <Compile Include="Features\Usuarios\Commands\UsuarioUpdateCommand.cs" />
+    <Compile Include="Features\Usuarios\IUsuarioService.cs" />
+    <Compile Include="Features\Usuarios\MappingProfile.cs" />
+    <Compile Include="Features\Usuarios\Queries\UsuarioQuery.cs" />
+    <Compile Include="Features\Usuarios\UsuarioService.cs" />
+    <Compile Include="Features\Usuarios\ViewModels\UsuarioViewModel.cs" />
+    <Compile Include="Mapping\AutoMapperInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\Clientes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BancoTabajara.Domain\BancoTabajara.Domain.csproj">
       <Project>{41A1988D-54C0-4AA3-8938-4DD1D047EBC4}</Project>
       <Name>BancoTabajara.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

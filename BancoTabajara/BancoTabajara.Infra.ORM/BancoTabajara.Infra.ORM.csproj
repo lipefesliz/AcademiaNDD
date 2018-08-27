@@ -56,10 +56,20 @@
     <Compile Include="Features\Contas\ContaRepository.cs" />
     <Compile Include="Features\Movimentacoes\MovimentacaoEntityConfiguration.cs" />
     <Compile Include="Features\Movimentacoes\MovimentacaoRepository.cs" />
+    <Compile Include="Features\Usuarios\UsuarioEntityConfiguration.cs" />
+    <Compile Include="Features\Usuarios\UsuarioRepository.cs" />
     <Compile Include="Initializer\DbInitializer.cs" />
     <Compile Include="Migrations\201807260123295_inicial.cs" />
     <Compile Include="Migrations\201807260123295_inicial.Designer.cs">
       <DependentUpon>201807260123295_inicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221726458_v.2.cs" />
+    <Compile Include="Migrations\201808221726458_v.2.Designer.cs">
+      <DependentUpon>201808221726458_v.2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221741594_v.3.cs" />
+    <Compile Include="Migrations\201808221741594_v.3.Designer.cs">
+      <DependentUpon>201808221741594_v.3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\MigrationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +83,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807260123295_inicial.resx">
       <DependentUpon>201807260123295_inicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221726458_v.2.resx">
+      <DependentUpon>201808221726458_v.2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221741594_v.3.resx">
+      <DependentUpon>201808221741594_v.3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

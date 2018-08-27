@@ -1,6 +1,7 @@
 ﻿using BancoTabajara.Domain.Features.Clientes;
 using BancoTabajara.Domain.Features.Contas;
 using BancoTabajara.Domain.Features.Movimentacoes;
+using BancoTabajara.Domain.Features.Usuarios;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -21,6 +22,7 @@ namespace BancoTabajara.Infra.ORM.Contexts
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Conta> Contas { get; set; }
         public DbSet<Movimentacao> Movimentacoes { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

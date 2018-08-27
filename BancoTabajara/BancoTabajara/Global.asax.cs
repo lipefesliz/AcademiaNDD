@@ -1,4 +1,5 @@
-﻿using BancoTabajara.IoC;
+﻿using BancoTabajara.Application.Mapping;
+using BancoTabajara.IoC;
 using SimpleInjector.Integration.WebApi;
 using System.Web.Http;
 
@@ -13,6 +14,8 @@ namespace BancoTabajara
             GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            AutoMapperInitializer.Initialize();
         }
     }
 }
