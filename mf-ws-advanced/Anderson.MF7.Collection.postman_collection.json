@@ -1,0 +1,390 @@
+{
+	"info": {
+		"_postman_id": "f3495d60-b7c0-4994-8977-220e834202df",
+		"name": "Anderson.MF7.Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Funcionarios",
+			"item": [
+				{
+					"name": "POST funcionario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer YgODXnr78Nz71JvtjP1K5x73vROy9EsiFzozN5jUIg-gkv90W-KvkHpLONYis0_ywArSCvsOtETTduBjr3dCp1E3g4iohIjujmeDHD0CVs2qVOSAdgUUWx9r0FaAoy4ggMiFODmqf9K79nG-HnZLOyFBYZqaXx-xf-7PgZUxjy4xFppyhyjS9SiUwbSDujYQyHYEWSYiy-_93yyAVTPZPeZzbRnQSxkYHw3TL6hlmeM"
+							},
+							{
+								"key": "",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"zeca\",\n\t\"sobrenome\": \"bala\",\n\t\"usuario\": \"teste\",\n\t\"senha\": \"teste\",\n\t\"ativo\": true,\n\t\"cargo\": \"dev\",\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/funcionarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"funcionarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET funcionario by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer YgODXnr78Nz71JvtjP1K5x73vROy9EsiFzozN5jUIg-gkv90W-KvkHpLONYis0_ywArSCvsOtETTduBjr3dCp1E3g4iohIjujmeDHD0CVs2qVOSAdgUUWx9r0FaAoy4ggMiFODmqf9K79nG-HnZLOyFBYZqaXx-xf-7PgZUxjy4xFppyhyjS9SiUwbSDujYQyHYEWSYiy-_93yyAVTPZPeZzbRnQSxkYHw3TL6hlmeM"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:6001/api/funcionarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"funcionarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET funcionarios by quantidade",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer YgODXnr78Nz71JvtjP1K5x73vROy9EsiFzozN5jUIg-gkv90W-KvkHpLONYis0_ywArSCvsOtETTduBjr3dCp1E3g4iohIjujmeDHD0CVs2qVOSAdgUUWx9r0FaAoy4ggMiFODmqf9K79nG-HnZLOyFBYZqaXx-xf-7PgZUxjy4xFppyhyjS9SiUwbSDujYQyHYEWSYiy-_93yyAVTPZPeZzbRnQSxkYHw3TL6hlmeM"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:6001/api/funcionarios?quantidade=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"funcionarios"
+							],
+							"query": [
+								{
+									"key": "quantidade",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT funcionario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer YgODXnr78Nz71JvtjP1K5x73vROy9EsiFzozN5jUIg-gkv90W-KvkHpLONYis0_ywArSCvsOtETTduBjr3dCp1E3g4iohIjujmeDHD0CVs2qVOSAdgUUWx9r0FaAoy4ggMiFODmqf9K79nG-HnZLOyFBYZqaXx-xf-7PgZUxjy4xFppyhyjS9SiUwbSDujYQyHYEWSYiy-_93yyAVTPZPeZzbRnQSxkYHw3TL6hlmeM"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1,\n\t\"nome\": \"juca\",\n\t\"sobrenome\": \"bala\",\n\t\"usuario\": \"teste\",\n\t\"senha\": \"teste\",\n\t\"ativo\": true,\n\t\"cargo\": \"dev\",\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/funcionarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"funcionarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE funcionario",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer YgODXnr78Nz71JvtjP1K5x73vROy9EsiFzozN5jUIg-gkv90W-KvkHpLONYis0_ywArSCvsOtETTduBjr3dCp1E3g4iohIjujmeDHD0CVs2qVOSAdgUUWx9r0FaAoy4ggMiFODmqf9K79nG-HnZLOyFBYZqaXx-xf-7PgZUxjy4xFppyhyjS9SiUwbSDujYQyHYEWSYiy-_93yyAVTPZPeZzbRnQSxkYHw3TL6hlmeM"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/funcionarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"funcionarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET funcionarios",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer YgODXnr78Nz71JvtjP1K5x73vROy9EsiFzozN5jUIg-gkv90W-KvkHpLONYis0_ywArSCvsOtETTduBjr3dCp1E3g4iohIjujmeDHD0CVs2qVOSAdgUUWx9r0FaAoy4ggMiFODmqf9K79nG-HnZLOyFBYZqaXx-xf-7PgZUxjy4xFppyhyjS9SiUwbSDujYQyHYEWSYiy-_93yyAVTPZPeZzbRnQSxkYHw3TL6hlmeM"
+							},
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:6001/api/funcionarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"funcionarios"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "fc4ef1d4-89e9-4246-8d68-1a07f328791d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "578d1f7d-41a5-4be4-b17e-6720503bd430",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Gastos",
+			"item": [
+				{
+					"name": "POST gasto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  YgODXnr78Nz71JvtjP1K5x73vROy9EsiFzozN5jUIg-gkv90W-KvkHpLONYis0_ywArSCvsOtETTduBjr3dCp1E3g4iohIjujmeDHD0CVs2qVOSAdgUUWx9r0FaAoy4ggMiFODmqf9K79nG-HnZLOyFBYZqaXx-xf-7PgZUxjy4xFppyhyjS9SiUwbSDujYQyHYEWSYiy-_93yyAVTPZPeZzbRnQSxkYHw3TL6hlmeM"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"funcionario\": { \"id\": 1 },\n\t\"descricao\": \"asdfdghjmghf\",\n\t\"data\": \"1994-10-04T00:00:00\",\n\t\"preco\": 100,\n\t\"tipo\": 1,\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/gastos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"gastos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET gasto by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer YgODXnr78Nz71JvtjP1K5x73vROy9EsiFzozN5jUIg-gkv90W-KvkHpLONYis0_ywArSCvsOtETTduBjr3dCp1E3g4iohIjujmeDHD0CVs2qVOSAdgUUWx9r0FaAoy4ggMiFODmqf9K79nG-HnZLOyFBYZqaXx-xf-7PgZUxjy4xFppyhyjS9SiUwbSDujYQyHYEWSYiy-_93yyAVTPZPeZzbRnQSxkYHw3TL6hlmeM"
+							},
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:6001/api/gastos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"gastos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE gasto",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer YgODXnr78Nz71JvtjP1K5x73vROy9EsiFzozN5jUIg-gkv90W-KvkHpLONYis0_ywArSCvsOtETTduBjr3dCp1E3g4iohIjujmeDHD0CVs2qVOSAdgUUWx9r0FaAoy4ggMiFODmqf9K79nG-HnZLOyFBYZqaXx-xf-7PgZUxjy4xFppyhyjS9SiUwbSDujYQyHYEWSYiy-_93yyAVTPZPeZzbRnQSxkYHw3TL6hlmeM"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/gastos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"gastos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POST token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "teste",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "teste",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:6001/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6001",
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
