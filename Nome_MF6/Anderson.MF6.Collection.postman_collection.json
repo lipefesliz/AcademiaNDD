@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "89160cf5-0f7a-43a3-a5dc-e99a213450e9",
+		"name": "Anderson.MF6.Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST impressora",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"marca\": \"marca\",\n\t\"rede\": \"rede\",\n\t\"emuso\": \"true\",\n}"
+				},
+				"url": {
+					"raw": "http://localhost:6001/api/impressoras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6001",
+					"path": [
+						"api",
+						"impressoras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET impressoras",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:6001/api/impressoras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6001",
+					"path": [
+						"api",
+						"impressoras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT impressora",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"marca\": \"marca\",\n    \"rede\": \"rede\",\n    \"emuso\": \"true\",\n    \"tonercolorido\": { \"id\": 2, \"nivel\": 100 },\n    \"tonerpreto\": { \"id\": 3, \"nivel\": 100 },\n    \"id\": 1,\n}"
+				},
+				"url": {
+					"raw": "http://localhost:6001/api/impressoras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6001",
+					"path": [
+						"api",
+						"impressoras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE impressora",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tonercolorido\": { \"id\": 2, \"nivel\": 100 },\n    \"tonerpreto\": { \"id\": 3, \"nivel\": 100 },\n    \"id\": 1,\n}"
+				},
+				"url": {
+					"raw": "http://localhost:6001/api/impressoras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6001",
+					"path": [
+						"api",
+						"impressoras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET impressora by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:6001/api/impressoras/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6001",
+					"path": [
+						"api",
+						"impressoras",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH nivel",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"quantidade\": 50,\n\t\"operacao\": 2,\n\t\"impressora\":\n\t{\n\t\t\"marca\": \"marca\",\n\t\t\"rede\": \"rede\",\n\t\t\"emuso\": \"true\",\n\t\t\"tonercolorido\": {\"id\": 1 },\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:6001/api/impressoras/nivel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6001",
+					"path": [
+						"api",
+						"impressoras",
+						"nivel"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
