@@ -3,6 +3,7 @@ using Anderson.MF7.Application.Mapping;
 using Anderson.MF7.IoC;
 using Anderson.MF7.Logger;
 using Microsoft.Owin;
+using Microsoft.Owin.Cors;
 using Owin;
 using SimpleInjector.Integration.WebApi;
 using System.Diagnostics.CodeAnalysis;
@@ -41,6 +42,7 @@ namespace Anderson.MF7.API
 
             config.MessageHandlers.Add(new CustomLogHandler());
 
+            app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
     }

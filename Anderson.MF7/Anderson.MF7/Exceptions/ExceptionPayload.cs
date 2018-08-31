@@ -19,7 +19,7 @@ namespace Anderson.MF7.Exceptions
         /// <summary>
         /// Método para criar um novo ExceptionPayload de uma exceção de negócio.
         ///          
-        /// As exceções de negócio, que são providas no Prova1.Domain
+        /// As exceções de negócio, que são providas no Anderson.MF7.Domain
         /// são identificadas pelos códigos no enum ErrorCodes. 
         /// 
         /// Assim, esse método monta o ExceptionPayload, que será o código retornado o cliente, 

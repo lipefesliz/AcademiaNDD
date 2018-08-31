@@ -16,7 +16,6 @@ namespace Anderson.MF7.Extensions
         /// <returns>HttpResponseMessage contendo a exceção</returns>
         public static HttpResponseMessage HandleExecutedContextException(this HttpActionExecutedContext context)
         {
-            // Retorna a resposta para o cliente com o erro 500 e o ExceptionPayload (código de erro de negócio e mensagem)
             return context.Request.CreateResponse(HttpStatusCode.InternalServerError, ExceptionPayload.New(context.Exception));
         }
     }

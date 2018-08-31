@@ -21,7 +21,7 @@ namespace Anderson.MF7.Infra.Settings
         {
             get
             {
-                return _authSettings ?? ((AuthenticationSettings)ConfigurationManager.GetSection("AndersonMF7/AuthenticationSettings"));
+                return _authSettings ?? ((AuthenticationSettings)ConfigurationManager.GetSection("Anderson.MF7/AuthenticationSettings"));
             }
         }
     }

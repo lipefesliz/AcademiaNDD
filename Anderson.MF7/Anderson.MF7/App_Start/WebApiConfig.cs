@@ -37,7 +37,7 @@ namespace Anderson.MF7.App_Start
         {
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
-                name: "AndersonMF7.API",
+                name: "Anderson.MF7.API",
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new
                 {

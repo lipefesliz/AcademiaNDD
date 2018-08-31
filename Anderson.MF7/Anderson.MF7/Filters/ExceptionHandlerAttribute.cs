@@ -9,7 +9,7 @@ namespace Anderson.MF7.Filters
     /// para responder ao client com o código e a mensagem adequados.
     /// 
     /// Precisamos fazer isso pois temos exceções de negócio, 
-    /// que são definidas em Prova1.Domain 
+    /// que são definidas em Anderson.MF7.Domain 
     /// e precisa ser montado uma resposta http adequada para o client.
     /// 
     /// Para evitar a repetição de [ExceptionHandler] nos controllers,

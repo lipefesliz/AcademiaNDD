@@ -10,12 +10,12 @@ namespace Anderson.MF7.Infra.Settings
     ///  Classe usada para ler as configurações da Web.config
     ///  
     ///  
-    /// É usada em Web.config da AndersonMF7.Auth para ler a sessão personalizada AuthenticationSettings
+    /// É usada em Web.config da Anderson.MF7.Auth para ler a sessão personalizada AuthenticationSettings
     /// </summary>
     [ExcludeFromCodeCoverage]
     public class ConfigurationSectionHandler : IConfigurationSectionHandler
     {
-        private readonly string Namespace = "AndersonMF7.Infra.Settings.Entities.{0}";
+        private readonly string Namespace = "Anderson.MF7.Infra.Settings.Entities.{0}";
 
         public object Create(object parent, object configContext, XmlNode section)
         {

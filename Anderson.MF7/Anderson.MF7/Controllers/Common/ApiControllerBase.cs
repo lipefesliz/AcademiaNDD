@@ -20,7 +20,7 @@ using System.Web.Http;
 namespace Anderson.MF7.Controllers.Common
 {
     /// <summary>
-    /// Controlador Base do Prova1.API
+    /// Controlador Base do Anderson.MF7.API
     ///
     /// Essa classe é responsável por prover propriedades e métodos úteis nos demais controllers
     /// que vão possuir essa classe como pai (herança).

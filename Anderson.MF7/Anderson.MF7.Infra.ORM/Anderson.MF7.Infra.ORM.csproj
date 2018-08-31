@@ -47,13 +47,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\AbstractRepository.cs" />
     <Compile Include="Contexts\AndersonMF7DbContext.cs" />
     <Compile Include="Contexts\DbContextFactory.cs" />
+    <Compile Include="Features\Funcionarios\FuncionarioEntityConfiguration.cs" />
+    <Compile Include="Features\Funcionarios\FuncionarioRepository.cs" />
+    <Compile Include="Features\Gastos\GastoEntityConfiguration.cs" />
+    <Compile Include="Features\Gastos\GastoRepository.cs" />
+    <Compile Include="Features\Users\UserEntityConfiguration.cs" />
     <Compile Include="Features\Users\UserRepository.cs" />
     <Compile Include="Initializer\DbInitializer.cs" />
+    <Compile Include="Migrations\201808312022488_v.initial.cs" />
+    <Compile Include="Migrations\201808312022488_v.initial.Designer.cs">
+      <DependentUpon>201808312022488_v.initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808312022488_v.initial.resx">
+      <DependentUpon>201808312022488_v.initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

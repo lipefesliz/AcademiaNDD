@@ -40,11 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity.cs" />
+    <Compile Include="Base\IRepository.cs" />
+    <Compile Include="Base\Entity.cs" />
     <Compile Include="Exceptions\BusinessException.cs" />
     <Compile Include="Exceptions\ErrorCodes.cs" />
     <Compile Include="Exceptions\InvalidCredentialsException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
+    <Compile Include="Features\Funcionarios\Funcionario.cs" />
+    <Compile Include="Features\Funcionarios\IFuncionarioRepository.cs" />
+    <Compile Include="Features\Gastos\Gasto.cs" />
+    <Compile Include="Features\Gastos\IGastoRepository.cs" />
+    <Compile Include="Features\Gastos\TipoGastoEnum.cs" />
     <Compile Include="Features\Users\IUserRepository.cs" />
     <Compile Include="Features\Users\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
