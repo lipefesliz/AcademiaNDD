@@ -1,9 +1,9 @@
-﻿using Anderson.MF7.Domain.Features.Users;
+﻿using Anderson.MF7.Domain.Features.Funcionarios;
 
 namespace Anderson.MF7.Application.Authentication
 {
     public interface IAuthenticationService
     {
-        User Login(string email, string password);
+        Funcionario Login(string email, string password);
     }
 }

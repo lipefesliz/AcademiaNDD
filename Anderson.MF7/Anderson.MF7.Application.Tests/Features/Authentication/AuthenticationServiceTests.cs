@@ -1,7 +1,6 @@
 ﻿using Anderson.MF7.Application.Authentication;
 using Anderson.MF7.Application.Tests.Initializer;
-using Anderson.MF7.Common.Tests.Features.Users;
-using Anderson.MF7.Domain.Features.Users;
+using Anderson.MF7.Domain.Features.Funcionarios;
 using Anderson.MF7.Infra.Crypto;
 using FluentAssertions;
 using Moq;
@@ -13,13 +12,13 @@ namespace Anderson.MF7.Application.Tests.Features.Authentication
     public class AuthenticationServiceTests : TestServiceBase
     {
         private IAuthenticationService _service;
-        private Mock<IUserRepository> _userRepositoryFake;
+        private Mock<IFuncionarioRepository> _funcionarioRepositoryFake;
 
         [SetUp]
         public void Initialize()
         {
-            _userRepositoryFake = new Mock<IUserRepository>();
-            _service = new AuthenticationService(_userRepositoryFake.Object);
+            _funcionarioRepositoryFake = new Mock<IFuncionarioRepository>();
+            _service = new AuthenticationService(_funcionarioRepositoryFake.Object);
         }
 
         #region Login 
@@ -27,15 +26,15 @@ namespace Anderson.MF7.Application.Tests.Features.Authentication
         public void Auth_Service_Login_ShouldBeOk()
         {
             //Arrange
-            var user = ObjectMother.GetValidUser();
-            var pass = user.Password.GenerateHash();
-            _userRepositoryFake.Setup(ur => ur.GetByCredentials(user.Email, pass)).Returns(user);
+            var funcionario = new Funcionario { Id = 1, Usuario = "teste", Senha = "teste", };
+            var pass = funcionario.Senha.GenerateHash();
+            _funcionarioRepositoryFake.Setup(ur => ur.GetByCredentials(funcionario.Usuario, pass)).Returns(funcionario);
             //Action
-            var userLogged = _service.Login(user.Email, user.Password);
+            var funcionarioLogged = _service.Login(funcionario.Usuario, funcionario.Senha);
             //Assert
-            _userRepositoryFake.Verify(ur => ur.GetByCredentials(user.Email, pass), Times.Once);
-            userLogged.Should().NotBeNull();
-            userLogged.Should().Be(user);
+            _funcionarioRepositoryFake.Verify(ur => ur.GetByCredentials(funcionario.Usuario, pass), Times.Once);
+            funcionarioLogged.Should().NotBeNull();
+            funcionarioLogged.Should().Be(funcionario);
         }
         #endregion
     }

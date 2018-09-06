@@ -10,7 +10,8 @@ namespace Anderson.MF7.Application.Features.Gastos
     {
         public MappingProfile()
         {
-            CreateMap<Gasto, GastoViewModel>().ForMember(g => g.Funcionario, f => f.MapFrom(src => src.Funcionario.Nome));
+            CreateMap<Gasto, GastoViewModel>().ForMember(g => g.Funcionario,
+                f => f.MapFrom(src => src.Funcionario.Nome + " " + src.Funcionario.Sobrenome));
             CreateMap<List<Gasto>, List<GastoViewModel>>();
             CreateMap<GastoRegisterCommand, Gasto>();
             CreateMap<GastoRemoveCommand, Gasto>();

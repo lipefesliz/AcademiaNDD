@@ -1,4 +1,4 @@
-﻿using Anderson.MF7.Domain.Features.Users;
+﻿using Anderson.MF7.Domain.Features.Funcionarios;
 
 namespace Anderson.MF7.Application.Authentication
 {
@@ -7,23 +7,17 @@ namespace Anderson.MF7.Application.Authentication
     /// </summary>
     public class AuthenticationService : IAuthenticationService
     {
-        private IUserRepository _userRepository;
+        private IFuncionarioRepository _funcionarioRepository;
 
-        public AuthenticationService(IUserRepository userRepository)
+        public AuthenticationService(IFuncionarioRepository funcionarioRepository)
         {
-            _userRepository = userRepository;
+            _funcionarioRepository = funcionarioRepository;
         }
 
-        /// <summary>
-        ///  Método para realizar o login, ou seja, validação de credenciais de autenticação.
-        /// </summary>
-        /// <param name="email">É o email do usuário cadastrado</param>
-        /// <param name="password">É a senha do usuário que foi cadastrado</param>
-        /// <returns>O usuário que corresponde as credenciais informadas. Caso alguma esteja inválida, retorna null</returns>
-        public User Login(string email, string password)
+        public Funcionario Login(string username, string password)
         {
             //password = password.GenerateHash();
-            return _userRepository.GetByCredentials(email, password);
+            return _funcionarioRepository.GetByCredentials(username, password);
         }
     }
 }

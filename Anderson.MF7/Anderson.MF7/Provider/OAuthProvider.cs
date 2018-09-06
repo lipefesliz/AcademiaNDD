@@ -1,5 +1,5 @@
 ﻿using Anderson.MF7.Application.Authentication;
-using Anderson.MF7.Domain.Features.Users;
+using Anderson.MF7.Domain.Features.Funcionarios;
 using Anderson.MF7.IoC;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
@@ -29,27 +29,16 @@ namespace Anderson.MF7.Provider
             return Task.FromResult<object>(null);
         }
 
-        /// <summary>
-        ///
-        /// Esse método é responsável por validar as credenciais do usuário
-        /// Essa validação é a verificação das credencias (email e senha) em uma base de usuários
-        ///
-        /// O token de acesso JWT será gerado a partir da chamada "context.Validated(ticket)",
-        /// seguindo os padrões de formatação definidos na classe "CustomJwtFormat"
-        ///
-        /// </summary>
-        /// <param name="context">É o contexto atual da chamada http na visão do oauth</param>
-        /// <returns>Retorna se as credenciais informadas são válidas (true) ou não (false)</returns>
         public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+            context.OwinContext.Response.Headers.Add("Access-Control-Alow-Origin", new[] { "*" });
 
-            var user = default(User);
+            var funcionario = default(Funcionario);
 
             try
             {
                 var authService = SimpleInjectorContainer.ContainerInstance.GetInstance<IAuthenticationService>();
-                user = authService.Login(context.UserName, context.Password);
+                funcionario = authService.Login(context.UserName, context.Password);
             }
             catch (Exception ex)
             {
@@ -58,9 +47,8 @@ namespace Anderson.MF7.Provider
             }
 
             var identity = new ClaimsIdentity("JWT");
-            identity.AddClaim(new Claim("UserId", user.Id.ToString()));
-            identity.AddClaim(new Claim(ClaimTypes.Email, user.Email));
-            identity.AddClaim(new Claim(ClaimTypes.Name, user.Name));
+            identity.AddClaim(new Claim("FuncionarioId", funcionario.Id.ToString()));
+            identity.AddClaim(new Claim(ClaimTypes.Name, funcionario.Usuario));
 
             var ticket = new AuthenticationTicket(identity, null);
             context.Validated(ticket);

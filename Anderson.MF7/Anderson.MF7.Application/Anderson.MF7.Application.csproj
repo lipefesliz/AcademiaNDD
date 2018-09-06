@@ -86,6 +86,10 @@
       <Project>{CD0D7F8F-5452-4077-9A47-EEE94904DB7D}</Project>
       <Name>Anderson.MF7.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Anderson.MF7.Infra\Anderson.MF7.Infra.csproj">
+      <Project>{E529EA8C-410A-4FB0-A676-5707763D3023}</Project>
+      <Name>Anderson.MF7.Infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
