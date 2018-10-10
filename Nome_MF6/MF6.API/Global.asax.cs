@@ -1,10 +1,9 @@
-﻿using MF6.Application.Features.Impressoras;
-using MF6.Domain.Features.Impressoras;
-using MF6.Infra.ORM.Contexts;
-using MF6.Infra.ORM.Features.Impressoras;
-using SimpleInjector;
-using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Http;
+using System.Web.Routing;
 
 namespace MF6.API
 {
@@ -12,15 +11,6 @@ namespace MF6.API
     {
         protected void Application_Start()
         {
-
-            var container = new Container();
-
-            container.Register<DbContext, MF6Context>(Lifestyle.Scoped);
-            container.Register<IImpressoraService, ImpressoraService>(Lifestyle.Scoped);
-            container.Register<IImpressoraRepository, ImpressoraRepository>(Lifestyle.Scoped);
-
-            container.Verify();
-
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }

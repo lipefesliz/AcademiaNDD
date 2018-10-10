@@ -1,6 +1,8 @@
 ﻿using MF6.API.Controllers.Common;
 using MF6.Application.Features.Impressoras;
 using MF6.Domain.Features.Impressoras;
+using MF6.Infra.ORM.Contexts;
+using MF6.Infra.ORM.Features.Impressoras;
 using System.Web.Http;
 
 namespace MF6.API.Controllers.Features.Impressoras
@@ -8,11 +10,13 @@ namespace MF6.API.Controllers.Features.Impressoras
     [RoutePrefix("api/impressoras")]
     public class ImpressorasController : ApiControllerBase
     {
-        private readonly IImpressoraService _impressoraService;
+        public IImpressoraService _impressoraService;
 
-        public ImpressorasController(ImpressoraService service) : base()
+        public ImpressorasController() : base()
         {
-            _impressoraService = service;
+            var context = new MF6Context();
+            var repository = new ImpressoraRepository(context);
+            _impressoraService = new ImpressoraService(repository);
         }
 
         #region HttpGet
@@ -68,15 +72,11 @@ namespace MF6.API.Controllers.Features.Impressoras
         #region PATCH
 
         [HttpPatch]
-        [Route("tonercolorido")]
-        public IHttpActionResult AlmentarNivelColorido(Nivelador nivelador)
-            => HandleCallback(() => _impressoraService.UpdateNivelColorido(nivelador));
-
-
-        [HttpPatch]
-        [Route("TonerPreto")]
-        public IHttpActionResult AlmentarNivelPreto(Nivelador nivelador)
-            => HandleCallback(() => _impressoraService.UpdateNivelPreto(nivelador));
+        [Route("nivel")]
+        public IHttpActionResult AlmentarNivel(Nivelador nivelador)
+        {
+            return HandleCallback(() => _impressoraService.UpdateNivel(nivelador));
+        }
 
         #endregion
     }

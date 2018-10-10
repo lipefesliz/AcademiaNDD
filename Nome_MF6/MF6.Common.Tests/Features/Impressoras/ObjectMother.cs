@@ -11,8 +11,14 @@ namespace MF6.Common.Tests.Features.Impressoras
             {
                 Id = 2,
                 EmUso = true,
-                TonerColorido = new Toner(),
-                TonerPreto = new Toner(),
+                TonerColorido = new Toner()
+                {
+                    Id = 2,
+                },
+                TonerPreto = new Toner()
+                {
+                    Id = 3,
+                },
                 Marca = "marca",
                 Rede = "rede",
             };

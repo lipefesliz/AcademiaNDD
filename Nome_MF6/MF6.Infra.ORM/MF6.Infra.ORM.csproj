@@ -53,9 +53,9 @@
     <Compile Include="Features\Impressoras\ImpressoraEntityConfiguration.cs" />
     <Compile Include="Features\Impressoras\ImpressoraRepository.cs" />
     <Compile Include="Initializer\DbInitializer.cs" />
-    <Compile Include="Migrations\201808031702087_v.inicial.cs" />
-    <Compile Include="Migrations\201808031702087_v.inicial.Designer.cs">
-      <DependentUpon>201808031702087_v.inicial.cs</DependentUpon>
+    <Compile Include="Migrations\201808011956184_v.Inicial.cs" />
+    <Compile Include="Migrations\201808011956184_v.Inicial.Designer.cs">
+      <DependentUpon>201808011956184_v.Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,8 +71,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808031702087_v.inicial.resx">
-      <DependentUpon>201808031702087_v.inicial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808011956184_v.Inicial.resx">
+      <DependentUpon>201808011956184_v.Inicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

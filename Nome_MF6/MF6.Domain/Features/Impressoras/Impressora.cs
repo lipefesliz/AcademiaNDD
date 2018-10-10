@@ -9,8 +9,8 @@ namespace MF6.Domain.Features.Impressoras
         public string Marca { get; set; }
         public string Rede { get; set; }
         public bool EmUso { get; set; }
-        public Toner TonerColorido { get; set; }
-        public Toner TonerPreto { get; set; }
+        public virtual Toner TonerColorido { get; set; }
+        public virtual Toner TonerPreto { get; set; }
 
         public Impressora()
         {

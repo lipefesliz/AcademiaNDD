@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[TBResults]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY (1,1), 
+    [Grade] DECIMAL(9, 2) NOT NULL, 
+    [STUDENTID] INT NOT NULL, 
+)

@@ -5,7 +5,6 @@ namespace MF6.Application.Features.Impressoras
 {
     public interface IImpressoraService : IService<Impressora>
     {
-        bool UpdateNivelColorido(Nivelador nivelador);
-        bool UpdateNivelPreto(Nivelador nivelador);
+        bool UpdateNivel(Nivelador nivelador);
     }
 }

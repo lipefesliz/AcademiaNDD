@@ -19,6 +19,7 @@ namespace MF6.Infra.ORM.Contexts
         protected MF6Context(DbConnection connection) : base(connection, true) { }
 
         public DbSet<Impressora> Impressoras { get; set; }
+        public DbSet<Toner> Toners { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
