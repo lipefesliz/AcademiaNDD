@@ -16,9 +16,8 @@ namespace MF6.Infra.ORM.Features.Impressoras
             Property(i => i.EmUso).IsRequired();
             Property(i => i.Marca).HasMaxLength(100).IsRequired();
             Property(i => i.Rede).HasMaxLength(100).IsRequired();
-
-            HasRequired(i => i.TonerColorido);
-            HasRequired(i => i.TonerPreto);
+            Property(i => i.TonerColorido.Nivel).HasColumnName("TonerColorido").IsRequired();
+            Property(i => i.TonerPreto.Nivel).HasColumnName("TonerPreto").IsRequired();
         }
     }
 }

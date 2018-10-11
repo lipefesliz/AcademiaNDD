@@ -44,7 +44,6 @@ namespace MF6.Infra.ORM.Tests.Features.Impressoras
             impressoraAdicionada.Id.Should().NotBe(0);
             var impressoraEsperada = _ctx.Impressoras.Find(impressoraAdicionada.Id);
             impressoraEsperada.Should().Be(impressoraAdicionada);
-            impressoraEsperada.TonerColorido.Id.Should().Be(impressoraAdicionada.TonerColorido.Id);
         }
 
         [Test]
@@ -64,7 +63,6 @@ namespace MF6.Infra.ORM.Tests.Features.Impressoras
             impressoraAdicionada.Id.Should().NotBe(0);
             var impressoraEsperada = _ctx.Impressoras.Find(impressoraAdicionada.Id);
             impressoraEsperada.Should().Be(impressoraAdicionada);
-            impressoraEsperada.TonerColorido.Id.Should().Be(impressoraAdicionada.TonerColorido.Id);
         }
 
         #endregion

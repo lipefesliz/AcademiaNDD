@@ -48,14 +48,26 @@ namespace MF6.Application.Features.Impressoras
         }
 
 
-        public bool UpdateNivel(Nivelador nivelador)
+        public bool UpdateNivelColorido(Nivelador nivelador)
         {
-            var impressoraDb = _impressoraRepository.GetbyId(nivelador.Impressora.Id) ?? throw new NotFoundException();
+            var impressoraDb = _impressoraRepository.GetbyId(nivelador.ImpressoraID) ?? throw new NotFoundException();
 
             if (nivelador.Operacao == TipoOperacao.ADICAO)
                 impressoraDb.TonerColorido.AumentarNivel(nivelador.Quantidade);
             else
                 impressoraDb.TonerColorido.DiminuirNivel(nivelador.Quantidade);
+
+            return _impressoraRepository.Update(impressoraDb);
+        }
+
+        public bool UpdateNivelPreto(Nivelador nivelador)
+        {
+            var impressoraDb = _impressoraRepository.GetbyId(nivelador.ImpressoraID) ?? throw new NotFoundException();
+
+            if (nivelador.Operacao == TipoOperacao.ADICAO)
+                impressoraDb.TonerPreto.AumentarNivel(nivelador.Quantidade);
+            else
+                impressoraDb.TonerPreto.DiminuirNivel(nivelador.Quantidade);
 
             return _impressoraRepository.Update(impressoraDb);
         }

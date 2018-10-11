@@ -7,6 +7,6 @@ namespace MF6.Application.Features.Impressoras
     {
         public double Quantidade { get; set; }
         public TipoOperacao Operacao { get; set; }
-        public Impressora Impressora { get; set; }
+        public int ImpressoraID { get; set; }
     }
 }

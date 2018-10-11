@@ -3,7 +3,7 @@ using MF6.Domain.Exceptions;
 
 namespace MF6.Domain.Features.Toners
 {
-    public class Toner : Entity
+    public class Toner
     {
         public double Nivel { get; set; }
 
